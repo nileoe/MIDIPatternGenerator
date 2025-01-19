@@ -9,23 +9,6 @@ class MainComponent  : public juce::Component
     MainComponent()
     {
         setSize (1200, 600);
-        
-        // ---------------- GENERATION METHOD BOX ----------------
-//        addAndMakeVisible(generationMethodsBox);
-//        generationMethodsBox.setText("Generation Method");
-//        generationMethodsBox
-//            .setColour(juce::GroupComponent::ColourIds::outlineColourId,
-//                       juce::Colours::white);
-        // melody button
-//        addAndMakeVisible(melodyGenerationButton);
-//        melodyGenerationButton.setRadioGroupId(GenerationMethods);
-//        
-//        // algorithm button
-//        addAndMakeVisible(algorithmGenerationButton);
-//        algorithmGenerationButton.setRadioGroupId(GenerationMethods);
-
-//        addAndMakeVisible(algorithmMenu);
-
     }
     
     ~MainComponent() override
@@ -35,53 +18,71 @@ class MainComponent  : public juce::Component
     //==============================================================================
     void paint (juce::Graphics& g) override
     {
-        // (Our component is opaque, so we must completely fill the background with a solid colour)
         g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-        //        g.setFont (juce::FontOptions (16.0f));
-        //        g.setColour (juce::Colours::white);
-        //        g.drawText ("Hello World!", getLocalBounds(), juce::Justification::centred, true);
     }
     
     void resized() override
     {
         addAndMakeVisible(generationMethodsBox);
         generationMethodsBox.setBounds (20, 20, 350, 150);
-//        generationMethodsBox        .setBounds (20, 20, 350, 150);
-//        algorithmGenerationButton   .setBounds (generationMethodsBox.getX() + 10, generationMethodsBox.getY() + 20, generationMethodsBox.getWidth() - 100, 70);
-//        melodyGenerationButton      .setBounds (generationMethodsBox.getX() + 10, generationMethodsBox.getY() + 80, generationMethodsBox.getWidth() - 100, 70);
-//        algorithmMenu
-//            .setBounds (algorithmGenerationButton.getX() + algorithmGenerationButton.getWidth() + 10,
-//                        algorithmGenerationButton.getY() + 20,
-//                        80,
-//                        algorithmGenerationButton.getHeight() - 20);
     }
     
     enum RadioButtonIds
     {
-        GenerationMethods = 101
+        GenerationMethodsRadioId = 101
     };
 
     
     private:
     struct GenerationMethodsBox : public juce::GroupComponent
     {
-//        GenerationMethodsBox (int width, int height)
-        GenerationMethodsBox ()
+        GenerationMethodsBox (int radioGroupId)
         {
-//            setSize(width, height);
-            addAndMakeVisible(box);
-            box.setText("Generation Method");
-            box.setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
+            setText ("Generation Method");
+            setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
+            addAndMakeVisible (algorithmButton);
+            addAndMakeVisible (algorithmMenu);
+            addAndMakeVisible (melodyButton);
+            addAndMakeVisible (selectMelodyButton);
+            
+            algorithmButton .setRadioGroupId(radioGroupId);
+            melodyButton    .setRadioGroupId(radioGroupId);
+            
+            for (auto i = 0; i < algorithmChoices.size(); i ++)
+            {
+                algorithmMenu.addItem (algorithmChoices[i], i + 1);
+            }
+            algorithmMenu.setSelectedId(1);
         }
         
-        juce::GroupComponent box;
-        juce::ToggleButton algorithmButton    {"Generate from Algorithm"};
-        juce::ToggleButton melodyButton       {"Generate from Input Melody"};
-        juce::ComboBox algorithmMenu;
+        void resized() override
+        {
+            juce::Rectangle<int> optionsArea = getLocalBounds().reduced(20);
+            juce::Rectangle<int> algoOptionArea = optionsArea.removeFromTop(optionsArea.getHeight() / 2);
+            juce::FlexBox algoOptionFb;
+            algoOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+            algoOptionFb.alignItems = juce::FlexBox::AlignItems::center;
+            algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth(210.f).withMinHeight (20.f));
+            algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth(100.f).withMinHeight (30.f));
+            algoOptionFb.performLayout(algoOptionArea);
+
+            juce::FlexBox melodyOptionFb;
+            melodyOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+            melodyOptionFb.alignItems = juce::FlexBox::AlignItems::center;
+            melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth(210.f).withMinHeight (20.f));
+            melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth(100.f).withMinHeight (30.f));
+            melodyOptionFb.performLayout(optionsArea);
+        }
+        
+        juce::ToggleButton  algorithmButton          { "Generate from Algorithm" };
+        juce::ToggleButton  melodyButton             { "Generate from Input Melody" };
+        juce::ComboBox      algorithmMenu;
+        juce::TextButton    selectMelodyButton       { "Select Melody" };
+        juce::StringArray   algorithmChoices         {"Algo 1", "Algo 2", "Algo 3", "Algo 4", "Algo 5"};
     };
     
 //    GenerationMethodsBox generationMethodsBox {350, 150};
-    GenerationMethodsBox generationMethodsBox;
+    GenerationMethodsBox generationMethodsBox {GenerationMethodsRadioId};
 
 
 
