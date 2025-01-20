@@ -34,8 +34,8 @@ class GenerationMethodsBox  : public juce::GroupComponent
         algorithmButton
             .setToggleState (true, juce::NotificationType::dontSendNotification);
 
-        algorithmButton.onClick = [this] { algorithmMenu.     setEnabled (algorithmButton.getState()); };
-        melodyButton.onClick    = [this] { selectMelodyButton.setEnabled (melodyButton.   getState()); };
+        algorithmButton .onClick = [this] { algorithmMenu.     setEnabled (algorithmButton.getState()); };
+        melodyButton    .onClick = [this] { selectMelodyButton.setEnabled (melodyButton.   getState()); };
 
         for (auto i = 0; i < algorithmChoices.size(); i ++)
         {
@@ -74,8 +74,8 @@ class GenerationMethodsBox  : public juce::GroupComponent
         melodyOptionFb.performLayout(optionsArea);
     }
     
-    void paint (juce::Graphics& g) override
-    {
+//    void paint (juce::Graphics& g) override
+//    {
         //        g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
         //        g.setColour (juce::Colours::grey);
         //        g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
@@ -83,7 +83,7 @@ class GenerationMethodsBox  : public juce::GroupComponent
         //        g.setFont (juce::FontOptions (14.0f));
         //        g.drawText ("GenerationMethodsBox", getLocalBounds(),
         //                    juce::Justification::centred, true);   // draw some placeholder text
-    }
+//    }
     private:
     juce::ToggleButton  algorithmButton          { "Generate from Algorithm" };
     juce::ToggleButton  melodyButton             { "Generate from Input Melody" };

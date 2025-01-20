@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="sh3IxN" name="PatternGenerator">
     <GROUP id="{8A104635-3FA0-9024-00A3-4EE02D9F5122}" name="Source">
+      <FILE id="x8GeBv" name="PatternLengthBox.h" compile="0" resource="0"
+            file="Source/PatternLengthBox.h"/>
       <FILE id="SLdqTS" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="iydx1V" name="GenerationMethodsBox.h" compile="0" resource="0"
             file="Source/GenerationMethodsBox.h"/>
