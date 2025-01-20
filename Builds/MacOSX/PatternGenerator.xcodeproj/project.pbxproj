@@ -52,6 +52,7 @@
 		BE18EF16193C986BF828199B /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DC19D18C3033139AF580DAEA /* Metal.framework */ /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EF46972579548F975652622B /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
+		F077207CE310C072926EDC9E /* GenerationMethodsBox.h */ /* GenerationMethodsBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GenerationMethodsBox.h; path = ../../Source/GenerationMethodsBox.h; sourceTree = SOURCE_ROOT; };
 		F1EE8D695CE524090DFA68AD /* include_juce_graphics_Harfbuzz.cpp */ /* include_juce_graphics_Harfbuzz.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_graphics_Harfbuzz.cpp; path = ../../JuceLibraryCode/include_juce_graphics_Harfbuzz.cpp; sourceTree = SOURCE_ROOT; };
 		FA6D7AA89F979AF259D75434 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -158,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				13DBC6B22A474CD0E2D602AF,
+				F077207CE310C072926EDC9E,
 				80DC32E1B11CC0B761BD625E,
 			);
 			name = Source;
