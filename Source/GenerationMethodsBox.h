@@ -19,6 +19,7 @@ class GenerationMethodsBox  : public juce::GroupComponent
     {
         setText ("Generation Method");
         setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
+        
         addAndMakeVisible (algorithmButton);
         addAndMakeVisible (algorithmMenu);
         addAndMakeVisible (melodyButton);
@@ -27,6 +28,15 @@ class GenerationMethodsBox  : public juce::GroupComponent
         algorithmButton .setRadioGroupId(radioGroupId);
         melodyButton    .setRadioGroupId(radioGroupId);
         
+        algorithmButton.setName ("algo");
+        melodyButton   .setName ("melody");
+        selectMelodyButton.setEnabled (false);
+        algorithmButton
+            .setToggleState (true, juce::NotificationType::dontSendNotification);
+
+        algorithmButton.onClick = [this] { algorithmMenu.     setEnabled (algorithmButton.getState()); };
+        melodyButton.onClick    = [this] { selectMelodyButton.setEnabled (melodyButton.   getState()); };
+
         for (auto i = 0; i < algorithmChoices.size(); i ++)
         {
             algorithmMenu.addItem (algorithmChoices[i], i + 1);
@@ -36,6 +46,13 @@ class GenerationMethodsBox  : public juce::GroupComponent
     
     ~GenerationMethodsBox() override
     {
+    }
+    
+    void updateToggleState (juce::ToggleButton* button)
+    {
+        bool state = button->getToggleState();
+        auto stateString = state ? "on" : "off";
+        std::cout << button->getName() << " is " << stateString << std::endl;
     }
     
     void resized() override
