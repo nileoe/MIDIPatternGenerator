@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "RoundRadioButton.h"
 
 class GenerationMethodsBox  : public juce::GroupComponent
 {
@@ -85,8 +86,10 @@ class GenerationMethodsBox  : public juce::GroupComponent
         //                    juce::Justification::centred, true);   // draw some placeholder text
 //    }
     private:
-    juce::ToggleButton  algorithmButton          { "Generate from Algorithm" };
-    juce::ToggleButton  melodyButton             { "Generate from Input Melody" };
+//    juce::ToggleButton  algorithmButton          { "Generate from Algorithm" };
+//    juce::ToggleButton  melodyButton             { "Generate from Input Melody" };
+    RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
+                        melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;
     juce::TextButton    selectMelodyButton       { "Select Melody" };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenerationMethodsBox)

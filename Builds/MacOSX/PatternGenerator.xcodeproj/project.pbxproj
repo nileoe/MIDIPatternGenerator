@@ -48,12 +48,15 @@
 		13DBC6B22A474CD0E2D602AF /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		15FAB914F4B9A1BDA1CAFE3A /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		1722B06DCD5F8127F2EF3492 /* juce_audio_formats */ /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_formats; path = "~/JUCE/modules/juce_audio_formats"; sourceTree = "<absolute>"; };
+		188B875E1A23E74B07369507 /* ScaleAndHarmonyBox.h */ /* ScaleAndHarmonyBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScaleAndHarmonyBox.h; path = ../../Source/ScaleAndHarmonyBox.h; sourceTree = SOURCE_ROOT; };
 		1A74AD267CEC745428CE98F4 /* include_juce_audio_processors_lv2_libs.cpp */ /* include_juce_audio_processors_lv2_libs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_lv2_libs.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_lv2_libs.cpp; sourceTree = SOURCE_ROOT; };
 		1F226DC898731684593D2B25 /* PatternLengthBox.h */ /* PatternLengthBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PatternLengthBox.h; path = ../../Source/PatternLengthBox.h; sourceTree = SOURCE_ROOT; };
 		21FD67C7C72DA42421AF4122 /* DiscRecording.framework */ /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		284EC6D5609D8263EA8D4518 /* juce_audio_processors */ /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = "~/JUCE/modules/juce_audio_processors"; sourceTree = "<absolute>"; };
+		28B497D1AE1CE57BF99A548C /* RoundRadioButton.h */ /* RoundRadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RoundRadioButton.h; path = ../../Source/RoundRadioButton.h; sourceTree = SOURCE_ROOT; };
 		29C1AB70867CD813BED6208F /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
 		2C6DB02B8C6EC4F7F44221BF /* AudioToolbox.framework */ /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		31E950C6DA1A1C7FAA869495 /* CustomLookAndFeel.h */ /* CustomLookAndFeel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomLookAndFeel.h; path = ../../Source/CustomLookAndFeel.h; sourceTree = SOURCE_ROOT; };
 		35738AF7FEE57DE172EC0C17 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
 		3FC0000AAFC0B20FA08D67F9 /* RhythmOverrideBox.h */ /* RhythmOverrideBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RhythmOverrideBox.h; path = ../../Source/RhythmOverrideBox.h; sourceTree = SOURCE_ROOT; };
 		42A633546657501265D62BA0 /* Accelerate.framework */ /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -227,11 +230,14 @@
 			isa = PBXGroup;
 			children = (
 				B4E3A73302D3734170FA5567,
+				28B497D1AE1CE57BF99A548C,
 				3FC0000AAFC0B20FA08D67F9,
 				1F226DC898731684593D2B25,
 				F91318DBCBFA81282BC1F701,
 				13DBC6B22A474CD0E2D602AF,
 				F077207CE310C072926EDC9E,
+				188B875E1A23E74B07369507,
+				31E950C6DA1A1C7FAA869495,
 				80DC32E1B11CC0B761BD625E,
 			);
 			name = Source;

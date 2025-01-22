@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "RoundRadioButton.h"
 
 class PatternLengthBox  : public juce::GroupComponent
 {
@@ -77,7 +78,8 @@ class PatternLengthBox  : public juce::GroupComponent
     
     private:
     juce::Slider lengthSlider;
-    juce::ToggleButton  notesOption     { "Notes" },
+    RoundRadioButton    notesOption     { "Notes" },
+//    juce::ToggleButton  notesOption     { "Notes" },
                         barsOption      { "Bars" },
                         secondsOption   { "Seconds" };
     juce::Range<double> notesLengthRange,
