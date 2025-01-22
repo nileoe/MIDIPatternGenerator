@@ -40,7 +40,7 @@ public:
         useHarmonyRadioButton   .setRadioGroupId(scaleHarmonyRadioId);
         useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
         
-        useHarmonyRadioButton   .setEnabled (true);
+        useHarmonyRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
     }
 
     void resized() override

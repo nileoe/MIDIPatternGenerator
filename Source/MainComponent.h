@@ -38,6 +38,7 @@ class MainComponent  : public juce::Component
         addAndMakeVisible (pianoKeyboard);
         addAndMakeVisible (selectedRangeBox);
         addAndMakeVisible (scaleAndHarmonyBox);
+        addAndMakeVisible (generateButton);
 
         generationMethodsBox.setBounds (leftArea.removeFromTop (190).reduced (20));
         patternLengthBox    .setBounds (leftArea.removeFromTop (150).reduced (20));
@@ -45,8 +46,9 @@ class MainComponent  : public juce::Component
         closeButton         .setBounds (leftArea.reduced(50, 30));
 
         pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
-        selectedRangeBox    .setBounds (mainArea.removeFromTop (100).reduced (20));
-        scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (180).reduced (20));
+        selectedRangeBox    .setBounds (mainArea.removeFromTop (70) .reduced (20, 10));
+        scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (160).reduced (20, 10));
+        generateButton      .setBounds (mainArea.reduced(50, 30));
     }
     
     enum RadioButtonIds
@@ -61,13 +63,14 @@ class MainComponent  : public juce::Component
     GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId, { "Algo 1", "Algo 2", "Algo 3", "Algo 4", "Algo 5" } };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
-    juce::TextButton        closeButton             { "Close" };
     
     juce::MidiKeyboardState keyboardState;
     ClickablePianoKeyboard  pianoKeyboard           { keyboardState, 24, 83 };
     SelectedRangeBox        selectedRangeBox        { keyboardState };
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     
+    juce::TextButton        closeButton             { "Close" },
+                            generateButton          { "Generate Pattern" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
