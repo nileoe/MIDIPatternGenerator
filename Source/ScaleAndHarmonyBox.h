@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "RoundRadioButton.h"
+#include "AppData.h"
 
 //==============================================================================
 /*
@@ -30,8 +31,8 @@ public:
         addAndMakeVisible(strictModeTickbox);
         
         addAndMakeVisible(useCustomScaleTickbox);
-        addAndMakeVisible(scaleRootMenu);
-        addAndMakeVisible(scaleNameMenu);
+        addAndMakeVisible(rootNoteMenu);
+        addAndMakeVisible(scaleMenu);
         addAndMakeVisible(customScaleButton);
         
         useHarmonyRadioButton   .setName("useHarmony");
@@ -41,6 +42,20 @@ public:
         useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
         
         useHarmonyRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
+        
+        const juce::StringArray& scales = AppData::getInstance().getScales();
+        for (auto i = 0; i < scales.size(); i ++)
+        {
+            scaleMenu.addItem (scales[i], i + 1);
+        }
+        scaleMenu.setSelectedId(1);
+        
+        const juce::StringArray& rootNotes = AppData::getInstance().getRootNotes();
+        for (auto i = 0; i < rootNotes.size(); i ++)
+        {
+            rootNoteMenu.addItem (rootNotes[i], i + 1);
+        }
+        rootNoteMenu.setSelectedId(1);
     }
 
     void resized() override
@@ -59,8 +74,8 @@ public:
         scaleFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
         scaleFb.alignItems = juce::FlexBox::AlignItems::center;
         scaleFb.items.add (FI(useScaleRadioButton)      .withMinWidth (130.0f).withMinHeight (30.0f));
-        scaleFb.items.add (FI(scaleRootMenu)            .withMinWidth (70.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
-        scaleFb.items.add (FI(scaleNameMenu)            .withMinWidth (250.0f).withMinHeight (30.0f));
+        scaleFb.items.add (FI(rootNoteMenu)            .withMinWidth (70.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
+        scaleFb.items.add (FI(scaleMenu)            .withMinWidth (250.0f).withMinHeight (30.0f));
         
         juce:: FlexBox customScaleFb;
         customScaleFb.justifyContent = juce::FlexBox::JustifyContent::flexEnd;
@@ -79,8 +94,8 @@ private:
     juce::ToggleButton  strictModeTickbox           { "Strict mode" };
     
     juce::ToggleButton  useCustomScaleTickbox;
-    juce::ComboBox      scaleRootMenu,
-                        scaleNameMenu;
+    juce::ComboBox      rootNoteMenu,
+                        scaleMenu;
     juce::TextButton    customScaleButton           { "Use custom scale" };
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScaleAndHarmonyBox)

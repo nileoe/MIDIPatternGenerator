@@ -60,7 +60,7 @@ class MainComponent  : public juce::Component
 
     
     private:
-    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId, { "Algo 1", "Algo 2", "Algo 3", "Algo 4", "Algo 5" } };
+    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     

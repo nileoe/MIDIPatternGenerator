@@ -6,14 +6,20 @@
     <GROUP id="{8A104635-3FA0-9024-00A3-4EE02D9F5122}" name="Source">
       <FILE id="glCYfx" name="SelectedRangeBox.h" compile="0" resource="0"
             file="Source/SelectedRangeBox.h"/>
+      <FILE id="Jq1fZW" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
+      <FILE id="knsTDz" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
       <FILE id="UMdxI6" name="RoundRadioButton.h" compile="0" resource="0"
             file="Source/RoundRadioButton.h"/>
       <FILE id="mlY0PV" name="RhythmOverrideBox.h" compile="0" resource="0"
             file="Source/RhythmOverrideBox.h"/>
       <FILE id="x8GeBv" name="PatternLengthBox.h" compile="0" resource="0"
             file="Source/PatternLengthBox.h"/>
+      <FILE id="st0j6S" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
+      <FILE id="h3WXzh" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
       <FILE id="UjuE8E" name="ClickablePianoKeyboard.h" compile="0" resource="0"
             file="Source/ClickablePianoKeyboard.h"/>
+      <FILE id="NPpd7h" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
+      <FILE id="odUv4n" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
       <FILE id="SLdqTS" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="iydx1V" name="GenerationMethodsBox.h" compile="0" resource="0"
             file="Source/GenerationMethodsBox.h"/>

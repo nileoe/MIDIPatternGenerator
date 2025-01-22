@@ -12,11 +12,13 @@
 
 #include <JuceHeader.h>
 #include "RoundRadioButton.h"
+#include "AppData.h"
 
 class GenerationMethodsBox  : public juce::GroupComponent
 {
     public:
-    GenerationMethodsBox (int radioGroupId, juce::StringArray algorithmChoices)
+//    GenerationMethodsBox (int radioGroupId, juce::StringArray algorithmChoices)
+    GenerationMethodsBox (int radioGroupId)
     {
         setText ("Generation Method");
         setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -38,9 +40,10 @@ class GenerationMethodsBox  : public juce::GroupComponent
         algorithmButton .onClick = [this] { algorithmMenu.     setEnabled (algorithmButton.getState()); };
         melodyButton    .onClick = [this] { selectMelodyButton.setEnabled (melodyButton.   getState()); };
 
-        for (auto i = 0; i < algorithmChoices.size(); i ++)
+        const juce::StringArray& algorithms = AppData::getInstance().getAlgorithms();
+        for (auto i = 0; i < algorithms.size(); i ++)
         {
-            algorithmMenu.addItem (algorithmChoices[i], i + 1);
+            algorithmMenu.addItem (algorithms[i], i + 1);
         }
         algorithmMenu.setSelectedId(1);
     }
