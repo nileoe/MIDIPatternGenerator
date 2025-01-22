@@ -5,6 +5,7 @@
 #include "PatternLengthBox.h"
 #include "RhythmOverrideBox.h"
 #include "ClickablePianoKeyboard.h"
+#include "SelectedRangeBox.h"
 
 class MainComponent  : public juce::Component
 {
@@ -36,12 +37,13 @@ class MainComponent  : public juce::Component
         generationMethodsBox.setBounds (leftArea.removeFromTop (190).reduced (20));
         patternLengthBox    .setBounds (leftArea.removeFromTop (150).reduced (20));
         rhythmOverrideBox   .setBounds (leftArea.removeFromTop (150).reduced (20));
-        std::cout << "main area width: " << mainArea.getWidth() << std::endl;
         closeButton         .setBounds (leftArea.reduced(50, 30));
 
         addAndMakeVisible (pianoKeyboard);
-        
+        addAndMakeVisible (selectedRangeBox);
+
         pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
+        selectedRangeBox    .setBounds (mainArea.removeFromTop (100).reduced (20));
     }
     
     enum RadioButtonIds
@@ -59,6 +61,7 @@ class MainComponent  : public juce::Component
     
     juce::MidiKeyboardState keyboardState;
     ClickablePianoKeyboard  pianoKeyboard           { keyboardState, 24, 83 };
+    SelectedRangeBox        selectedRangeBox        { keyboardState };
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
