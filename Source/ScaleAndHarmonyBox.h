@@ -43,14 +43,22 @@ public:
         
         useHarmonyRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
         
-        const juce::StringArray& scales = AppData::getInstance().getScales();
+//        const juce::StringArray& scales = AppData::getInstance().getScales();
+        juce::StringArray scales;
+        scales.add("s1");
+        scales.add("s2");
+        scales.add("s3");
         for (auto i = 0; i < scales.size(); i ++)
         {
             scaleMenu.addItem (scales[i], i + 1);
         }
         scaleMenu.setSelectedId(1);
         
-        const juce::StringArray& rootNotes = AppData::getInstance().getRootNotes();
+//        const juce::StringArray& rootNotes = AppData::getInstance().getRootNotes();
+        juce::StringArray rootNotes;
+        rootNotes.add("r1");
+        rootNotes.add("r2");
+        rootNotes.add("r3");
         for (auto i = 0; i < rootNotes.size(); i ++)
         {
             rootNoteMenu.addItem (rootNotes[i], i + 1);

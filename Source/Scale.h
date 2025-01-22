@@ -14,20 +14,41 @@
 class Scale
 {
     public:
-    Scale(juce::String name, juce::String categoryName, juce::Array<bool> notePattern);
-    Scale(juce::String name, juce::String categoryName, juce::Array<int>  noteIndices);
-
-    const juce::String&  getName() const;
-    const juce::String&  getCategoryName() const;
-    const juce::Array<int>&  getNoteIndices() const;
-    const juce::Array<bool>& getNotePattern() const;
+    Scale();
+    Scale(const Scale& other);
+    Scale(juce::String name, juce::Array<bool>  notePattern, juce::String categoryName = "None");
+    Scale(juce::String name, juce::Array<int>   noteIndices, juce::String categoryName = "None");
+    
+    int                         getId()             const;
+    const juce::String&         getName()           const;
+    const juce::String&         getCategoryName()   const;
+    const juce::Array<int>&     getNoteIndices()    const;
+    const juce::Array<bool>&    getNotePattern()    const;
     int getNoteCount() const;
     
     bool isNoteInScale(int note) const;
+    void printInfo() const;
+
+    private:
+    static int nextId;
+    int id;
+    juce::String name;
+    juce::Array<int> noteIndices;
+    juce::Array<bool> notePattern;
+    juce::String categoryName;
+};
+
+class RootNote
+{
+    public:
+    RootNote();
+    RootNote(juce::String name, int degree);
+
+    const juce::String& getName() const;
+    int getDegree() const;
+    void printInfo() const;
 
     private:
     juce::String name;
-    juce::String categoryName;
-    juce::Array<int> noteIndices;
-    juce::Array<bool> notePattern;
+    int degree;
 };

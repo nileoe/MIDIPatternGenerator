@@ -7,6 +7,8 @@
 #include "ClickablePianoKeyboard.h"
 #include "SelectedRangeBox.h"
 #include "ScaleAndHarmonyBox.h"
+#include "AppData.h"
+#include "Scale.h"
 
 class MainComponent  : public juce::Component
 {
@@ -49,6 +51,14 @@ class MainComponent  : public juce::Component
         selectedRangeBox    .setBounds (mainArea.removeFromTop (70) .reduced (20, 10));
         scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (160).reduced (20, 10));
         generateButton      .setBounds (mainArea.reduced(50, 30));
+        
+        auto& data = AppData::getInstance();
+//        data.getScales().getLast().printInfo();
+        
+//        Scale pentatonicScale{"Pentatonic", juce::Array<int>{0, 2, 4, 7, 9}, "5 notes standard"};
+//        data.addScale(pentatonicScale);
+//        data.getScales().getLast().printInfo();
+//        data.getRootNotes().getLast().printInfo();
     }
     
     enum RadioButtonIds

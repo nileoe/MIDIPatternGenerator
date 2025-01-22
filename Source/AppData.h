@@ -10,20 +10,23 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "Scale.h"
 
 class AppData
 {
 public:
     static AppData& getInstance();
 
-    const juce::StringArray& getAlgorithms() const;
-    const juce::StringArray& getScales() const;
-    const juce::StringArray& getRootNotes() const;
+    const juce::StringArray&        getAlgorithms()     const;
+    const juce::Array<Scale>&       getScales()         const;
+    const juce::Array<RootNote>&    getRootNotes()      const;
+    
+    void addScale(Scale scale);
 
 private:
-    juce::StringArray algorithms;
-    juce::StringArray scales;
-    juce::StringArray rootNotes;
+    juce::StringArray           algorithms;
+    juce::Array<Scale>          scales;
+    juce::Array<RootNote>       rootNotes;
 
     AppData() noexcept;
     

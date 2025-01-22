@@ -9,3 +9,14 @@
 */
 
 #pragma once
+
+#include <JuceHeader.h>
+#include "Scale.h"
+
+class NoteSet
+{
+    public:
+    private:
+    Scale scale;
+    
+};
