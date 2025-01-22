@@ -45,10 +45,6 @@ class GenerationMethodsBox  : public juce::GroupComponent
         algorithmMenu.setSelectedId(1);
     }
     
-    ~GenerationMethodsBox() override
-    {
-    }
-    
     void updateToggleState (juce::ToggleButton* button)
     {
         bool state = button->getToggleState();
@@ -63,31 +59,19 @@ class GenerationMethodsBox  : public juce::GroupComponent
         juce::FlexBox algoOptionFb;
         algoOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
         algoOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-        algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth(210.f).withMinHeight (20.f));
-        algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth(100.f).withMinHeight (30.f));
+        algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth(210.0f).withMinHeight (20.0f));
+        algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth(100.0f).withMinHeight (30.0f));
         algoOptionFb.performLayout(algoOptionArea);
         
         juce::FlexBox melodyOptionFb;
         melodyOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
         melodyOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-        melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth(210.f).withMinHeight (20.f));
-        melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth(100.f).withMinHeight (30.f));
+        melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth(210.0f).withMinHeight (20.0f));
+        melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth(100.0f).withMinHeight (30.0f));
         melodyOptionFb.performLayout(optionsArea);
     }
     
-//    void paint (juce::Graphics& g) override
-//    {
-        //        g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
-        //        g.setColour (juce::Colours::grey);
-        //        g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-        //        g.setColour (juce::Colours::white);
-        //        g.setFont (juce::FontOptions (14.0f));
-        //        g.drawText ("GenerationMethodsBox", getLocalBounds(),
-        //                    juce::Justification::centred, true);   // draw some placeholder text
-//    }
     private:
-//    juce::ToggleButton  algorithmButton          { "Generate from Algorithm" };
-//    juce::ToggleButton  melodyButton             { "Generate from Input Melody" };
     RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
                         melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;

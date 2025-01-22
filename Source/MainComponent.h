@@ -46,13 +46,14 @@ class MainComponent  : public juce::Component
 
         pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
         selectedRangeBox    .setBounds (mainArea.removeFromTop (100).reduced (20));
-        scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (150).reduced (20));
+        scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (180).reduced (20));
     }
     
     enum RadioButtonIds
     {
         GenerationMethodsRadioId = 101,
-        PatternLengthRadioId
+        PatternLengthRadioId,
+        ScaleHarmonyRadioId,
     };
 
     
@@ -65,7 +66,7 @@ class MainComponent  : public juce::Component
     juce::MidiKeyboardState keyboardState;
     ClickablePianoKeyboard  pianoKeyboard           { keyboardState, 24, 83 };
     SelectedRangeBox        selectedRangeBox        { keyboardState };
-    ScaleAndHarmonyBox      scaleAndHarmonyBox;
+    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
