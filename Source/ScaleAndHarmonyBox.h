@@ -35,35 +35,44 @@ public:
         addAndMakeVisible(scaleMenu);
         addAndMakeVisible(customScaleButton);
         
-        useHarmonyRadioButton   .setName("useHarmony");
-        useScaleRadioButton     .setName("useScale");
+        useHarmonyRadioButton   .onClick = [this] { updateToggleState(); };
+        useScaleRadioButton     .onClick = [this] { updateToggleState(); };
 
         useHarmonyRadioButton   .setRadioGroupId(scaleHarmonyRadioId);
         useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
         
         useHarmonyRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
+        updateToggleState();
         
-//        const juce::StringArray& scales = AppData::getInstance().getScales();
-        juce::StringArray scales;
-        scales.add("s1");
-        scales.add("s2");
-        scales.add("s3");
-        for (auto i = 0; i < scales.size(); i ++)
+        AppData& data = AppData::getInstance();
+        const juce::Array<Scale> scales = data.getScales();
+        for (Scale s : scales)
         {
-            scaleMenu.addItem (scales[i], i + 1);
+            scaleMenu.addItem (s.getName(), s.getId());
+            s.printInfo();
         }
-        scaleMenu.setSelectedId(1);
         
-//        const juce::StringArray& rootNotes = AppData::getInstance().getRootNotes();
-        juce::StringArray rootNotes;
-        rootNotes.add("r1");
-        rootNotes.add("r2");
-        rootNotes.add("r3");
-        for (auto i = 0; i < rootNotes.size(); i ++)
+        const juce::Array<RootNote> rootNotes = data.getRootNotes();
+        for (RootNote rn : rootNotes)
         {
-            rootNoteMenu.addItem (rootNotes[i], i + 1);
+            rootNoteMenu.addItem (rn.getName(), rn.getId());
         }
-        rootNoteMenu.setSelectedId(1);
+        
+        scaleMenu       .setSelectedId(scales   .getFirst().getId());
+        rootNoteMenu    .setSelectedId(rootNotes.getFirst().getId());
+    }
+    
+    void updateToggleState()
+    {
+        bool harmonyIsSelected = useHarmonyRadioButton.getToggleState();
+        bool scaleIsSelected = !harmonyIsSelected;
+        
+        strictModeTickbox.setEnabled(harmonyIsSelected);
+        
+        scaleMenu.setEnabled(scaleIsSelected);
+        rootNoteMenu.setEnabled(scaleIsSelected);
+        useCustomScaleTickbox.setEnabled(scaleIsSelected);
+        customScaleButton.setEnabled(scaleIsSelected);
     }
 
     void resized() override
@@ -82,8 +91,8 @@ public:
         scaleFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
         scaleFb.alignItems = juce::FlexBox::AlignItems::center;
         scaleFb.items.add (FI(useScaleRadioButton)      .withMinWidth (130.0f).withMinHeight (30.0f));
-        scaleFb.items.add (FI(rootNoteMenu)            .withMinWidth (70.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
-        scaleFb.items.add (FI(scaleMenu)            .withMinWidth (250.0f).withMinHeight (30.0f));
+        scaleFb.items.add (FI(rootNoteMenu)             .withMinWidth (95.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
+        scaleFb.items.add (FI(scaleMenu)                .withMinWidth (250.0f).withMinHeight (30.0f));
         
         juce:: FlexBox customScaleFb;
         customScaleFb.justifyContent = juce::FlexBox::JustifyContent::flexEnd;

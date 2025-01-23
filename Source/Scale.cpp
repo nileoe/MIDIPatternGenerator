@@ -51,37 +51,15 @@ Scale::Scale(juce::String name, juce::Array<int> noteIndices, juce::String categ
     }
 }
 
-int Scale::getId() const
-{
-    return id;
-}
+int Scale::getId() const { return id; }
 
-const juce::String& Scale::getName() const
-{
-    return name;
-}
+const   juce::String&       Scale::getName()            const { return name; }
+const   juce::String&       Scale::getCategoryName()    const { return categoryName; }
+const   juce::Array<int>&   Scale::getNoteIndices()     const { return noteIndices; }
+const   juce::Array<bool>&  Scale::getNotePattern()     const { return notePattern; }
+int                         Scale::getNoteCount()       const { return noteIndices.size(); }
 
-const juce::String& Scale::getCategoryName() const
-{
-    return categoryName;
-}
-
-const juce::Array<int>&  Scale::getNoteIndices() const
-{
-    return noteIndices;
-}
-
-const juce::Array<bool>& Scale::getNotePattern() const
-{
-    return notePattern;
-}
-
-int Scale::getNoteCount() const
-{
-    return noteIndices.size();
-}
-
-bool Scale::isNoteInScale(int noteIndex) const
+bool    Scale::isNoteInScale(int noteIndex) const
 {
     jassert (noteIndex >= 0 && noteIndex <= 11);
     for (int scaleNote : noteIndices)
@@ -100,7 +78,7 @@ void Scale::printInfo() const
     std::cout << "id: " << id << "\n";
     std::cout << "name: " << name << "\n";
     std::cout << "category: " << categoryName << "\n";
-    std::cout << "notes: ";
+    std::cout << "notes (" << getNoteCount() << "): ";
     for (auto n : noteIndices)
     {
         std::cout << n << ", ";
@@ -108,22 +86,17 @@ void Scale::printInfo() const
     std::cout << "\nnext (static) scale class id: " << nextId << "\n";
 }
 
+int RootNote::nextId = 1;
 RootNote::RootNote() = default;
-RootNote::RootNote (juce::String name, int degree) : name(name), degree(degree)
+RootNote::RootNote (juce::String name, int degree) : id(nextId ++), name(name), degree(degree)
 {
     jassert(name.length() <= 5);
     jassert(degree >= 0 && degree <= 11);
 }
 
-const juce::String& RootNote::getName() const
-{
-    return name;
-}
-
-int RootNote::getDegree() const
-{
-    return degree;
-}
+const   juce::String&   RootNote::getName()     const { return name; }
+int                     RootNote::getDegree()   const { return degree; }
+int                     RootNote::getId()       const { return id; }
 
 void RootNote::printInfo() const
 {

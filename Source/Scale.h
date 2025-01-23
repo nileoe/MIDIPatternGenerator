@@ -24,7 +24,7 @@ class Scale
     const juce::String&         getCategoryName()   const;
     const juce::Array<int>&     getNoteIndices()    const;
     const juce::Array<bool>&    getNotePattern()    const;
-    int getNoteCount() const;
+    int                         getNoteCount()      const;
     
     bool isNoteInScale(int note) const;
     void printInfo() const;
@@ -44,11 +44,15 @@ class RootNote
     RootNote();
     RootNote(juce::String name, int degree);
 
-    const juce::String& getName() const;
-    int getDegree() const;
+    const juce::String&         getName()           const;
+    int                         getDegree()         const;
+    int                         getId()             const;
+
     void printInfo() const;
 
     private:
+    static int nextId;
+    int id;
     juce::String name;
     int degree;
 };

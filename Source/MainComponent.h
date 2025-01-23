@@ -52,7 +52,7 @@ class MainComponent  : public juce::Component
         scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (160).reduced (20, 10));
         generateButton      .setBounds (mainArea.reduced(50, 30));
         
-        auto& data = AppData::getInstance();
+//        auto& data = AppData::getInstance();
 //        data.getScales().getLast().printInfo();
         
 //        Scale pentatonicScale{"Pentatonic", juce::Array<int>{0, 2, 4, 7, 9}, "5 notes standard"};

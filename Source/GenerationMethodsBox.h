@@ -50,6 +50,7 @@ class GenerationMethodsBox  : public juce::GroupComponent
     
     void updateToggleState (juce::ToggleButton* button)
     {
+        // TODO unused
         bool state = button->getToggleState();
         auto stateString = state ? "on" : "off";
         std::cout << button->getName() << " is " << stateString << std::endl;
