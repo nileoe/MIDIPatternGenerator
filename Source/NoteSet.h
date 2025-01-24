@@ -20,6 +20,9 @@ class NoteSet
     NoteSet(Scale scale, int lowestNote, int highestNote);
     NoteSet(Scale scale, juce::Range<int> range);
 
+    const juce::Array<int>  getNotesIndices()   const;
+    const juce::StringArray getNoteNames()      const;
+    
     const Scale             getScale()          const;
     int                     getLowestNote()     const;
     int                     getHighestNote()    const;

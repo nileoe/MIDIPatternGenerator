@@ -17,19 +17,33 @@ NoteSet::NoteSet(Scale scale, juce::Range<int> range) : scale(scale), range(rang
 {
 }
 
-const Scale NoteSet::getScale() const
+const juce::Array<int> NoteSet::getNotesIndices() const
 {
-    return scale;
+    juce::Array<int> notes;
+    int startNote = range.getStart();
+    for (int i = startNote; i <= range.getEnd(); ++i)
+    {
+        int notePositionInOctave = (i - startNote) % 12;
+        if (scale.isNoteInScale(notePositionInOctave))
+        {
+            notes.add (i);
+        }
+    }
+    return notes;
 }
-int NoteSet::getHighestNote() const
+const juce::StringArray NoteSet::getNoteNames() const
 {
-    return range.getEnd();
+    juce::StringArray noteNames;
+    const juce::Array<int> noteIndices = getNotesIndices();
+    for (int noteIndex : noteIndices)
+    {
+//        noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, true);); // ??????
+        noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, false));
+    }
+    return noteNames;
 }
-int NoteSet::getLowestNote() const
-{
-    return range.getStart();
-}
-const juce::Range<int> NoteSet::getRange() const
-{
-    return range;
-}
+
+const Scale             NoteSet::getScale()         const { return scale; }
+int                     NoteSet::getLowestNote()    const { return range.getStart(); }
+int                     NoteSet::getHighestNote()   const { return range.getEnd(); }
+const juce::Range<int>  NoteSet::getRange()         const { return range; }
