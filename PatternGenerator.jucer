@@ -10,6 +10,7 @@
       <FILE id="knsTDz" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
       <FILE id="UMdxI6" name="RoundRadioButton.h" compile="0" resource="0"
             file="Source/RoundRadioButton.h"/>
+      <FILE id="e8BtgC" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
       <FILE id="mlY0PV" name="RhythmOverrideBox.h" compile="0" resource="0"
             file="Source/RhythmOverrideBox.h"/>
       <FILE id="x8GeBv" name="PatternLengthBox.h" compile="0" resource="0"

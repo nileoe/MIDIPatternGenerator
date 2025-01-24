@@ -21,7 +21,9 @@ public:
     const juce::Array<Scale>&       getScales()         const;
     const juce::Array<RootNote>&    getRootNotes()      const;
     
-    void addScale(Scale scale);
+    const Scale* getScaleById (int id) const;
+
+    void addScale (Scale scale);
 
 private:
     juce::StringArray           algorithms;

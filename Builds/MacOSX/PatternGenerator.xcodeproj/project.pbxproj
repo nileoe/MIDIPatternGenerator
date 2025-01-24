@@ -54,6 +54,7 @@
 		188B875E1A23E74B07369507 /* ScaleAndHarmonyBox.h */ /* ScaleAndHarmonyBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScaleAndHarmonyBox.h; path = ../../Source/ScaleAndHarmonyBox.h; sourceTree = SOURCE_ROOT; };
 		1A74AD267CEC745428CE98F4 /* include_juce_audio_processors_lv2_libs.cpp */ /* include_juce_audio_processors_lv2_libs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_lv2_libs.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_lv2_libs.cpp; sourceTree = SOURCE_ROOT; };
 		1B2FA4D8A6A532953334F52B /* NoteSet.h */ /* NoteSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoteSet.h; path = ../../Source/NoteSet.h; sourceTree = SOURCE_ROOT; };
+		1BC09FFA28FE30EBAB678511 /* Tester.h */ /* Tester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tester.h; path = ../../Source/Tester.h; sourceTree = SOURCE_ROOT; };
 		1F226DC898731684593D2B25 /* PatternLengthBox.h */ /* PatternLengthBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PatternLengthBox.h; path = ../../Source/PatternLengthBox.h; sourceTree = SOURCE_ROOT; };
 		21FD67C7C72DA42421AF4122 /* DiscRecording.framework */ /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		284EC6D5609D8263EA8D4518 /* juce_audio_processors */ /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = "~/JUCE/modules/juce_audio_processors"; sourceTree = "<absolute>"; };
@@ -242,6 +243,7 @@
 				B55DAB3383679142264C26F2,
 				4C83F6C0B1770830E2B5C7D9,
 				28B497D1AE1CE57BF99A548C,
+				1BC09FFA28FE30EBAB678511,
 				3FC0000AAFC0B20FA08D67F9,
 				1F226DC898731684593D2B25,
 				F7A9032CD1A3D70003B2D271,

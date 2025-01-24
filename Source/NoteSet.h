@@ -22,13 +22,18 @@ class NoteSet
 
     const juce::Array<int>  getNotesIndices()   const;
     const juce::StringArray getNoteNames()      const;
-    
+    int getNoteCount() const;
+
     const Scale             getScale()          const;
     int                     getLowestNote()     const;
     int                     getHighestNote()    const;
     const juce::Range<int>  getRange()          const;
+    const RootNote          getRootNote()          const;
+
+    void printInfo() const;
 
     private:
     Scale scale;
+    RootNote rootNote;
     juce::Range<int> range;
 };

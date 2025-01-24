@@ -49,7 +49,6 @@ public:
         for (Scale s : scales)
         {
             scaleMenu.addItem (s.getName(), s.getId());
-            s.printInfo();
         }
         
         const juce::Array<RootNote> rootNotes = data.getRootNotes();
