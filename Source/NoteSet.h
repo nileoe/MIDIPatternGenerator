@@ -17,8 +17,8 @@ class NoteSet
 {
     public:
 //    NoteSet();
-    NoteSet(Scale scale, int lowestNote, int highestNote);
-    NoteSet(Scale scale, juce::Range<int> range);
+    NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote);
+    NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range);
 
     const juce::Array<int>  getNotesIndices()   const;
     const juce::StringArray getNoteNames()      const;
@@ -33,6 +33,8 @@ class NoteSet
     void printInfo() const;
 
     private:
+    static int findOctaveC(int note);
+    
     Scale scale;
     RootNote rootNote;
     juce::Range<int> range;

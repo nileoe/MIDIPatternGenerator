@@ -17,26 +17,24 @@ class Tester
     public:
     const static void test()
     {
-        auto& data = AppData::getInstance();
-        auto scales          = data.getScales();
-        auto algorithms      = data.getAlgorithms();
-        auto rootNotes       = data.getRootNotes();
+        const auto& data = AppData::getInstance();
+        const auto scales          = data.getScales();
+        const auto algorithms      = data.getAlgorithms();
+        const auto rootNotes       = data.getRootNotes();
         
-        int lowestNote = 7;
-        int highestNote = 39;
+        const int lowestNote = 16;
+        const int highestNote = 39;
         
-        int scaleId = 5;
+        std::cout << "lowest note\t(" << lowestNote << "):\t" << juce::MidiMessage::getMidiNoteName(lowestNote, true, true, true) << "\n";
+        std::cout << "highest note\t(" << highestNote << "):\t" << juce::MidiMessage::getMidiNoteName(highestNote, true, true, true) << "\n";
 
-        const Scale* chroScale = data.getScaleById(scaleId);
-        if (chroScale != nullptr)
-        {
-            NoteSet ns {*chroScale, lowestNote, highestNote};
-            ns.printInfo();
-        }
-        else
-        {
-            std::cout << "scale with id " << scaleId << " not found" << "\n";
-        }
+        const Scale* majorScale = data.getScaleById(1);
+        const Scale* chroScale  = data.getScaleById(5);
         
+        const RootNote* c_rn = data.getRootNoteByDegree(0);
+        const RootNote* d_rn = data.getRootNoteByDegree(2);
+        
+        const NoteSet ns {*majorScale, *d_rn, lowestNote, highestNote};
+        ns.printInfo();
     }
 };

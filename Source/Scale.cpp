@@ -88,20 +88,20 @@ void Scale::printInfo() const
 
 int RootNote::nextId = 1;
 RootNote::RootNote() = default;
-RootNote::RootNote (juce::String name, int degree) : id(nextId ++), name(name), degree(degree)
+RootNote::RootNote (juce::String name, int offsetFromC) : id(nextId ++), name(name), offsetFromC(offsetFromC)
 {
     jassert(name.length() <= 5);
-    jassert(degree >= 0 && degree <= 11);
+    jassert(offsetFromC >= 0 && offsetFromC <= 11);
 }
 
 const   juce::String&   RootNote::getName()     const { return name; }
-int                     RootNote::getDegree()   const { return degree; }
+int                     RootNote::getOffsetFromC()   const { return offsetFromC; }
 int                     RootNote::getId()       const { return id; }
 
 void RootNote::printInfo() const
 {
     std::cout << "############ PRINTING ROOTNOTE INFO ############" << "\n";
     std::cout << "note name: " << name << "\n";
-    std::cout << "note degree: " << degree << "\n";
+    std::cout << "note offset from c: " << offsetFromC << "\n";
 }
 

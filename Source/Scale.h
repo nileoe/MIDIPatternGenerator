@@ -42,10 +42,10 @@ class RootNote
 {
     public:
     RootNote();
-    RootNote(juce::String name, int degree);
+    RootNote(juce::String name, int offsetFromC);
 
     const juce::String&         getName()           const;
-    int                         getDegree()         const;
+    int                         getOffsetFromC()         const;
     int                         getId()             const;
 
     void printInfo() const;
@@ -54,5 +54,5 @@ class RootNote
     static int nextId;
     int id;
     juce::String name;
-    int degree;
+    int offsetFromC;
 };

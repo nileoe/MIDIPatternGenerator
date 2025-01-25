@@ -10,26 +10,41 @@
 
 #include "NoteSet.h"
 
-NoteSet::NoteSet(Scale scale, int lowestNote, int highestNote) : scale(scale), range(juce::Range(lowestNote, highestNote))
+NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), range(juce::Range(lowestNote, highestNote))
 {
 }
-NoteSet::NoteSet(Scale scale, juce::Range<int> range) : scale(scale), range(range)
+NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote), range(range)
 {
 }
 
 const juce::Array<int> NoteSet::getNotesIndices() const
 {
-    // TODO integrate rootnote logic into this
     juce::Array<int> notes;
-    int startNote = range.getStart();
-    for (int i = startNote; i <= range.getEnd(); ++i)
+    const int startNote = range.getStart();
+    const int rootNoteOffset = rootNote.getOffsetFromC();
+    int octaveC = NoteSet::findOctaveC(startNote);
+    int noteIndexInOctave = -1 - rootNoteOffset;
+    
+    for (int i = octaveC; i <= range.getEnd(); ++i)
     {
-        int notePositionInOctave = (i - startNote) % 12;
-        if (scale.isNoteInScale(notePositionInOctave))
+        noteIndexInOctave = (noteIndexInOctave + 1) % 12; // todo make this fancy shit
+        if (i < startNote)
+            continue;
+        if (scale.isNoteInScale (noteIndexInOctave))
         {
             notes.add (i);
         }
     }
+        
+        
+//    for (int i = startNote; i <= range.getEnd(); ++i)
+//    {
+//        int notePositionInOctave = (i - startNote + rootNoteOffset) % 12;
+//        if (scale.isNoteInScale(notePositionInOctave))
+//        {
+//            notes.add (i);
+//        }
+//    }
     return notes;
 }
 
@@ -59,7 +74,10 @@ const RootNote          NoteSet::getRootNote()      const { return rootNote; };
 void NoteSet::printInfo() const
 {
     std::cout << "############ PRINTING NOTESET INFO ############" << "\n";
+    scale.printInfo();
     std::cout << "Scale used: " << scale.getName() << " (" << scale.getCategoryName() << ")" << "\n";
+    std::cout << "Root note: " << rootNote.getName() << " (offset = " << rootNote
+        .getOffsetFromC() << ")\n";
     std::cout << "Notes:\n";
     auto noteNames   = getNoteNames();
     auto noteIndices = getNotesIndices();
@@ -69,3 +87,8 @@ void NoteSet::printInfo() const
     }
     std::cout << "\n";
 }
+
+int NoteSet::findOctaveC(int note) {
+    return note / 12 * 12;
+}
+
