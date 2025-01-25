@@ -22,7 +22,7 @@ public:
     const juce::Array<RootNote>&    getRootNotes()      const;
     
     const Scale* getScaleById           (int id)        const;
-    const RootNote* getRootNoteByDegree (int degree)    const;
+    const RootNote* getRootNoteByOffsetFromC (int degree)    const;
 
     void addScale (Scale scale);
 

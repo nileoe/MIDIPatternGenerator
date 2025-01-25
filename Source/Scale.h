@@ -26,7 +26,7 @@ class Scale
     const juce::Array<bool>&    getNotePattern()    const;
     int                         getNoteCount()      const;
     
-    bool isNoteInScale(int note) const;
+    bool doesNoteDegreeBelongToScale(int note) const;
     void printInfo() const;
 
     private:

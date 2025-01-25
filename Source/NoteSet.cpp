@@ -20,31 +20,25 @@ NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale
 const juce::Array<int> NoteSet::getNotesIndices() const
 {
     juce::Array<int> notes;
+    
     const int startNote = range.getStart();
     const int rootNoteOffset = rootNote.getOffsetFromC();
     int octaveC = NoteSet::findOctaveC(startNote);
     int noteIndexInOctave = -1 - rootNoteOffset;
-    
-    for (int i = octaveC; i <= range.getEnd(); ++i)
+    if (noteIndexInOctave < 0)
     {
-        noteIndexInOctave = (noteIndexInOctave + 1) % 12; // todo make this fancy shit
-        if (i < startNote)
-            continue;
-        if (scale.isNoteInScale (noteIndexInOctave))
+        noteIndexInOctave += 12;
+    }
+    
+    noteIndexInOctave += startNote - octaveC;
+    for (int i = startNote; i <= range.getEnd(); ++i)
+    {
+        noteIndexInOctave = (++ noteIndexInOctave) % 12;
+        if (scale.doesNoteDegreeBelongToScale (noteIndexInOctave))
         {
             notes.add (i);
         }
     }
-        
-        
-//    for (int i = startNote; i <= range.getEnd(); ++i)
-//    {
-//        int notePositionInOctave = (i - startNote + rootNoteOffset) % 12;
-//        if (scale.isNoteInScale(notePositionInOctave))
-//        {
-//            notes.add (i);
-//        }
-//    }
     return notes;
 }
 
@@ -74,7 +68,7 @@ const RootNote          NoteSet::getRootNote()      const { return rootNote; };
 void NoteSet::printInfo() const
 {
     std::cout << "############ PRINTING NOTESET INFO ############" << "\n";
-    scale.printInfo();
+//    scale.printInfo();
     std::cout << "Scale used: " << scale.getName() << " (" << scale.getCategoryName() << ")" << "\n";
     std::cout << "Root note: " << rootNote.getName() << " (offset = " << rootNote
         .getOffsetFromC() << ")\n";
@@ -89,6 +83,8 @@ void NoteSet::printInfo() const
 }
 
 int NoteSet::findOctaveC(int note) {
-    return note / 12 * 12;
+    // In MIDI note mapping, C notes are 0, 12, 24, 36 ... up to 120. Using floor division,
+    // the line below effectively returns the C at or below the provided note index.
+    return (note / 12) * 12;
 }
 

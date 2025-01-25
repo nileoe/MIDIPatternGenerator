@@ -65,7 +65,7 @@ const Scale* AppData::getScaleById(int id) const
     return nullptr;
 }
 
-const RootNote* AppData::getRootNoteByDegree (int degree) const
+const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
 {
     for (const RootNote& rn : rootNotes)
     {

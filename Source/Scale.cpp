@@ -59,7 +59,7 @@ const   juce::Array<int>&   Scale::getNoteIndices()     const { return noteIndic
 const   juce::Array<bool>&  Scale::getNotePattern()     const { return notePattern; }
 int                         Scale::getNoteCount()       const { return noteIndices.size(); }
 
-bool    Scale::isNoteInScale(int noteIndex) const
+bool    Scale::doesNoteDegreeBelongToScale(int noteIndex) const
 {
     jassert (noteIndex >= 0 && noteIndex <= 11);
     for (int scaleNote : noteIndices)
