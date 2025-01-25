@@ -135,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00025B40A3D307532AAAE7C8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				31E950C6DA1A1C7FAA869495,
+				28B497D1AE1CE57BF99A548C,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		0660F1A0FDD6CAB473CA3F87 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +204,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8887881324D3C77188F881B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C83F6C0B1770830E2B5C7D9,
+				B55DAB3383679142264C26F2,
+				F7A9032CD1A3D70003B2D271,
+				B351382D2B7E6748862BA1A9,
+				42B57D68B3BE3C8E9DC53657,
+				1B2FA4D8A6A532953334F52B,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9A35D6E4C7FB4F415553A417 /* JUCE Library Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +249,14 @@
 			name = PatternGenerator;
 			sourceTree = "<group>";
 		};
+		B2E554399A1BFE31CA24DBA4 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				1BC09FFA28FE30EBAB678511,
+			);
+			name = Testing;
+			sourceTree = "<group>";
+		};
 		D02614A919B6CB334DA74931 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,26 +266,28 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		D0395D042526F44FA96CB324 /* LayoutComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F91318DBCBFA81282BC1F701,
+				80DC32E1B11CC0B761BD625E,
+				3FC0000AAFC0B20FA08D67F9,
+				1F226DC898731684593D2B25,
+				F077207CE310C072926EDC9E,
+				188B875E1A23E74B07369507,
+				B4E3A73302D3734170FA5567,
+			);
+			name = LayoutComponents;
+			sourceTree = "<group>";
+		};
 		D48AA37D57169681BEF45EA3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B4E3A73302D3734170FA5567,
-				B55DAB3383679142264C26F2,
-				4C83F6C0B1770830E2B5C7D9,
-				28B497D1AE1CE57BF99A548C,
-				1BC09FFA28FE30EBAB678511,
-				3FC0000AAFC0B20FA08D67F9,
-				1F226DC898731684593D2B25,
-				F7A9032CD1A3D70003B2D271,
-				B351382D2B7E6748862BA1A9,
-				F91318DBCBFA81282BC1F701,
-				42B57D68B3BE3C8E9DC53657,
-				1B2FA4D8A6A532953334F52B,
+				B2E554399A1BFE31CA24DBA4,
+				00025B40A3D307532AAAE7C8,
+				8887881324D3C77188F881B1,
+				D0395D042526F44FA96CB324,
 				13DBC6B22A474CD0E2D602AF,
-				F077207CE310C072926EDC9E,
-				188B875E1A23E74B07369507,
-				31E950C6DA1A1C7FAA869495,
-				80DC32E1B11CC0B761BD625E,
 			);
 			name = Source;
 			sourceTree = "<group>";
