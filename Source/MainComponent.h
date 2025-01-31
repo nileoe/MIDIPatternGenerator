@@ -4,7 +4,7 @@
 #include "GenerationMethodsBox.h"
 #include "PatternLengthBox.h"
 #include "RhythmOverrideBox.h"
-#include "ClickablePianoKeyboard.h"
+#include "ClickableMidiKeyboard.h"
 #include "SelectedRangeBox.h"
 #include "ScaleAndHarmonyBox.h"
 #include "AppData.h"
@@ -53,7 +53,7 @@ class MainComponent  : public juce::Component
         scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (160).reduced (20, 10));
         generateButton      .setBounds (mainArea.reduced(50, 30));
         
-        Tester::test();
+//        Tester::testNoteSetAndScale();
     }
     
     enum RadioButtonIds
@@ -70,7 +70,7 @@ class MainComponent  : public juce::Component
     RhythmOverrideBox       rhythmOverrideBox;
     
     juce::MidiKeyboardState keyboardState;
-    ClickablePianoKeyboard  pianoKeyboard           { keyboardState, 24, 83 };
+    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 24, 83 };
     SelectedRangeBox        selectedRangeBox        { keyboardState };
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     

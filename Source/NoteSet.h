@@ -28,7 +28,7 @@ class NoteSet
     int                     getLowestNote()     const;
     int                     getHighestNote()    const;
     const juce::Range<int>  getRange()          const;
-    const RootNote          getRootNote()          const;
+    const RootNote          getRootNote()       const;
 
     void printInfo() const;
 

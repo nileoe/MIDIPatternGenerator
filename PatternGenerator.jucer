@@ -22,8 +22,10 @@
         <FILE id="odUv4n" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
       </GROUP>
       <GROUP id="{00187337-2079-76F3-83DC-BA79D6648411}" name="LayoutComponents">
-        <FILE id="UjuE8E" name="ClickablePianoKeyboard.h" compile="0" resource="0"
-              file="Source/ClickablePianoKeyboard.h"/>
+        <FILE id="UjuE8E" name="ClickableMidiKeyboard.h" compile="0" resource="0"
+              file="Source/ClickableMidiKeyboard.h"/>
+        <FILE id="M1CZ5V" name="ClickableMidiKeyboard.cpp" compile="1" resource="0"
+              file="Source/ClickableMidiKeyboard.cpp"/>
         <FILE id="BvBcG7" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
         <FILE id="mlY0PV" name="RhythmOverrideBox.h" compile="0" resource="0"
               file="Source/RhythmOverrideBox.h"/>

@@ -12,6 +12,7 @@
 
 NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), range(juce::Range(lowestNote, highestNote))
 {
+    jassert(lowestNote <= highestNote);
 }
 NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote), range(range)
 {
@@ -48,8 +49,7 @@ const juce::StringArray NoteSet::getNoteNames() const
     const juce::Array<int> noteIndices = getNotesIndices();
     for (int noteIndex : noteIndices)
     {
-        noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, true)); // ??????
-//        noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, false));
+        noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, true));
     }
     return noteNames;
 }

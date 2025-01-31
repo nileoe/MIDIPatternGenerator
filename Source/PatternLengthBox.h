@@ -72,14 +72,9 @@ class PatternLengthBox  : public juce::GroupComponent
         optionsFb.performLayout(optionsArea);
     }
     
-//    void paint (juce::Graphics& g) override
-//    {
-//    }
-    
     private:
     juce::Slider lengthSlider;
     RoundRadioButton    notesOption     { "Notes" },
-//    juce::ToggleButton  notesOption     { "Notes" },
                         barsOption      { "Bars" },
                         secondsOption   { "Seconds" };
     juce::Range<double> notesLengthRange,
