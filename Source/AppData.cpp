@@ -74,3 +74,4 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
     }
     return nullptr;
 }
+

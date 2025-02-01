@@ -105,3 +105,4 @@ void RootNote::printInfo() const
     std::cout << "note offset from c: " << offsetFromC << "\n";
 }
 
+

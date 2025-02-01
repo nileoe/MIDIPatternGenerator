@@ -16,6 +16,7 @@
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_devices/juce_audio_devices.h>
 #include <juce_audio_formats/juce_audio_formats.h>
+#include <juce_audio_plugin_client/juce_audio_plugin_client.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_utils/juce_audio_utils.h>
 #include <juce_core/juce_core.h>
@@ -39,8 +40,8 @@
 #if ! JUCE_DONT_DECLARE_PROJECTINFO
 namespace ProjectInfo
 {
-    const char* const  projectName    = "PatternGenerator";
-    const char* const  companyName    = "";
+    const char* const  projectName    = "ArpAlgo";
+    const char* const  companyName    = "nileoe";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }

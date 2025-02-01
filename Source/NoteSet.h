@@ -39,3 +39,4 @@ class NoteSet
     RootNote rootNote;
     juce::Range<int> range;
 };
+

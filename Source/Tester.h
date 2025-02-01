@@ -21,17 +21,17 @@ class Tester
 //        const auto scales          = data.getScales();
 //        const auto algorithms      = data.getAlgorithms();
 //        const auto rootNotes       = data.getRootNotes();
-//        
+//
 //        const int lowestNote = 24;
 //        const int highestNote = 45;
-//        
+//
 //        std::cout << "lowest note\t(" << lowestNote << "):\t" << juce::MidiMessage::getMidiNoteName(lowestNote, true, true, true) << "\n";
 //        std::cout << "highest note\t(" << highestNote << "):\t" << juce::MidiMessage::getMidiNoteName(highestNote, true, true, true) << "\n";
 //
 ////        const Scale* majorScale = data.getScaleById(1);
 //        const Scale* pentaMajorScale = data.getScaleById(5);
 ////        const Scale* chroScale  = data.getScaleById(6);
-//        
+//
 ////        const RootNote* c_rn = data.getRootNoteByOffsetFromC(0);
 ////        const RootNote* d_rn = data.getRootNoteByOffsetFromC(2);
 //        const RootNote* b_rn = data.getRootNoteByOffsetFromC(11);
@@ -59,3 +59,4 @@ class Tester
 //        }
     }
 };
+

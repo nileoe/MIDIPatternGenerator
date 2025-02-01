@@ -88,3 +88,4 @@ int NoteSet::findOctaveC(int note) {
     return (note / 12) * 12;
 }
 
+

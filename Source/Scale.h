@@ -44,9 +44,9 @@ class RootNote
     RootNote();
     RootNote(juce::String name, int offsetFromC);
 
-    const juce::String&         getName()           const;
-    int                         getOffsetFromC()         const;
-    int                         getId()             const;
+    const juce::String& getName()   const;
+    int getOffsetFromC()            const;
+    int getId()                     const;
 
     void printInfo() const;
 
@@ -56,3 +56,4 @@ class RootNote
     juce::String name;
     int offsetFromC;
 };
+

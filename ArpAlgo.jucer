@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="VE1l23" name="ArpAlgo" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn"
+              companyName="nileoe" companyCopyright="linoperdrix">
+  <MAINGROUP id="kN8P4F" name="ArpAlgo">
+    <GROUP id="{9244DB67-7BB1-5C43-76DF-C5FDE77321CB}" name="Editors">
+      <FILE id="kMxKD5" name="ClickableMidiKeyboard.cpp" compile="1" resource="0"
+            file="Source/ClickableMidiKeyboard.cpp"/>
+      <FILE id="FX54rq" name="ClickableMidiKeyboard.h" compile="0" resource="0"
+            file="Source/ClickableMidiKeyboard.h"/>
+    </GROUP>
+    <GROUP id="{6EE248B4-155F-2D8C-35E2-6D5BE44EE589}" name="Layout">
+      <GROUP id="{36A79760-1C07-DAC5-F08B-07C05ED1BD23}" name="UI">
+        <FILE id="jlN24v" name="RoundRadioButton.cpp" compile="1" resource="0"
+              file="Source/RoundRadioButton.cpp"/>
+        <FILE id="KxfJe1" name="RoundRadioButton.h" compile="0" resource="0"
+              file="Source/RoundRadioButton.h"/>
+      </GROUP>
+      <GROUP id="{D00F4650-8C81-0FAC-8579-93FB141AB70A}" name="Components">
+        <FILE id="L20AxL" name="SelectedRangeBox.cpp" compile="1" resource="0"
+              file="Source/SelectedRangeBox.cpp"/>
+        <FILE id="JKwf87" name="SelectedRangeBox.h" compile="0" resource="0"
+              file="Source/SelectedRangeBox.h"/>
+        <FILE id="AhwddC" name="ScaleAndHarmonyBox.cpp" compile="1" resource="0"
+              file="Source/ScaleAndHarmonyBox.cpp"/>
+        <FILE id="qAV0b8" name="ScaleAndHarmonyBox.h" compile="0" resource="0"
+              file="Source/ScaleAndHarmonyBox.h"/>
+        <FILE id="WTPLRf" name="GenerationMethodsBox.cpp" compile="1" resource="0"
+              file="Source/GenerationMethodsBox.cpp"/>
+        <FILE id="Y1utOX" name="GenerationMethodsBox.h" compile="0" resource="0"
+              file="Source/GenerationMethodsBox.h"/>
+        <FILE id="qR4Lqh" name="PatternLengthBox.cpp" compile="1" resource="0"
+              file="Source/PatternLengthBox.cpp"/>
+        <FILE id="sEQhvt" name="PatternLengthBox.h" compile="0" resource="0"
+              file="Source/PatternLengthBox.h"/>
+        <FILE id="XaMpSO" name="RhythmOverrideBox.cpp" compile="1" resource="0"
+              file="Source/RhythmOverrideBox.cpp"/>
+        <FILE id="huL3El" name="RhythmOverrideBox.h" compile="0" resource="0"
+              file="Source/RhythmOverrideBox.h"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{8F3A9708-F946-0EA8-3B2E-C6D89CC9ECBA}" name="Model">
+      <FILE id="sXfn91" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
+      <FILE id="Mrfxtx" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
+      <FILE id="wDSeeN" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
+      <FILE id="Z7NOxd" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
+      <FILE id="sqfB0y" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
+      <FILE id="SKm9lK" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
+    </GROUP>
+    <GROUP id="{2CBA80E8-099E-1C3A-9B50-F4798DE10BED}" name="Testing">
+      <FILE id="tmVbD7" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
+    </GROUP>
+    <GROUP id="{FDFE89E5-4EE5-145A-8DCC-13BD47EDBE9B}" name="Source">
+      <FILE id="JwdRQb" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="yXqtlm" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="mpHRQA" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="srRsgq" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="ArpAlgo"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="ArpAlgo"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

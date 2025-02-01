@@ -44,3 +44,5 @@ void ClickableMidiKeyboard::resized()
     float whiteKeyWidth = getWidth() / whiteKeyCount;
     setKeyWidth (whiteKeyWidth);
 }
+
+

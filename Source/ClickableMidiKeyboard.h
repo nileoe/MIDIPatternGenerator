@@ -33,3 +33,5 @@ class ClickableMidiKeyboard  : public juce::MidiKeyboardComponent
     int highestKey;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ClickableMidiKeyboard)
 };
+
+
