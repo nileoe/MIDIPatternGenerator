@@ -8,8 +8,6 @@
  ==============================================================================
  */
 
-#pragma once
-
 #include "PatternLengthBox.h"
 
 PatternLengthBox::PatternLengthBox (int patternRadioGroupId)

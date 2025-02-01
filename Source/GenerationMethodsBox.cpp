@@ -8,8 +8,6 @@
  ==============================================================================
  */
 
-#pragma once
-
 #include "GenerationMethodsBox.h"
 
 GenerationMethodsBox::GenerationMethodsBox (int radioGroupId)
@@ -52,19 +50,19 @@ void GenerationMethodsBox::updateToggleState (juce::ToggleButton* button)
 
 void GenerationMethodsBox::resized()
 {
-    juce::Rectangle<int> optionsArea = getLocalBounds().reduced(20);
+    juce::Rectangle<int> optionsArea = getLocalBounds().reduced (20);
     juce::Rectangle<int> algoOptionArea = optionsArea.removeFromTop(optionsArea.getHeight() / 2);
     juce::FlexBox algoOptionFb;
     algoOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     algoOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-    algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth(210.0f).withMinHeight (20.0f));
-    algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth(100.0f).withMinHeight (30.0f));
+    algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth (210.0f).withMinHeight (20.0f));
+    algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth (100.0f).withMinHeight (30.0f));
     algoOptionFb.performLayout(algoOptionArea);
     
     juce::FlexBox melodyOptionFb;
     melodyOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     melodyOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-    melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth(210.0f).withMinHeight (20.0f));
-    melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth(100.0f).withMinHeight (30.0f));
+    melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth (210.0f).withMinHeight (20.0f));
+    melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth (100.0f).withMinHeight (30.0f));
     melodyOptionFb.performLayout(optionsArea);
 }

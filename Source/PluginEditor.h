@@ -1,5 +1,3 @@
-#pragma once
-
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "GenerationMethodsBox.h"
@@ -12,9 +10,6 @@
 #include "Scale.h"
 #include "Tester.h"
 
-//==============================================================================
-/**
-*/
 class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
@@ -43,7 +38,10 @@ private:
     
     juce::MidiKeyboardState keyboardState;
     ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 24, 83 };
-    SelectedRangeBox        selectedRangeBox        { keyboardState };
+//    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 0, 127 };
+    SelectedRangeBox selectedRangeBox { keyboardState,
+                                        audioProcessor.patternLowestNote,
+                                        audioProcessor.patternHighestNote };
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     
     juce::TextButton        closeButton             { "Close" },

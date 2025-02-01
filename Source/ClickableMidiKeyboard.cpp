@@ -10,10 +10,15 @@
 
 #include "ClickableMidiKeyboard.h"
 
+ClickableMidiKeyboard::ClickableMidiKeyboard(juce::MidiKeyboardState& state, juce::Range<int> range) : juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
+state(state),
+range(range)
+{
+}
+
 ClickableMidiKeyboard::ClickableMidiKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey) : juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
 state(state),
-lowestKey(lowestKey),
-highestKey(highestKey)
+range(juce::Range<int>(lowestKey, highestKey))
 {
     jassert(lowestKey < highestKey);
 //    state.isNoteOnForChannels(65536, 72);
@@ -27,20 +32,15 @@ bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::Mous
     return true;
 }
 
-// void paint (juce::Graphics& g)
-// {
-// }
-    
-
-const juce::Range<int> ClickableMidiKeyboard::getRange()                 const { return juce::Range<int>(lowestKey, highestKey); }
-int ClickableMidiKeyboard::getLowestKey()                                const { return lowestKey; }
-int ClickableMidiKeyboard::getHighestKey()                               const { return highestKey; }
+const juce::Range<int> ClickableMidiKeyboard::getRange()                 const { return range; }
+int ClickableMidiKeyboard::getLowestKey()                                const { return range.getStart(); }
+int ClickableMidiKeyboard::getHighestKey()                               const { return range.getEnd(); }
 const juce::MidiKeyboardState& ClickableMidiKeyboard::getKeyboardState() const { return state; }
 
 void ClickableMidiKeyboard::resized()
 {
-    setAvailableRange (lowestKey, highestKey);
-    int whiteKeyCount = (highestKey - lowestKey + 1) *  (7.0 / 12.0);
+    setAvailableRange (range.getStart(), range.getEnd());
+    int whiteKeyCount = (range.getLength()) *  (7.0 / 12.0);
     float whiteKeyWidth = getWidth() / whiteKeyCount;
     setKeyWidth (whiteKeyWidth);
 }

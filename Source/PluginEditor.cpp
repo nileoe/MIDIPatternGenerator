@@ -48,7 +48,7 @@ void ArpAlgoAudioProcessorEditor::resized()
         closeButton         .setBounds (leftArea.reduced(50, 30));
 
         pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
-        selectedRangeBox    .setBounds (mainArea.removeFromTop (70) .reduced (20, 10));
+        selectedRangeBox    .setBounds (mainArea.removeFromTop (70) .reduced (20, 5));
         scaleAndHarmonyBox  .setBounds (mainArea.removeFromTop (160).reduced (20, 10));
         generateButton      .setBounds (mainArea.reduced(50, 30));
         

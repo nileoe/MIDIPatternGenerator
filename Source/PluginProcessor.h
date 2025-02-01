@@ -52,6 +52,10 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    // public attributes relevant to the plugin's or generated pattern choices state
+    int patternLowestNote;
+    int patternHighestNote;
 
 private:
     //==============================================================================
