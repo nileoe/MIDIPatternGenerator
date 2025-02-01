@@ -13,7 +13,6 @@
 #include "Scale.h"
 #include "DebugWindow.h"
 
-
 class AppData
 {
     public:
@@ -27,21 +26,12 @@ class AppData
     const RootNote* getRootNoteByOffsetFromC (int degree)    const;
     
     void addScale (Scale scale);
-    //
-    void dbg(juce::String);
     
-//    const DebugWindow& getDebugWindow() const
-//    {
-//        return debugWindow;
-//    }
-    DebugWindow& getDebugWindow()
-    {
-        return debugWindow;
-    }
-
+    void log(juce::String);
+    
+    DebugWindow& getDebugWindow();
 
     private:
-    
     DebugWindow debugWindow;
     juce::StringArray           algorithms;
     juce::Array<Scale>          scales;

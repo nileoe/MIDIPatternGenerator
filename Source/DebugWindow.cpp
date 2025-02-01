@@ -22,16 +22,10 @@ DebugWindow::DebugWindow(juce::String name,
     setSize (400, 400);
     debugBox.setMultiLine(true);
     addAndMakeVisible (&debugBox);
-    dbg("testing a debug");
-    dbg("does this work");
-    dbg("1");
-    dbg("2");
-    dbg("3");
-    dbg("4");
-    dbg("5");
+//    dbg("testing a debug");
 }
 
-void DebugWindow::dbg(juce::String dbgText)
+void DebugWindow::log(juce::String dbgText)
 {
     debugBox.moveCaretToEnd();
     debugBox.insertTextAtCaret(dbgText + "\n");

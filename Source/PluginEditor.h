@@ -37,7 +37,7 @@ private:
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
-    SelectedRangeBox        selectedRangeBox        { keyboardState,
+    SelectedRangeBox        selectedRangeBox        { pianoKeyboard,
                                                       audioProcessor.patternLowestNote,
                                                       audioProcessor.patternHighestNote };
     

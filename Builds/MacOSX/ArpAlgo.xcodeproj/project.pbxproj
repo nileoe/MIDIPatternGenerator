@@ -445,8 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				978DE4B7EAE3D1F3FA7395CF /* SelectedRangeBox.h */,
-				23712CADAF10B97590A12381 /* ScaleAndHarmonyBox.cpp */,
 				772A419D9EC5A757D9F1DD80 /* SelectedRangeBox.cpp */,
+				23712CADAF10B97590A12381 /* ScaleAndHarmonyBox.cpp */,
 				176B3EDC307A08654EF55950 /* ScaleAndHarmonyBox.h */,
 				58A6A48979716869943B6B29 /* GenerationMethodsBox.cpp */,
 				9B9DA4DB4D5950945DD8DFD8 /* GenerationMethodsBox.h */,

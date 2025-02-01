@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "AppData.h"
+#include "ClickableMidiKeyboard.h"
 
 //==============================================================================
 /*
@@ -19,14 +20,18 @@
 class SelectedRangeBox  : public juce::GroupComponent
 {
 public:
-    SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote);
+//    SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote);
+    SelectedRangeBox(ClickableMidiKeyboard& keyboard,
+                     int& patternLowestNote,
+                     int& patternHighestNote);
     void resized() override;
 
 private:
     void updateSelectedRangeText();
     void toggleButton(juce::TextButton* setNoteButton);
     
-    juce::MidiKeyboardState& keyboardState;
+//    juce::MidiKeyboardState& keyboardState;
+    ClickableMidiKeyboard& keyboard;
     int& patternLowestNote;
     int& patternHighestNote;
     
@@ -34,8 +39,8 @@ private:
     juce::Label selectedRangeLabel;
     juce::TextButton setLowestNoteButton    { "Set lowest note" };
     juce::TextButton setHighestNoteButton   { "Set highest note" };
-    
-    juce::String activeButtonMessage { "Click note on on-screen keyboard" };
+    bool settingLowestNoteMode  = false;
+    bool settingHighestNoteMode = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SelectedRangeBox)
 };
