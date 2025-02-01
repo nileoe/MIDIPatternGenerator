@@ -47,7 +47,7 @@ private:
     juce::MidiKeyboardState keyboardState;
     ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 24, 83 };
 //    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 0, 127 };
-        DebugWindow             debugWindow;
+//    DebugWindow             debugWindow = AppData::getInstance().debugWindow;
 //    DebugWindow             debugWindow { audioProcessor, juce::String{"Guttenberg"} };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

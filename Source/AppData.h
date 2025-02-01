@@ -11,6 +11,8 @@
 #pragma once
 #include <JuceHeader.h>
 #include "Scale.h"
+#include "DebugWindow.h"
+
 
 class AppData
 {
@@ -25,8 +27,22 @@ class AppData
     const RootNote* getRootNoteByOffsetFromC (int degree)    const;
     
     void addScale (Scale scale);
+    //
+    void dbg(juce::String);
     
+//    const DebugWindow& getDebugWindow() const
+//    {
+//        return debugWindow;
+//    }
+    DebugWindow& getDebugWindow()
+    {
+        return debugWindow;
+    }
+
+
     private:
+    
+    DebugWindow debugWindow;
     juce::StringArray           algorithms;
     juce::Array<Scale>          scales;
     juce::Array<RootNote>       rootNotes;

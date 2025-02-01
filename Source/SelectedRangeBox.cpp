@@ -28,6 +28,7 @@ SelectedRangeBox::SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& 
 
 void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
+    AppData::getInstance().dbg("fuck yeaaaaaaaaaaaaaaaaa");
     if (setNoteButton == nullptr)
         return;
     bool isOn = setNoteButton->getToggleState();

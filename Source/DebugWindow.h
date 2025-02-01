@@ -16,7 +16,7 @@
 class DebugWindow  : public juce::DocumentWindow
 {
 public:
-    //ArpAlgoAudioProcessor&,
+//    DebugWindow();
     DebugWindow(juce::String name = "Debug",
                 juce::Colour bgColour = juce::Colours::darkgrey,
                 int windowButtons = juce::DocumentWindow::TitleBarButtons::allButtons,

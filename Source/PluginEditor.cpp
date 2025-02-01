@@ -15,7 +15,8 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     setSize (1200, 600);
-//    debugWindow.reset (new MainWindow (getApplicationName()));
+//    debugWindow.setVisible (true);
+    DebugWindow& debugWindow = AppData::getInstance().getDebugWindow();
     debugWindow.setVisible (true);
 }
 

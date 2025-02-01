@@ -50,6 +50,7 @@ const juce::StringArray&        AppData::getAlgorithms()    const { return algor
 const juce::Array<Scale>&       AppData::getScales()        const { return scales; }
 const juce::Array<RootNote>&    AppData::getRootNotes()     const { return rootNotes; }
 
+
 void AppData::addScale(Scale scale)
 {
     scales.add(scale);
@@ -75,3 +76,8 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
     return nullptr;
 }
 
+//
+void AppData::dbg(juce::String dbgString)
+{
+    debugWindow.dbg(dbgString);
+}
