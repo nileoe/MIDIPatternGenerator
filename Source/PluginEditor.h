@@ -9,6 +9,7 @@
 #include "AppData.h"
 #include "Scale.h"
 #include "Tester.h"
+#include "DebugWindow.h"
 
 class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -35,17 +36,18 @@ private:
     GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
+    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
+    SelectedRangeBox        selectedRangeBox        { keyboardState,
+                                                      audioProcessor.patternLowestNote,
+                                                      audioProcessor.patternHighestNote };
     
+    juce::TextButton closeButton    { "Close" };
+    juce::TextButton generateButton { "Generate Pattern" };
+
     juce::MidiKeyboardState keyboardState;
     ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 24, 83 };
 //    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 0, 127 };
-    SelectedRangeBox selectedRangeBox { keyboardState,
-                                        audioProcessor.patternLowestNote,
-                                        audioProcessor.patternHighestNote };
-    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
-    
-    juce::TextButton        closeButton             { "Close" },
-                            generateButton          { "Generate Pattern" };
-
+        DebugWindow             debugWindow;
+//    DebugWindow             debugWindow { audioProcessor, juce::String{"Guttenberg"} };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

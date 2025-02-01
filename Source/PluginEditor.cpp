@@ -6,7 +6,7 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
+#include "PluginProcessor.h" // todo remove?
 #include "PluginEditor.h"
 
 
@@ -15,6 +15,8 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     setSize (1200, 600);
+//    debugWindow.reset (new MainWindow (getApplicationName()));
+    debugWindow.setVisible (true);
 }
 
 ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()
@@ -53,5 +55,4 @@ void ArpAlgoAudioProcessorEditor::resized()
         generateButton      .setBounds (mainArea.reduced(50, 30));
         
 //        Tester::testNoteSetAndScale();
-    
 }
