@@ -19,8 +19,36 @@ SelectedRangeBox::SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& 
     addAndMakeVisible (selectedRangeLabel);
     selectedRangeLabel.setJustificationType(juce::Justification::centred);
     
+    setLowestNoteButton.onClick  = [this] { toggleButton(&setLowestNoteButton); };
+    setHighestNoteButton.onClick = [this] { toggleButton(&setHighestNoteButton); };
+    
     addAndMakeVisible (setLowestNoteButton);
     addAndMakeVisible (setHighestNoteButton);
+}
+
+void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
+{
+    if (setNoteButton == nullptr)
+        return;
+    bool isOn = setNoteButton->getToggleState();
+    if (isOn)
+    {
+        setNoteButton->setButtonText(activeButtonMessage);
+        setNoteButton->setColour(juce::TextButton::buttonOnColourId, juce::Colours::firebrick);
+    }
+    else
+    {
+        if (setNoteButton == &setLowestNoteButton)
+        {
+            setNoteButton->setButtonText("Set lowest note");
+            setNoteButton->setColour(juce::TextButton::buttonOnColourId, juce::Colours::grey);
+        }
+        else if (setNoteButton == &setLowestNoteButton)
+        {
+            setNoteButton->setButtonText("Set lowest note");
+            setNoteButton->setColour(juce::TextButton::buttonOnColourId, juce::Colours::grey);
+        }
+    }
 }
 
 void SelectedRangeBox::resized()

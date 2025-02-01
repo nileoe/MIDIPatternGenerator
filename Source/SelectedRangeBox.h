@@ -23,6 +23,7 @@ public:
 
 private:
     void updateSelectedRangeText();
+    void toggleButton(juce::TextButton* setNoteButton);
     
     juce::MidiKeyboardState& keyboardState;
     int& patternLowestNote;
@@ -32,6 +33,8 @@ private:
     juce::Label selectedRangeLabel;
     juce::TextButton setLowestNoteButton    { "Set lowest note" };
     juce::TextButton setHighestNoteButton   { "Set highest note" };
+    
+    juce::String activeButtonMessage { "Click note on on-screen keyboard" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SelectedRangeBox)
 };

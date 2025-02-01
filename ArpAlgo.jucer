@@ -53,6 +53,8 @@
         <FILE id="SKm9lK" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
       </GROUP>
       <GROUP id="{2CBA80E8-099E-1C3A-9B50-F4798DE10BED}" name="Testing">
+        <FILE id="qkQPD3" name="DebugEditor.cpp" compile="1" resource="0" file="Source/DebugEditor.cpp"/>
+        <FILE id="mBTzkR" name="DebugEditor.h" compile="0" resource="0" file="Source/DebugEditor.h"/>
         <FILE id="tmVbD7" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
       </GROUP>
       <FILE id="JwdRQb" name="PluginProcessor.cpp" compile="1" resource="0"
