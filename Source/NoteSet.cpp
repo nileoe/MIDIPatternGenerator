@@ -88,21 +88,28 @@ void NoteSet::setRange(juce::Range<int> range)
     this->highestNote = range.getEnd();
 }
 
-void NoteSet::printInfo() const
+const juce::String NoteSet::getDebugInfo() const
 {
-    std::cout << "############ PRINTING NOTESET INFO ############" << "\n";
-//    scale.printInfo();
-    std::cout << "Scale used: " << scale.getName() << " (" << scale.getCategoryName() << ")" << "\n";
-    std::cout << "Root note: " << rootNote.getName() << " (offset = " << rootNote
-        .getOffsetFromC() << ")\n";
-    std::cout << "Notes:\n";
+    juce::String info;
+    info += "############ PRINTING NOTESET INFO ############\n";
+    info += "Scale used: " + scale.getName() + " (" + scale.getCategoryName() + ")" + "\n";
+    info += "Root note: " + rootNote.getName() + " (offset = " + juce::String(rootNote.getOffsetFromC()) + ")\n";
+    info += "Notes:\n";
     auto noteNames   = getNoteNames();
     auto noteIndices = getNotesIndices();
-    for (auto i = 0; i < getNoteCount(); ++i)
+    if (noteIndices.size() == 0)
     {
-        std::cout << "\t" << noteIndices[i] << ":\t" << noteNames[i] << "\n";
+        info += "No notes";
     }
-    std::cout << "\n";
+    else
+    {
+        for (auto i = 0; i < getNoteCount(); ++i)
+        {
+            info += "\t" + juce::String(noteIndices[i]) + ":\t" + juce::String(noteNames[i]) + "\n";
+        }
+        info += "\n";
+    }
+    return info;
 }
 
 int NoteSet::findOctaveC(int note) {

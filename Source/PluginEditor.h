@@ -39,7 +39,7 @@ private:
     bool settingLowestNoteMode  = false;
     bool settingHighestNoteMode = false;
 
-    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
+    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId, audioProcessor.patternNoteSet };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };

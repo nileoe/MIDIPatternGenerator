@@ -37,7 +37,7 @@ class NoteSet
     void setHighestNote(int highestNote);
     void setRange(juce::Range<int>);
 
-    void printInfo() const;
+    const juce::String getDebugInfo() const;
 
     private:
     static int findOctaveC(int note);
