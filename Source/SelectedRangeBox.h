@@ -23,6 +23,7 @@ public:
 private:
     void updateSelectedRangeText();
     void toggleButton(juce::TextButton* setNoteButton);
+    void resetButton(juce::TextButton* setNoteButton);
     
     NoteSetKeyboard& keyboard;
     NoteSet& patternNoteSet;

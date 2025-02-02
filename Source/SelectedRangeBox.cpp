@@ -42,6 +42,7 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
         d.log("null pointer in setnote button wft???");
         return;
     }
+    d.log(setNoteButton == &setLowestNoteButton ? "low" : "high");
     
     setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
     
@@ -51,8 +52,7 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
         setLowestNoteButton.setButtonText("Click on the on-screen keyboard to set lowest pattern note");
         
         settingHighestNoteMode = false;
-        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
-        setHighestNoteButton.setButtonText("Set highest note");
+        resetButton(&setHighestNoteButton);
     }
     else if (setNoteButton == &setHighestNoteButton)
     {
@@ -60,9 +60,21 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
         setHighestNoteButton.setButtonText("Click on the on-screen keyboard to set highest pattern note");
         
         settingLowestNoteMode = false;
-        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
-        setLowestNoteButton.setButtonText("Set lowest note");
+        resetButton(&setLowestNoteButton);
     }
+}
+
+void SelectedRangeBox::resetButton(juce::TextButton* setNoteButton)
+{
+    auto& d = AppData::getInstance();
+    if (setNoteButton == nullptr)
+    {
+        d.log ("nullptr button passed to resetButton");
+        return;
+    }
+    juce::String defaultMessage = setNoteButton == &setLowestNoteButton ? "Set lowest note" : "Set highest note";
+    setNoteButton->setButtonText(defaultMessage);
+    setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
 }
 
 void SelectedRangeBox::resized()
