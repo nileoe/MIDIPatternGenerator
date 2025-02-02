@@ -20,30 +20,32 @@ NoteSet::NoteSet()
 //    juce::Range<int> range;
 }
 
-NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), range(juce::Range(lowestNote, highestNote))
+NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), lowestNote(lowestNote), highestNote(highestNote)
 {
     jassert(lowestNote <= highestNote);
 }
 
-NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote), range(range)
+NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote)
 {
+    this->lowestNote  = range.getStart();
+    this->highestNote = range.getEnd();
 }
 
 const juce::Array<int> NoteSet::getNotesIndices() const
 {
     juce::Array<int> notes;
     
-    const int startNote = range.getStart();
+//    const int startNote = range.getStart();
     const int rootNoteOffset = rootNote.getOffsetFromC();
-    int octaveC = NoteSet::findOctaveC(startNote);
+    int octaveC = NoteSet::findOctaveC(lowestNote);
     int noteIndexInOctave = -1 - rootNoteOffset;
     if (noteIndexInOctave < 0)
     {
         noteIndexInOctave += 12;
     }
     
-    noteIndexInOctave += startNote - octaveC;
-    for (int i = startNote; i <= range.getEnd(); ++i)
+    noteIndexInOctave += lowestNote - octaveC;
+    for (int i = lowestNote; i <= highestNote; ++i)
     {
         noteIndexInOctave = (++ noteIndexInOctave) % 12;
         if (scale.doesNoteDegreeBelongToScale (noteIndexInOctave))
@@ -72,13 +74,19 @@ int NoteSet::getNoteCount() const
 
 const Scale             NoteSet::getScale()         const { return scale; }
 const RootNote          NoteSet::getRootNote()      const { return rootNote; };
-const juce::Range<int>  NoteSet::getRange()         const { return range; }
-int                     NoteSet::getLowestNote()    const { return range.getStart(); }
-int                     NoteSet::getHighestNote()   const { return range.getEnd(); }
+const juce::Range<int>  NoteSet::getRange()         const { return juce::Range<int>{lowestNote, highestNote}; }
+int                     NoteSet::getLowestNote()    const { return lowestNote; }
+int                     NoteSet::getHighestNote()   const { return highestNote; }
 
 void NoteSet::setScale(Scale scale)                 { this->scale = scale; }
 void NoteSet::setRootNote(RootNote rootNote)        { this->rootNote = rootNote; }
-void NoteSet::setRange(juce::Range<int> range)      { this->range = range; }
+void NoteSet::setLowestNote(int lowestNote)         { this->lowestNote = lowestNote; }
+void NoteSet::setHighestNote(int highestNote)       { this->highestNote = highestNote; }
+void NoteSet::setRange(juce::Range<int> range)
+{
+    this->lowestNote = range.getStart();
+    this->highestNote = range.getEnd();
+}
 
 void NoteSet::printInfo() const
 {

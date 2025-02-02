@@ -33,6 +33,8 @@ class NoteSet
     
     void setScale(Scale);
     void setRootNote(RootNote);
+    void setLowestNote(int lowestNote);
+    void setHighestNote(int highestNote);
     void setRange(juce::Range<int>);
 
     void printInfo() const;
@@ -42,6 +44,8 @@ class NoteSet
     
     Scale scale;
     RootNote rootNote;
-    juce::Range<int> range;
+    int lowestNote;
+    int highestNote;
+//    juce::Range<int> range;
 };
 

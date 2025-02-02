@@ -42,7 +42,6 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
         d.log("null pointer in setnote button wft???");
         return;
     }
-    d.log(setNoteButton == &setLowestNoteButton ? "low" : "high");
     
     setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
     

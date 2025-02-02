@@ -34,13 +34,16 @@ settingHighestNoteMode(settingHighestNoteMode)
 bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e)
 {
     auto& d = AppData::getInstance();
-    d.log("note played: ", false);
-    d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 0));
-    d.log("setting lowest note mode: ", false);
-    d.log(settingLowestNoteMode ? "yes" : "no");
-    d.log("setting highest note mode: ", false);
-    d.log(settingHighestNoteMode ? "yes" : "no");
-    return true;
+    if (settingLowestNoteMode)
+    {
+//        patternNoteSet.setlo
+        return true;
+    }
+    else if (settingHighestNoteMode)
+    {
+        return true;
+    }
+    return false;
 }
 
 //bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::MouseEvent& e)
