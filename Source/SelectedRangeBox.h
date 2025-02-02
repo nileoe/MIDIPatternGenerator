@@ -14,15 +14,11 @@
 #include "AppData.h"
 #include "NoteSetKeyboard.h"
 
-//==============================================================================
-/*
-*/
 class SelectedRangeBox  : public juce::GroupComponent
 {
 public:
-    SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet);
+    SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     void resized() override;
-//    void handleKeyboardEvent(int midiNoteNumber); // todo const?
     
 private:
     void updateSelectedRangeText();
@@ -35,8 +31,9 @@ private:
     juce::Label selectedRangeLabel;
     juce::TextButton setLowestNoteButton    { "Set lowest note" };
     juce::TextButton setHighestNoteButton   { "Set highest note" };
-    bool settingLowestNoteMode  = false;
-    bool settingHighestNoteMode = false;
+    
+    bool& settingLowestNoteMode;
+    bool& settingHighestNoteMode;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SelectedRangeBox)
 };

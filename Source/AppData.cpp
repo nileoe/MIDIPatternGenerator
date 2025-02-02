@@ -76,7 +76,20 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
     return nullptr;
 }
 
-//
+//const Scale& AppData::getDefaultScale() const
+//{
+//    return scales.getFirst(); // todo bad??
+//}
+//const juce::String& AppData::getDefaultAlgorithm() const
+//{
+//    static const juce::String emptyString;
+//    return algorithms.size() == 0 ? emptyString : algorithms.getReference(0);
+//}
+//const RootNote& AppData::getDefaultRootNote() const
+//{
+//    return rootNotes.getFirst();
+//}
+
 void AppData::log(juce::String dbgString, bool shouldAppendNewline)
 {
     debugWindow.log(dbgString, shouldAppendNewline);

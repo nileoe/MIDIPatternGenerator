@@ -1,19 +1,8 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
 #include "NoteSet.h"
 
-//==============================================================================
-/**
-*/
 class ArpAlgoAudioProcessor  : public juce::AudioProcessor
 {
 public:
@@ -55,8 +44,6 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     // public attributes relevant to the plugin's or generated pattern choices state
-//    int patternLowestNote;
-//    int patternHighestNote;
     NoteSet patternNoteSet;
 
 private:

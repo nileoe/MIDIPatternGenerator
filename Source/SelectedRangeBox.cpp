@@ -11,32 +11,28 @@
 
 #include "SelectedRangeBox.h"
 
-SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet) : keyboard(keyboard), patternNoteSet(patternNoteSet)
+SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+    : keyboard(keyboard), patternNoteSet(patternNoteSet), settingLowestNoteMode(settingLowestNoteMode), settingHighestNoteMode(settingHighestNoteMode)
 {
-    setText ("Selected Range");
-    setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
+    setText("Selected Range");
+    setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     selectedRangeString = "None";
-    addAndMakeVisible (selectedRangeLabel);
+    addAndMakeVisible(selectedRangeLabel);
     selectedRangeLabel.setJustificationType(juce::Justification::centred);
     
-    setLowestNoteButton.onClick  = [this] { toggleButton(&setLowestNoteButton); };
-    setHighestNoteButton.onClick = [this] { toggleButton(&setHighestNoteButton); };
+    setLowestNoteButton.onClick = [this]
+    {
+        toggleButton( & setLowestNoteButton);
+    };
+    setHighestNoteButton.onClick = [this]
+    {
+        toggleButton( & setHighestNoteButton);
+    };
     
-    addAndMakeVisible (setLowestNoteButton);
-    addAndMakeVisible (setHighestNoteButton);
-    
-//    keyboard.onMouseDownOnKey = [this] (int midiNoteNumber) { handleKeyboardEvent(midiNoteNumber); };
-    
-//    auto& d = AppData::getInstance();
-//    d.log("debug working ok");
+    addAndMakeVisible(setLowestNoteButton);
+    addAndMakeVisible(setHighestNoteButton);
 }
 
-//void SelectedRangeBox::handleKeyboardEvent(int midiNoteNumber)
-//{
-//    auto& d = AppData::getInstance();
-//    d.log("note:");
-////    d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, true));
-//}
 
 void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
@@ -92,10 +88,3 @@ void SelectedRangeBox::updateSelectedRangeText()
 {
     selectedRangeLabel.setText ("Currently selected puterange: " + selectedRangeString, juce::NotificationType::dontSendNotification);
 }
-//    bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::MouseEvent& e)
-//    {
-//        std::cout << "mouse down on key " << juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, true) << " called" << "\n";
-//        juce::Rectangle<float> keyRectangle = getRectangleForKey(midiNoteNumber);
-//        repaint(keyRectangle.toNearestInt());
-//        return true;
-//    }

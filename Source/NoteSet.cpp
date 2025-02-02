@@ -10,7 +10,15 @@
 
 #include "NoteSet.h"
 
-NoteSet::NoteSet() {}
+NoteSet::NoteSet()
+{
+//    auto& d = AppData::getInstance();
+//    scale = d.getDefaultScale();
+//
+//    Scale scale;
+//    RootNote rootNote;
+//    juce::Range<int> range;
+}
 
 NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), range(juce::Range(lowestNote, highestNote))
 {

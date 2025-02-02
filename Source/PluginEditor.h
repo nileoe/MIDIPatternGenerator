@@ -1,3 +1,5 @@
+#pragma once
+
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "GenerationMethodsBox.h"
@@ -29,20 +31,22 @@ public:
     };
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     ArpAlgoAudioProcessor& audioProcessor;
     
+    juce::MidiKeyboardState keyboardState;
+    NoteSetKeyboard   pianoKeyboard { keyboardState, 36, 95, audioProcessor.patternNoteSet, settingLowestNoteMode, settingHighestNoteMode };
+    
+    bool settingLowestNoteMode  = false;
+    bool settingHighestNoteMode = false;
+
     GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
-    SelectedRangeBox        selectedRangeBox        { pianoKeyboard, audioProcessor.patternNoteSet };
-    
+    SelectedRangeBox        selectedRangeBox        { pianoKeyboard, audioProcessor.patternNoteSet, settingLowestNoteMode, settingHighestNoteMode };
+
     juce::TextButton closeButton    { "Close" };
     juce::TextButton generateButton { "Generate Pattern" };
 
-    juce::MidiKeyboardState keyboardState;
-    NoteSetKeyboard   pianoKeyboard { keyboardState, 24, 83, audioProcessor.patternNoteSet };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

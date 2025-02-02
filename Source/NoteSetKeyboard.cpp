@@ -10,21 +10,37 @@
 
 #include "NoteSetKeyboard.h"
 
-NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet) : juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
+NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+: juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
 state(state),
 range(keyboardRange),
-patternNoteSet(patternNoteSet)
+patternNoteSet(patternNoteSet),
+settingLowestNoteMode(settingLowestNoteMode),
+settingHighestNoteMode(settingHighestNoteMode)
 {
 }
 
-NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet) :
-juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
+NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+: juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
 state(state),
 range(juce::Range<int>(lowestKey, highestKey)),
-patternNoteSet(patternNoteSet)
+patternNoteSet(patternNoteSet),
+settingLowestNoteMode(settingLowestNoteMode),
+settingHighestNoteMode(settingHighestNoteMode)
 {
     jassert(lowestKey < highestKey);
-//    state.isNoteOnForChannels(65536, 72);
+}
+
+bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e)
+{
+    auto& d = AppData::getInstance();
+    d.log("note played: ", false);
+    d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 0));
+    d.log("setting lowest note mode: ", false);
+    d.log(settingLowestNoteMode ? "yes" : "no");
+    d.log("setting highest note mode: ", false);
+    d.log(settingHighestNoteMode ? "yes" : "no");
+    return true;
 }
 
 //bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::MouseEvent& e)
@@ -47,5 +63,3 @@ void NoteSetKeyboard::resized()
     float whiteKeyWidth = getWidth() / whiteKeyCount;
     setKeyWidth (whiteKeyWidth);
 }
-
-

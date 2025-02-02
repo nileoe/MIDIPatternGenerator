@@ -6,8 +6,8 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h" // todo remove?
 #include "PluginEditor.h"
+#include "PluginProcessor.h" // todo remove?
 
 
 //==============================================================================

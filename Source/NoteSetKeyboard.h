@@ -17,31 +17,11 @@
 class NoteSetKeyboard  : public juce::MidiKeyboardComponent
 {
     public:
-    NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet);
-    NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet);
-    
-    bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override
-    {
-        auto& d = AppData::getInstance();
-        d.log("note played");
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 0));
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 1));
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 2));
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 3));
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 4));
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 5));
-        return true;
-    }
+    NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
+    NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
 
-//    std::function<void(int)> onMouseDownOnKey;
-//
-//      bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override
-//      {
-//          if (onMouseDownOnKey)
-//              onMouseDownOnKey(midiNoteNumber);
-//          return true;
-//      }
-    
+    bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override;
+
     const juce::Range<int> getRange() const;
     int getLowestKey()                const;
     int getHighestKey()               const;
@@ -53,5 +33,9 @@ class NoteSetKeyboard  : public juce::MidiKeyboardComponent
     juce::MidiKeyboardState& state;
     juce::Range<int> range;
     NoteSet& patternNoteSet;
+    
+    bool& settingLowestNoteMode;
+    bool& settingHighestNoteMode;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoteSetKeyboard)
 };

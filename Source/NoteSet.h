@@ -10,8 +10,9 @@
 
 #pragma once
 
-#include <JuceHeader.h>
 #include "Scale.h"
+//#include "AppData.h" // <- Unleashes chaos
+#include <JuceHeader.h>
 
 class NoteSet
 {

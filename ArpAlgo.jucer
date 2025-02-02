@@ -9,10 +9,10 @@
         <FILE id="mpHRQA" name="PluginEditor.cpp" compile="1" resource="0"
               file="Source/PluginEditor.cpp"/>
         <FILE id="srRsgq" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-        <FILE id="kMxKD5" name="ClickableMidiKeyboard.cpp" compile="1" resource="0"
-              file="Source/ClickableMidiKeyboard.cpp"/>
-        <FILE id="FX54rq" name="ClickableMidiKeyboard.h" compile="0" resource="0"
-              file="Source/ClickableMidiKeyboard.h"/>
+        <FILE id="kMxKD5" name="NoteSetKeyboard.cpp" compile="1" resource="0"
+              file="Source/NoteSetKeyboard.cpp"/>
+        <FILE id="FX54rq" name="NoteSetKeyboard.h" compile="0" resource="0"
+              file="Source/NoteSetKeyboard.h"/>
       </GROUP>
       <GROUP id="{6EE248B4-155F-2D8C-35E2-6D5BE44EE589}" name="Layout">
         <GROUP id="{36A79760-1C07-DAC5-F08B-07C05ED1BD23}" name="UI">
