@@ -13,17 +13,15 @@
 #include <JuceHeader.h>
 #include "RoundRadioButton.h"
 #include "AppData.h"
-#include "NoteSet.h"
 
 class GenerationMethodsBox  : public juce::GroupComponent
 {
     public:
-    GenerationMethodsBox (int radioGroupId, NoteSet& patternNoteSet);
+    GenerationMethodsBox (int radioGroupId);
     void updateToggleState (juce::ToggleButton* button); // TODO use
     void resized() override;
     
     private:
-    NoteSet&            patternNoteSet;
     RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
                         melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;

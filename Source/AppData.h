@@ -24,11 +24,12 @@ class AppData
     const juce::Array<RootNote>&    getRootNotes()      const;
     
     const Scale*        getScaleById (int id) const;
+    const RootNote*     getRootNoteById (int id) const;
     const RootNote*     getRootNoteByOffsetFromC (int degree) const;
     
-    const Scale&        getDefaultScale()       const;
-    const juce::String& getDefaultAlgorithm()   const;
-    const RootNote&     getDefaultRootNote()    const;
+//    const Scale&        getDefaultScale()       const;
+//    const juce::String& getDefaultAlgorithm()   const;
+//    const RootNote&     getDefaultRootNote()    const;
     
     void addScale (Scale scale);
     

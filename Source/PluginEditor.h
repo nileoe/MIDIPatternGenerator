@@ -39,10 +39,10 @@ private:
     bool settingLowestNoteMode  = false;
     bool settingHighestNoteMode = false;
 
-    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId, audioProcessor.patternNoteSet };
+    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
-    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
+    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId, audioProcessor.patternNoteSet };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, audioProcessor.patternNoteSet, settingLowestNoteMode, settingHighestNoteMode };
 
     juce::TextButton closeButton    { "Close" };

@@ -10,7 +10,7 @@
 
 #include "ScaleAndHarmonyBox.h"
 
-ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId)
+ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& patternNoteSet) : patternNoteSet(patternNoteSet)
 {
     setText ("Scale and Harmony");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -39,13 +39,24 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId)
     for (Scale s : scales)
     {
         scaleMenu.addItem (s.getName(), s.getId());
+        data.log("scale menu: adding scale ", false);
+        data.log(s.getName());
+        data.log(juce::String(s.getId()));
+        data.log();
     }
     
     const juce::Array<RootNote> rootNotes = data.getRootNotes();
     for (RootNote rn : rootNotes)
     {
         rootNoteMenu.addItem (rn.getName(), rn.getId());
+        data.log("rootNote menu: adding rootnote ", false);
+        data.log(rn.getName());
+        data.log(juce::String(rn.getId()));
+        data.log();
     }
+    
+    scaleMenu.onChange    = [this] { updatePatternScale(); };
+    rootNoteMenu.onChange = [this] { updatePatternRootNote(); };
     
     scaleMenu       .setSelectedId(scales   .getFirst().getId());
     rootNoteMenu    .setSelectedId(rootNotes.getFirst().getId());
@@ -62,6 +73,22 @@ void ScaleAndHarmonyBox::updateToggleState()
     rootNoteMenu.setEnabled(scaleIsSelected);
     useCustomScaleTickbox.setEnabled(scaleIsSelected);
     customScaleButton.setEnabled(scaleIsSelected);
+}
+
+void ScaleAndHarmonyBox::updatePatternRootNote()
+{
+//    auto& newRootNote = AppData::getInstance().getRootNoteById(rootNoteMenu.getSelectedId());
+//    patternNoteSet.setRootNote(newRootNote);
+}
+void ScaleAndHarmonyBox::updatePatternScale()
+{
+//    auto* newScale = AppData::getInstance().getScaleById(scaleMenu.getSelectedId());
+//    if (newScale == nullptr)
+//    {
+//        AppData:getInstance().log("nullptr returned from getScaleById with id ", false);
+//        AppData:getInstance().log(juce::String(scaleMenu.getSelectedId()));
+//    }
+//    patternNoteSet.setScale(*newScale);
 }
 
 void ScaleAndHarmonyBox::resized()

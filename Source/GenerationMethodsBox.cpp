@@ -10,7 +10,7 @@
 
 #include "GenerationMethodsBox.h"
 
-GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, NoteSet& patternNoteSet) : patternNoteSet(patternNoteSet)
+GenerationMethodsBox::GenerationMethodsBox (int radioGroupId)
 {
     setText ("Generation Method");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);

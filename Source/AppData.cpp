@@ -66,6 +66,16 @@ const Scale* AppData::getScaleById(int id) const
     return nullptr;
 }
 
+const RootNote* AppData::getRootNoteById (int id) const
+{
+    for (const RootNote& rn : rootNotes)
+    {
+        if (rn.getId() == id)
+            return &rn;
+    }
+    return nullptr;
+}
+
 const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
 {
     for (const RootNote& rn : rootNotes)
@@ -76,19 +86,19 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
     return nullptr;
 }
 
-const Scale& AppData::getDefaultScale() const
-{
-    return scales.getFirst(); // todo bad??
-}
-const juce::String& AppData::getDefaultAlgorithm() const
-{
-    static const juce::String emptyString;
-    return algorithms.size() == 0 ? emptyString : algorithms.getReference(0);
-}
-const RootNote& AppData::getDefaultRootNote() const
-{
-    return rootNotes.getFirst();
-}
+//const Scale& AppData::getDefaultScale() const
+//{
+//    return scales.getFirst(); // todo bad??
+//}
+//const juce::String& AppData::getDefaultAlgorithm() const
+//{
+//    static const juce::String emptyString;
+//    return algorithms.size() == 0 ? emptyString : algorithms.getReference(0);
+//}
+//const RootNote& AppData::getDefaultRootNote() const
+//{
+//    return rootNotes.getFirst();
+//}
 
 void AppData::log(juce::String dbgString, bool shouldAppendNewline)
 {

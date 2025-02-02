@@ -27,7 +27,7 @@ class Scale
     int                         getNoteCount()      const;
     
     bool doesNoteDegreeBelongToScale(int note) const;
-    void printInfo() const;
+    const juce::String getDebugInfo() const;
 
     private:
     static int nextId;
@@ -37,23 +37,3 @@ class Scale
     juce::Array<bool> notePattern;
     juce::String categoryName;
 };
-
-class RootNote
-{
-    public:
-    RootNote();
-    RootNote(juce::String name, int offsetFromC);
-
-    const juce::String& getName()   const;
-    int getOffsetFromC()            const;
-    int getId()                     const;
-
-    void printInfo() const;
-
-    private:
-    static int nextId;
-    int id;
-    juce::String name;
-    int offsetFromC;
-};
-

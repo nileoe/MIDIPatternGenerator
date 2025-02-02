@@ -72,37 +72,20 @@ bool    Scale::doesNoteDegreeBelongToScale(int noteIndex) const
     return false;
 }
 
-void Scale::printInfo() const
+const juce::String Scale::getDebugInfo() const
 {
-    std::cout << "############ PRINTING SCALE INFO ############" << "\n";
-    std::cout << "id: " << id << "\n";
-    std::cout << "name: " << name << "\n";
-    std::cout << "category: " << categoryName << "\n";
-    std::cout << "notes (" << getNoteCount() << "): ";
+    juce::String info;
+    info += "############ PRINTING SCALE INFO ############\n";
+    info += "id: " + juce::String(id) + "\n";
+    info += "name: " + name + "\n";
+    info += "category: " + categoryName + "\n";
+    info += "notes (" + juce::String(getNoteCount()) + "): ";
     for (auto n : noteIndices)
     {
-        std::cout << n << ", ";
+          info += juce::String(n) + ", ";
     }
-    std::cout << "\nnext (static) scale class id: " << nextId << "\n";
-}
-
-int RootNote::nextId = 1;
-RootNote::RootNote() = default;
-RootNote::RootNote (juce::String name, int offsetFromC) : id(nextId ++), name(name), offsetFromC(offsetFromC)
-{
-    jassert(name.length() <= 5);
-    jassert(offsetFromC >= 0 && offsetFromC <= 11);
-}
-
-const   juce::String&   RootNote::getName()     const { return name; }
-int                     RootNote::getOffsetFromC()   const { return offsetFromC; }
-int                     RootNote::getId()       const { return id; }
-
-void RootNote::printInfo() const
-{
-    std::cout << "############ PRINTING ROOTNOTE INFO ############" << "\n";
-    std::cout << "note name: " << name << "\n";
-    std::cout << "note offset from c: " << offsetFromC << "\n";
+    info += "\nnext (static) scale class id: " + juce::String(nextId) + "\n";
+    return info;
 }
 
 

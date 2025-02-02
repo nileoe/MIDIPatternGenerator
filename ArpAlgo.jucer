@@ -9,19 +9,21 @@
         <FILE id="mpHRQA" name="PluginEditor.cpp" compile="1" resource="0"
               file="Source/PluginEditor.cpp"/>
         <FILE id="srRsgq" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-        <FILE id="kMxKD5" name="NoteSetKeyboard.cpp" compile="1" resource="0"
-              file="Source/NoteSetKeyboard.cpp"/>
-        <FILE id="FX54rq" name="NoteSetKeyboard.h" compile="0" resource="0"
-              file="Source/NoteSetKeyboard.h"/>
       </GROUP>
-      <GROUP id="{6EE248B4-155F-2D8C-35E2-6D5BE44EE589}" name="Layout">
+      <GROUP id="{6EE248B4-155F-2D8C-35E2-6D5BE44EE589}" name="Components">
+        <GROUP id="{6E06764A-8171-8F8D-59F9-D850B3E2285C}" name="MIDI">
+          <FILE id="kMxKD5" name="NoteSetKeyboard.cpp" compile="1" resource="0"
+                file="Source/NoteSetKeyboard.cpp"/>
+          <FILE id="FX54rq" name="NoteSetKeyboard.h" compile="0" resource="0"
+                file="Source/NoteSetKeyboard.h"/>
+        </GROUP>
         <GROUP id="{36A79760-1C07-DAC5-F08B-07C05ED1BD23}" name="UI">
           <FILE id="jlN24v" name="RoundRadioButton.cpp" compile="1" resource="0"
                 file="Source/RoundRadioButton.cpp"/>
           <FILE id="KxfJe1" name="RoundRadioButton.h" compile="0" resource="0"
                 file="Source/RoundRadioButton.h"/>
         </GROUP>
-        <GROUP id="{D00F4650-8C81-0FAC-8579-93FB141AB70A}" name="Components">
+        <GROUP id="{D00F4650-8C81-0FAC-8579-93FB141AB70A}" name="Layout">
           <FILE id="L20AxL" name="SelectedRangeBox.cpp" compile="1" resource="0"
                 file="Source/SelectedRangeBox.cpp"/>
           <FILE id="JKwf87" name="SelectedRangeBox.h" compile="0" resource="0"
@@ -45,6 +47,8 @@
         </GROUP>
       </GROUP>
       <GROUP id="{8F3A9708-F946-0EA8-3B2E-C6D89CC9ECBA}" name="Model">
+        <FILE id="LjRkOc" name="RootNote.cpp" compile="1" resource="0" file="Source/RootNote.cpp"/>
+        <FILE id="dAlKk1" name="RootNote.h" compile="0" resource="0" file="Source/RootNote.h"/>
         <FILE id="sXfn91" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
         <FILE id="Mrfxtx" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
         <FILE id="wDSeeN" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>

@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Scale.h"
+#include "RootNote.h"
 //#include "AppData.h" // <- Unleashes chaos
 #include <JuceHeader.h>
 
