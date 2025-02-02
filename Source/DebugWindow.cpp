@@ -19,7 +19,7 @@ DebugWindow::DebugWindow(juce::String name,
                                                                    windowButtons,
                                                                    addToDesktop)
 {
-    setSize (400, 400);
+    setSize (400, 1200);
     debugBox.setMultiLine(true);
     addAndMakeVisible (&debugBox);
 //    dbg("testing a debug");

@@ -36,22 +36,57 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
     auto& d = AppData::getInstance();
     if (settingLowestNoteMode)
     {
-        patternNoteSet.setLowestNote(midiNoteNumber);
-        d.log("set low note to ", false);
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 1));
-        d.log(patternNoteSet.getDebugInfo());
+        setPatternLowestNote(midiNoteNumber);
         return true;
     }
     else if (settingHighestNoteMode)
     {
-        patternNoteSet.setHighestNote(midiNoteNumber);
-        d.log("set high note to ", false);
-        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 1));
-        d.log(patternNoteSet.getDebugInfo());
+        setPatternHighestNote(midiNoteNumber);
         return true;
     }
     d.log("doing nothing, no low or high mode selected");
     return false;
+}
+
+void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
+{
+    auto& d = AppData::getInstance();
+    bool setLowNoteResult = patternNoteSet.setLowestNote(midiNoteNumber);
+    if (setLowNoteResult)
+    {
+        d.log("set low note to ", false);
+        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 1));
+        d.log(patternNoteSet.getDebugInfo());
+        return;
+    }
+    else
+    {
+        d.log("failed to set lowest note ", false);
+        d.log(juce::String(lowestNote));
+        d.log("highest note: ", false);
+        d.log(juce::String(patternNoteSet.getHighestNote()));
+        return;
+    }
+}
+void NoteSetKeyboard:setPatternHighestNote(int highestNote)
+{
+    auto& d = AppData::getInstance();
+    bool setHighNoteResult = patternNoteSet.setHighestNote(midiNoteNumber);
+    if (setHighNoteResult)
+    {
+        d.log("set high note to ", false);
+        d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, 1));
+        d.log(patternNoteSet.getDebugInfo());
+        return;
+    }
+    else
+    {
+        d.log("failed to set highest note ", false);
+        d.log(juce::String(midiNoteNumber));
+        d.log("lowest note: ", false);
+        d.log(juce::String(patternNoteSet.getLowestNote()));
+        return;
+    }
 }
 
 //bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::MouseEvent& e)

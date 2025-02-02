@@ -77,18 +77,27 @@ void ScaleAndHarmonyBox::updateToggleState()
 
 void ScaleAndHarmonyBox::updatePatternRootNote()
 {
-//    auto& newRootNote = AppData::getInstance().getRootNoteById(rootNoteMenu.getSelectedId());
-//    patternNoteSet.setRootNote(newRootNote);
+    auto& data = AppData::getInstance();
+    const RootNote* newRootNote = data.getRootNoteById(rootNoteMenu.getSelectedId());
+    if (newRootNote == nullptr)
+    {
+        data.log("nullptr returned from getRootNoteById (scaleAndHarmonyBox), with id ", false);
+        data.log(juce::String(rootNoteMenu.getSelectedId()));
+        return;
+    }
+    patternNoteSet.setRootNote(*newRootNote);
 }
 void ScaleAndHarmonyBox::updatePatternScale()
 {
-//    auto* newScale = AppData::getInstance().getScaleById(scaleMenu.getSelectedId());
-//    if (newScale == nullptr)
-//    {
-//        AppData:getInstance().log("nullptr returned from getScaleById with id ", false);
-//        AppData:getInstance().log(juce::String(scaleMenu.getSelectedId()));
-//    }
-//    patternNoteSet.setScale(*newScale);
+    auto& data = AppData::getInstance();
+    const auto* newScale = data.getScaleById(scaleMenu.getSelectedId());
+    if (newScale == nullptr)
+    {
+        data.log("nullptr returned from getScaleById with id ", false);
+        data.log(juce::String(scaleMenu.getSelectedId()));
+        return;
+    }
+    patternNoteSet.setScale(*newScale);
 }
 
 void ScaleAndHarmonyBox::resized()

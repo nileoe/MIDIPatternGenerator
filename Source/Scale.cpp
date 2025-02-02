@@ -75,7 +75,7 @@ bool    Scale::doesNoteDegreeBelongToScale(int noteIndex) const
 const juce::String Scale::getDebugInfo() const
 {
     juce::String info;
-    info += "############ PRINTING SCALE INFO ############\n";
+    info += "############ SCALE INFO ############\n";
     info += "id: " + juce::String(id) + "\n";
     info += "name: " + name + "\n";
     info += "category: " + categoryName + "\n";

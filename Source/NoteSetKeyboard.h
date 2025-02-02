@@ -30,6 +30,9 @@ class NoteSetKeyboard  : public juce::MidiKeyboardComponent
     void resized() override;
     
     private:
+    void setPatternLowestNote(int lowestNote);
+    void setPatternHighestNote(int highestNote);
+    
     juce::MidiKeyboardState& state;
     juce::Range<int> range;
     NoteSet& patternNoteSet;

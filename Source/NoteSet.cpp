@@ -12,12 +12,8 @@
 
 NoteSet::NoteSet()
 {
-//    auto& d = AppData::getInstance();
-//    scale = d.getDefaultScale();
-//
-//    Scale scale;
-//    RootNote rootNote;
-//    juce::Range<int> range;
+    this->lowestNote = 0;
+    this->highestNote = 127;
 }
 
 NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), lowestNote(lowestNote), highestNote(highestNote)
@@ -80,8 +76,21 @@ int                     NoteSet::getHighestNote()   const { return highestNote; 
 
 void NoteSet::setScale(Scale scale)                 { this->scale = scale; }
 void NoteSet::setRootNote(RootNote rootNote)        { this->rootNote = rootNote; }
-void NoteSet::setLowestNote(int lowestNote)         { this->lowestNote = lowestNote; }
-void NoteSet::setHighestNote(int highestNote)       { this->highestNote = highestNote; }
+
+bool NoteSet::setLowestNote(int lowestNote)
+{
+    if (lowestNote > highestNote)
+        return false;
+    this->lowestNote = lowestNote;
+    return true;
+}
+bool NoteSet::setHighestNote(int highestNote)
+{
+    if (highestNote < lowestNote)
+        return false;
+    this->highestNote = highestNote;
+    return true;
+}
 void NoteSet::setRange(juce::Range<int> range)
 {
     this->lowestNote = range.getStart();
@@ -91,9 +100,11 @@ void NoteSet::setRange(juce::Range<int> range)
 const juce::String NoteSet::getDebugInfo() const
 {
     juce::String info;
-    info += "############ PRINTING NOTESET INFO ############\n";
+    info += "############ NOTESET INFO ############\n";
     info += "Scale used: " + scale.getName() + " (" + scale.getCategoryName() + ")" + "\n";
     info += "Root note: " + rootNote.getName() + " (offset = " + juce::String(rootNote.getOffsetFromC()) + ")\n";
+    info += "Noteset range: " + juce::MidiMessage::getMidiNoteName(lowestNote, true, true, 0) + " - ";
+    info += juce::MidiMessage::getMidiNoteName(highestNote, true, true, 0) + "\n";
     info += "Notes:\n";
     auto noteNames   = getNoteNames();
     auto noteIndices = getNotesIndices();
