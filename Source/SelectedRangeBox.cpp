@@ -11,9 +11,7 @@
 
 #include "SelectedRangeBox.h"
 
-//SelectedRangeBox::SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote) : keyboardState(keyboardState), patternLowestNote(patternLowestNote), patternHighestNote(patternHighestNote)
-//SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, int& patternLowestNote, int& patternHighestNote) : keyboard(keyboard), patternLowestNote(patternLowestNote), patternHighestNote(patternHighestNote)
-SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, NoteSet& patternNoteSet) : keyboard(keyboard), patternNoteSet(patternNoteSet)
+SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet) : keyboard(keyboard), patternNoteSet(patternNoteSet)
 {
     setText ("Selected Range");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -26,7 +24,19 @@ SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, NoteSet& pat
     
     addAndMakeVisible (setLowestNoteButton);
     addAndMakeVisible (setHighestNoteButton);
+    
+//    keyboard.onMouseDownOnKey = [this] (int midiNoteNumber) { handleKeyboardEvent(midiNoteNumber); };
+    
+//    auto& d = AppData::getInstance();
+//    d.log("debug working ok");
 }
+
+//void SelectedRangeBox::handleKeyboardEvent(int midiNoteNumber)
+//{
+//    auto& d = AppData::getInstance();
+//    d.log("note:");
+////    d.log(juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, true));
+//}
 
 void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
@@ -80,5 +90,12 @@ void SelectedRangeBox::resized()
 
 void SelectedRangeBox::updateSelectedRangeText()
 {
-    selectedRangeLabel.setText ("Currently selected range: " + selectedRangeString, juce::NotificationType::dontSendNotification);
+    selectedRangeLabel.setText ("Currently selected puterange: " + selectedRangeString, juce::NotificationType::dontSendNotification);
 }
+//    bool ClickableMidiKeyboard::mouseDownOnKey (int midiNoteNumber, const juce::MouseEvent& e)
+//    {
+//        std::cout << "mouse down on key " << juce::MidiMessage::getMidiNoteName(midiNoteNumber, true, true, true) << " called" << "\n";
+//        juce::Rectangle<float> keyRectangle = getRectangleForKey(midiNoteNumber);
+//        repaint(keyRectangle.toNearestInt());
+//        return true;
+//    }

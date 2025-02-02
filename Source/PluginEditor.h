@@ -3,7 +3,7 @@
 #include "GenerationMethodsBox.h"
 #include "PatternLengthBox.h"
 #include "RhythmOverrideBox.h"
-#include "ClickableMidiKeyboard.h"
+#include "NoteSetKeyboard.h"
 #include "SelectedRangeBox.h"
 #include "ScaleAndHarmonyBox.h"
 #include "AppData.h"
@@ -43,9 +43,6 @@ private:
     juce::TextButton generateButton { "Generate Pattern" };
 
     juce::MidiKeyboardState keyboardState;
-    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 24, 83 };
-//    ClickableMidiKeyboard   pianoKeyboard           { keyboardState, 0, 127 };
-//    DebugWindow             debugWindow = AppData::getInstance().debugWindow;
-//    DebugWindow             debugWindow { audioProcessor, juce::String{"Guttenberg"} };
+    NoteSetKeyboard   pianoKeyboard { keyboardState, 24, 83, audioProcessor.patternNoteSet };
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

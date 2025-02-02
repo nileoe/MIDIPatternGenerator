@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 #include "AppData.h"
-#include "ClickableMidiKeyboard.h"
+#include "NoteSetKeyboard.h"
 
 //==============================================================================
 /*
@@ -20,20 +20,15 @@
 class SelectedRangeBox  : public juce::GroupComponent
 {
 public:
-//    SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote);
-    SelectedRangeBox(ClickableMidiKeyboard& keyboard, NoteSet& patternNoteSet);
-//                     int& patternLowestNote,
-//                     int& patternHighestNote);
+    SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet);
     void resized() override;
-
+//    void handleKeyboardEvent(int midiNoteNumber); // todo const?
+    
 private:
     void updateSelectedRangeText();
     void toggleButton(juce::TextButton* setNoteButton);
     
-//    juce::MidiKeyboardState& keyboardState;
-    ClickableMidiKeyboard& keyboard;
-//    int& patternLowestNote;
-//    int& patternHighestNote;
+    NoteSetKeyboard& keyboard;
     NoteSet& patternNoteSet;
     
     juce::String selectedRangeString;
