@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "NoteSet.h"
 
 //==============================================================================
 /**
@@ -54,8 +55,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     // public attributes relevant to the plugin's or generated pattern choices state
-    int patternLowestNote;
-    int patternHighestNote;
+//    int patternLowestNote;
+//    int patternHighestNote;
+    NoteSet patternNoteSet;
 
 private:
     //==============================================================================

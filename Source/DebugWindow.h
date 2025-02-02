@@ -24,7 +24,7 @@ public:
 
     void paint (juce::Graphics&) override;
     void resized() override;
-    void log(juce::String);
+    void log(juce::String, bool shouldAppendNewline = true);
 
 private:
     juce::TextEditor debugBox;

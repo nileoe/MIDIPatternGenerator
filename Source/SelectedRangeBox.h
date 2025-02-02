@@ -21,9 +21,9 @@ class SelectedRangeBox  : public juce::GroupComponent
 {
 public:
 //    SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote);
-    SelectedRangeBox(ClickableMidiKeyboard& keyboard,
-                     int& patternLowestNote,
-                     int& patternHighestNote);
+    SelectedRangeBox(ClickableMidiKeyboard& keyboard, NoteSet& patternNoteSet);
+//                     int& patternLowestNote,
+//                     int& patternHighestNote);
     void resized() override;
 
 private:
@@ -32,8 +32,9 @@ private:
     
 //    juce::MidiKeyboardState& keyboardState;
     ClickableMidiKeyboard& keyboard;
-    int& patternLowestNote;
-    int& patternHighestNote;
+//    int& patternLowestNote;
+//    int& patternHighestNote;
+    NoteSet& patternNoteSet;
     
     juce::String selectedRangeString;
     juce::Label selectedRangeLabel;

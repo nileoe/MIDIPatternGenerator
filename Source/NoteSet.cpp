@@ -10,10 +10,13 @@
 
 #include "NoteSet.h"
 
+NoteSet::NoteSet() {}
+
 NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), range(juce::Range(lowestNote, highestNote))
 {
     jassert(lowestNote <= highestNote);
 }
+
 NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote), range(range)
 {
 }
@@ -60,10 +63,14 @@ int NoteSet::getNoteCount() const
 }
 
 const Scale             NoteSet::getScale()         const { return scale; }
+const RootNote          NoteSet::getRootNote()      const { return rootNote; };
+const juce::Range<int>  NoteSet::getRange()         const { return range; }
 int                     NoteSet::getLowestNote()    const { return range.getStart(); }
 int                     NoteSet::getHighestNote()   const { return range.getEnd(); }
-const juce::Range<int>  NoteSet::getRange()         const { return range; }
-const RootNote          NoteSet::getRootNote()      const { return rootNote; };
+
+void NoteSet::setScale(Scale scale)                 { this->scale = scale; }
+void NoteSet::setRootNote(RootNote rootNote)        { this->rootNote = rootNote; }
+void NoteSet::setRange(juce::Range<int> range)      { this->range = range; }
 
 void NoteSet::printInfo() const
 {

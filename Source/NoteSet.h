@@ -16,7 +16,7 @@
 class NoteSet
 {
     public:
-//    NoteSet();
+    NoteSet();
     NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote);
     NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range);
 
@@ -24,11 +24,15 @@ class NoteSet
     const juce::StringArray getNoteNames()      const;
     int getNoteCount() const;
 
-    const Scale             getScale()          const;
-    int                     getLowestNote()     const;
-    int                     getHighestNote()    const;
-    const juce::Range<int>  getRange()          const;
-    const RootNote          getRootNote()       const;
+    const Scale getScale()            const;
+    const RootNote getRootNote()      const;
+    const juce::Range<int> getRange() const;
+    int getLowestNote()               const;
+    int getHighestNote()              const;
+    
+    void setScale(Scale);
+    void setRootNote(RootNote);
+    void setRange(juce::Range<int>);
 
     void printInfo() const;
 

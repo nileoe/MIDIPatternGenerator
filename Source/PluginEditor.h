@@ -37,9 +37,7 @@ private:
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
-    SelectedRangeBox        selectedRangeBox        { pianoKeyboard,
-                                                      audioProcessor.patternLowestNote,
-                                                      audioProcessor.patternHighestNote };
+    SelectedRangeBox        selectedRangeBox        { pianoKeyboard, audioProcessor.patternNoteSet };
     
     juce::TextButton closeButton    { "Close" };
     juce::TextButton generateButton { "Generate Pattern" };

@@ -12,7 +12,8 @@
 #include "SelectedRangeBox.h"
 
 //SelectedRangeBox::SelectedRangeBox(juce::MidiKeyboardState& keyboardState, int& patternLowestNote, int& patternHighestNote) : keyboardState(keyboardState), patternLowestNote(patternLowestNote), patternHighestNote(patternHighestNote)
-SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, int& patternLowestNote, int& patternHighestNote) : keyboard(keyboard), patternLowestNote(patternLowestNote), patternHighestNote(patternHighestNote)
+//SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, int& patternLowestNote, int& patternHighestNote) : keyboard(keyboard), patternLowestNote(patternLowestNote), patternHighestNote(patternHighestNote)
+SelectedRangeBox::SelectedRangeBox(ClickableMidiKeyboard& keyboard, NoteSet& patternNoteSet) : keyboard(keyboard), patternNoteSet(patternNoteSet)
 {
     setText ("Selected Range");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);

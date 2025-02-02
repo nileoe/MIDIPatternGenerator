@@ -77,9 +77,9 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
 }
 
 //
-void AppData::log(juce::String dbgString)
+void AppData::log(juce::String dbgString, bool shouldAppendNewline)
 {
-    debugWindow.log(dbgString);
+    debugWindow.log(dbgString, shouldAppendNewline);
 }
 
 DebugWindow& AppData::getDebugWindow()

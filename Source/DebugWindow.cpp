@@ -25,10 +25,13 @@ DebugWindow::DebugWindow(juce::String name,
 //    dbg("testing a debug");
 }
 
-void DebugWindow::log(juce::String dbgText)
+void DebugWindow::log(juce::String dbgText, bool shouldAppendNewline)
 {
     debugBox.moveCaretToEnd();
-    debugBox.insertTextAtCaret(dbgText + "\n");
+    debugBox.insertTextAtCaret(dbgText);
+    if (!shouldAppendNewline)
+        return;
+    debugBox.insertTextAtCaret("\n");
 }
 
 void DebugWindow::paint (juce::Graphics& g)

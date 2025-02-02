@@ -27,7 +27,7 @@ class AppData
     
     void addScale (Scale scale);
     
-    void log(juce::String);
+    void log(juce::String, bool shouldAppendNewline = true);
     
     DebugWindow& getDebugWindow();
 
