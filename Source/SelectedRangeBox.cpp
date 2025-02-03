@@ -18,7 +18,7 @@ SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNo
     setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     selectedRangeString = "None";
     addAndMakeVisible(selectedRangeLabel);
-    selectedRangeLabel.setJustificationType(juce::Justification::centred);
+    selectedRangeLabel.setJustificationType(juce::Justification::centredRight);
     
     setLowestNoteButton.onClick = [this]
     {
@@ -46,8 +46,8 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
     if (setNoteButton == &setLowestNoteButton)
     {
         settingLowestNoteMode = true;
-        setLowestNoteButton.setButtonText("Click on the on-screen keyboard to set lowest pattern note");
-        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
+        setLowestNoteButton.setButtonText("Click on-screen keyboard...");
+        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
 
         settingHighestNoteMode = false;
         resetButton(&setHighestNoteButton);
@@ -55,8 +55,8 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
     else if (setNoteButton == &setHighestNoteButton)
     {
         settingHighestNoteMode = true;
-        setHighestNoteButton.setButtonText("Click on the on-screen keyboard to set highest pattern note");
-        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
+        setHighestNoteButton.setButtonText("Click on-screen keyboard...");
+        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
 
         settingLowestNoteMode = false;
         resetButton(&setLowestNoteButton);
@@ -73,7 +73,9 @@ void SelectedRangeBox::resetButton(juce::TextButton* setNoteButton)
     }
     juce::String defaultMessage = setNoteButton == &setLowestNoteButton ? "Set lowest note" : "Set highest note";
     setNoteButton->setButtonText(defaultMessage);
-    setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
+    juce::Colour defaultButtonBackgroundColour = juce::LookAndFeel::getDefaultLookAndFeel().findColour(juce::TextButton::buttonColourId);
+//    setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
+    setNoteButton->setColour(juce::TextButton::buttonColourId, defaultButtonBackgroundColour);
 }
 
 void SelectedRangeBox::resized()
@@ -90,7 +92,7 @@ void SelectedRangeBox::resized()
     mainFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     mainFb.alignItems = juce::FlexBox::AlignItems::center;
     mainFb.items.add (FI (buttonsFb)            .withMinWidth (200).withMinHeight (25).withMargin (FI::Margin(0, 0, 0, 20)));
-    mainFb.items.add (FI (selectedRangeLabel)   .withMinWidth (200).withMinHeight (30).withMargin (FI::Margin(0, 20, 0, 0)));
+    mainFb.items.add (FI (selectedRangeLabel)   .withMinWidth (300).withMinHeight (30).withMargin (FI::Margin(0, 20, 0, 0)));
 
     mainFb.performLayout(getLocalBounds());
 }
@@ -109,6 +111,7 @@ void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetK
         d.log("resetting buttons (note set)");
         resetButton(&setLowestNoteButton);
         resetButton(&setHighestNoteButton);
+        updateSelectedRangeText();
     }
     else
     {
@@ -118,5 +121,8 @@ void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetK
 
 void SelectedRangeBox::updateSelectedRangeText()
 {
-    selectedRangeLabel.setText ("Currently selected puterange: " + selectedRangeString, juce::NotificationType::dontSendNotification);
+    const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(patternNoteSet.getLowestNote(), true, true, 0);
+    const juce::String highestNoteName = juce::MidiMessage::getMidiNoteName(patternNoteSet.getHighestNote(), true, true, 0);
+    selectedRangeString = lowestNoteName + " - " + highestNoteName;
+    selectedRangeLabel.setText ("Currently selected range: " + selectedRangeString, juce::NotificationType::dontSendNotification);
 }
