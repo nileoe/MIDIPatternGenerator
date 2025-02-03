@@ -121,7 +121,7 @@ void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetK
 
 void SelectedRangeBox::updateSelectedRangeText()
 {
-    const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(patternNoteSet.getLowestNote(), true, true, 0);
+    const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(patternNoteSet.getLowestNote(),  true, true, 0);
     const juce::String highestNoteName = juce::MidiMessage::getMidiNoteName(patternNoteSet.getHighestNote(), true, true, 0);
     selectedRangeString = lowestNoteName + " - " + highestNoteName;
     selectedRangeLabel.setText ("Currently selected range: " + selectedRangeString, juce::NotificationType::dontSendNotification);

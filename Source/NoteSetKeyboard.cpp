@@ -21,34 +21,58 @@ settingHighestNoteMode(settingHighestNoteMode)
 }
 
 NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
-: juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
-state(state),
-range(juce::Range<int>(lowestKey, highestKey)),
-patternNoteSet(patternNoteSet),
-settingLowestNoteMode(settingLowestNoteMode),
-settingHighestNoteMode(settingHighestNoteMode)
+: NoteSetKeyboard(state,
+                  juce::Range<int>{lowestKey, highestKey},
+                  patternNoteSet,
+                  settingLowestNoteMode,
+                  settingHighestNoteMode)
 {
-    jassert(lowestKey < highestKey);
 }
+
+NoteSetKeyboard::~NoteSetKeyboard()
+{
+    removeAllChangeListeners();
+}
+
+void NoteSetKeyboard::changeListenerCallback(juce::ChangeBroadcaster* source)
+{
+    syncStateWithNoteSet();
+}
+
 
 bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e)
 {
+    if (!(settingLowestNoteMode || settingHighestNoteMode))
+    {
+        AppData::getInstance().log("No setting mode currently active: ignoring click");
+        return false;
+    }
     if (settingLowestNoteMode)
     {
         setPatternLowestNote(midiNoteNumber);
-        sendChangeMessage();
-        return true;
     }
     else if (settingHighestNoteMode)
     {
         setPatternHighestNote(midiNoteNumber);
-        sendChangeMessage();
-        return true;
     }
-    AppData::getInstance().log("No setting mode currently active: doing nothing");
-    return false;
+    sendChangeMessage();
+    syncStateWithNoteSet();
+    return true;
 }
 
+void NoteSetKeyboard::syncStateWithNoteSet()
+{
+    auto& d = AppData::getInstance();
+    d.log("Sync notes with state (keyboard), current noteset is");
+    d.log(patternNoteSet.getDebugInfo());
+    const juce::Array<int>& noteSetNotes = patternNoteSet.getNotesIndices();
+    state.allNotesOff(1);
+    for (int note : noteSetNotes)
+    {
+        d.log("activating note " + juce::String(note) + " " + juce::MidiMessage::getMidiNoteName(note, true, true, 0));
+        state.noteOn(1, note, 127);
+    }
+}
 
 void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 {

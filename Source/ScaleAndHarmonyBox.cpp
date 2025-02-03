@@ -31,7 +31,7 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& pattern
     useHarmonyRadioButton   .setRadioGroupId(scaleHarmonyRadioId);
     useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
     
-    useHarmonyRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
+    useScaleRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
     updateToggleState();
     
     AppData& data = AppData::getInstance();
@@ -39,20 +39,20 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& pattern
     for (Scale s : scales)
     {
         scaleMenu.addItem (s.getName(), s.getId());
-        data.log("scale menu: adding scale ", false);
-        data.log(s.getName());
-        data.log(juce::String(s.getId()));
-        data.log();
+//        data.log("scale menu: adding scale ", false);
+//        data.log(s.getName());
+//        data.log(juce::String(s.getId()));
+//        data.log();
     }
     
     const juce::Array<RootNote> rootNotes = data.getRootNotes();
     for (RootNote rn : rootNotes)
     {
         rootNoteMenu.addItem (rn.getName(), rn.getId());
-        data.log("rootNote menu: adding rootnote ", false);
-        data.log(rn.getName());
-        data.log(juce::String(rn.getId()));
-        data.log();
+//        data.log("rootNote menu: adding rootnote ", false);
+//        data.log(rn.getName());
+//        data.log(juce::String(rn.getId()));
+//        data.log();
     }
     
     scaleMenu.onChange    = [this] { updatePatternScale(); };
@@ -103,8 +103,8 @@ void ScaleAndHarmonyBox::updatePatternScale()
 void ScaleAndHarmonyBox::resized()
 {
     using FI = juce::FlexItem;
-    juce::Rectangle<int> scaleArea = getLocalBounds().reduced (20);
-    juce::Rectangle<int> harmonyArea = scaleArea.removeFromTop (scaleArea.getHeight() / 2);
+    juce::Rectangle<int> harmonyArea = getLocalBounds().reduced (20);
+    juce::Rectangle<int> scaleArea = harmonyArea.removeFromTop (harmonyArea.getHeight() / 2);
     
     juce::FlexBox harmonyFb;
     harmonyFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;

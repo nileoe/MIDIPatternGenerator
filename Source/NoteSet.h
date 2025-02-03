@@ -15,12 +15,13 @@
 //#include "AppData.h" // <- Unleashes chaos
 #include <JuceHeader.h>
 
-class NoteSet
+class NoteSet : public juce::ChangeBroadcaster
 {
     public:
     NoteSet();
     NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote);
     NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range);
+    ~NoteSet();
 
     const juce::Array<int>  getNotesIndices()   const;
     const juce::StringArray getNoteNames()      const;
@@ -41,12 +42,11 @@ class NoteSet
     const juce::String getDebugInfo() const;
 
     private:
-    static int findOctaveC(int note);
+    const static int findOctaveC(int note);
     
     Scale scale;
     RootNote rootNote;
     int lowestNote;
     int highestNote;
-//    juce::Range<int> range;
 };
 

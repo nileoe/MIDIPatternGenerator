@@ -19,6 +19,7 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
     DebugWindow& debugWindow = AppData::getInstance().getDebugWindow();
     debugWindow.setVisible (true);
     pianoKeyboard.addChangeListener(&selectedRangeBox);
+    p.patternNoteSet.addChangeListener(&pianoKeyboard);
 }
 
 ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()

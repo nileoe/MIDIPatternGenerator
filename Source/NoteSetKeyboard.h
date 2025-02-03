@@ -14,13 +14,17 @@
 #include "NoteSet.h"
 #include "AppData.h"
 
-class NoteSetKeyboard  : public juce::MidiKeyboardComponent
+class NoteSetKeyboard  : public juce::MidiKeyboardComponent, public juce::ChangeListener
 {
     public:
     NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
+    
+    ~NoteSetKeyboard();
 
     bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override;
+    
+    void changeListenerCallback(juce::ChangeBroadcaster* source) override;
 
     const juce::Range<int> getRange() const;
     int getLowestKey()                const;
@@ -30,6 +34,8 @@ class NoteSetKeyboard  : public juce::MidiKeyboardComponent
     void resized() override;
     
     private:
+    void syncStateWithNoteSet();
+    
     void setPatternLowestNote(int lowestNote);
     void setPatternHighestNote(int highestNote);
     

@@ -21,17 +21,24 @@ NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote
     jassert(lowestNote <= highestNote);
 }
 
-NoteSet::NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range) : scale(scale), rootNote(rootNote)
+NoteSet::NoteSet(Scale scale,
+                 RootNote rootNote,
+                 juce::Range<int> range) : NoteSet(scale,
+                                                   rootNote,
+                                                   range.getStart(),
+                                                   range.getEnd())
 {
-    this->lowestNote  = range.getStart();
-    this->highestNote = range.getEnd();
+}
+
+NoteSet::~NoteSet()
+{
+    removeAllChangeListeners();
 }
 
 const juce::Array<int> NoteSet::getNotesIndices() const
 {
     juce::Array<int> notes;
     
-//    const int startNote = range.getStart();
     const int rootNoteOffset = rootNote.getOffsetFromC();
     int octaveC = NoteSet::findOctaveC(lowestNote);
     int noteIndexInOctave = -1 - rootNoteOffset;
@@ -74,8 +81,16 @@ const juce::Range<int>  NoteSet::getRange()         const { return juce::Range<i
 int                     NoteSet::getLowestNote()    const { return lowestNote; }
 int                     NoteSet::getHighestNote()   const { return highestNote; }
 
-void NoteSet::setScale(Scale scale)                 { this->scale = scale; }
-void NoteSet::setRootNote(RootNote rootNote)        { this->rootNote = rootNote; }
+void NoteSet::setScale(Scale scale)
+{
+    this->scale = scale;
+    sendChangeMessage();
+}
+void NoteSet::setRootNote(RootNote rootNote)
+{
+    this->rootNote = rootNote;
+    sendChangeMessage();
+}
 
 bool NoteSet::setLowestNote(int lowestNote)
 {
@@ -123,9 +138,10 @@ const juce::String NoteSet::getDebugInfo() const
     return info;
 }
 
-int NoteSet::findOctaveC(int note) {
-    // In MIDI note mapping, C notes are 0, 12, 24, 36 ... up to 120. Using floor division,
-    // the line below effectively returns the C at or below the provided note index.
+const int NoteSet::findOctaveC(int note)
+{
+    // In MIDI note mapping, C notes are mapped to multiples of 12: 0, 12, 24, 36, ... up to 120.
+    // Using floor division, the line below effectively returns the C at or below the provided note (number).
     return (note / 12) * 12;
 }
 
