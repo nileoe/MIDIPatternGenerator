@@ -36,20 +36,19 @@ SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNo
 
 void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
-    auto& d = AppData::getInstance();
     if (setNoteButton == nullptr)
     {
-        d.log("null pointer in setnote button wft???");
+        AppData::getInstance().log("null pointer in setnote button wft???");
         return;
     }
     
-    setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
     
     if (setNoteButton == &setLowestNoteButton)
     {
         settingLowestNoteMode = true;
         setLowestNoteButton.setButtonText("Click on the on-screen keyboard to set lowest pattern note");
-        
+        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
+
         settingHighestNoteMode = false;
         resetButton(&setHighestNoteButton);
     }
@@ -57,7 +56,8 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
     {
         settingHighestNoteMode = true;
         setHighestNoteButton.setButtonText("Click on the on-screen keyboard to set highest pattern note");
-        
+        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::firebrick);
+
         settingLowestNoteMode = false;
         resetButton(&setLowestNoteButton);
     }
@@ -93,6 +93,12 @@ void SelectedRangeBox::resized()
     mainFb.items.add (FI (selectedRangeLabel)   .withMinWidth (200).withMinHeight (30).withMargin (FI::Margin(0, 20, 0, 0)));
 
     mainFb.performLayout(getLocalBounds());
+}
+
+void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* source)
+{
+    auto& d = AppData::getInstance();
+    d.log("selected range box received change!");
 }
 
 void SelectedRangeBox::updateSelectedRangeText()

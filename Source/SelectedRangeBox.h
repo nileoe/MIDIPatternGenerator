@@ -14,11 +14,12 @@
 #include "AppData.h"
 #include "NoteSetKeyboard.h"
 
-class SelectedRangeBox  : public juce::GroupComponent
+class SelectedRangeBox  : public juce::GroupComponent, public juce::ChangeListener
 {
 public:
     SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     void resized() override;
+    void changeListenerCallback (juce::ChangeBroadcaster* source) override;
     
 private:
     void updateSelectedRangeText();
