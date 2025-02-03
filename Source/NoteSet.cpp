@@ -12,8 +12,8 @@
 
 NoteSet::NoteSet()
 {
-    this->lowestNote = 0;
-    this->highestNote = 127;
+    this->lowestNote = 48;
+    this->highestNote = 72;
 }
 
 NoteSet::NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote) : scale(scale), rootNote(rootNote), lowestNote(lowestNote), highestNote(highestNote)
@@ -97,6 +97,7 @@ bool NoteSet::setLowestNote(int lowestNote)
     if (lowestNote > highestNote)
         return false;
     this->lowestNote = lowestNote;
+    sendChangeMessage();
     return true;
 }
 bool NoteSet::setHighestNote(int highestNote)
@@ -104,12 +105,14 @@ bool NoteSet::setHighestNote(int highestNote)
     if (highestNote < lowestNote)
         return false;
     this->highestNote = highestNote;
+    sendChangeMessage();
     return true;
 }
 void NoteSet::setRange(juce::Range<int> range)
 {
     this->lowestNote = range.getStart();
     this->highestNote = range.getEnd();
+    sendChangeMessage();
 }
 
 const juce::String NoteSet::getDebugInfo() const

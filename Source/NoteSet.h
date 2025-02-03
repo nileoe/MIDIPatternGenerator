@@ -12,7 +12,7 @@
 
 #include "Scale.h"
 #include "RootNote.h"
-//#include "AppData.h" // <- Unleashes chaos
+//#include "AppData.h"  // <- Unleashes chaos for some mysterious reason
 #include <JuceHeader.h>
 
 class NoteSet : public juce::ChangeBroadcaster

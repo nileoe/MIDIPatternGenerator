@@ -56,7 +56,6 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
         setPatternHighestNote(midiNoteNumber);
     }
     sendChangeMessage();
-    syncStateWithNoteSet();
     return true;
 }
 
@@ -83,7 +82,7 @@ void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
         settingLowestNoteMode = false;
         d.log("set low note to ", false);
         d.log(juce::MidiMessage::getMidiNoteName(lowestNote, true, true, 1));
-        d.log(patternNoteSet.getDebugInfo());
+//        d.log(patternNoteSet.getDebugInfo());
         return;
     }
     else
@@ -104,7 +103,7 @@ void NoteSetKeyboard::setPatternHighestNote(int highestNote)
         settingHighestNoteMode = false;
         d.log("set high note to ", false);
         d.log(juce::MidiMessage::getMidiNoteName(highestNote, true, true, 1));
-        d.log(patternNoteSet.getDebugInfo());
+//        d.log(patternNoteSet.getDebugInfo());
         return;
     }
     else
