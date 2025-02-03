@@ -36,17 +36,13 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
     if (settingLowestNoteMode)
     {
         setPatternLowestNote(midiNoteNumber);
-        settingLowestNoteMode = false;
         sendChangeMessage();
-        AppData::getInstance().log("sending change...");
         return true;
     }
     else if (settingHighestNoteMode)
     {
         setPatternHighestNote(midiNoteNumber);
-        settingHighestNoteMode = false;
         sendChangeMessage();
-        AppData::getInstance().log("sending change...");
         return true;
     }
     AppData::getInstance().log("No setting mode currently active: doing nothing");
@@ -57,9 +53,10 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
 void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 {
     auto& d = AppData::getInstance();
-    bool setLowNoteResult = patternNoteSet.setLowestNote(lowestNote);
-    if (setLowNoteResult)
+    bool setLowestNoteWasSuccessful = patternNoteSet.setLowestNote(lowestNote);
+    if (setLowestNoteWasSuccessful)
     {
+        settingLowestNoteMode = false;
         d.log("set low note to ", false);
         d.log(juce::MidiMessage::getMidiNoteName(lowestNote, true, true, 1));
         d.log(patternNoteSet.getDebugInfo());
@@ -77,9 +74,10 @@ void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 void NoteSetKeyboard::setPatternHighestNote(int highestNote)
 {
     auto& d = AppData::getInstance();
-    bool setHighNoteResult = patternNoteSet.setHighestNote(highestNote);
-    if (setHighNoteResult)
+    bool setHighestNoteWasSuccessful = patternNoteSet.setHighestNote(highestNote);
+    if (setHighestNoteWasSuccessful)
     {
+        settingHighestNoteMode = false;
         d.log("set high note to ", false);
         d.log(juce::MidiMessage::getMidiNoteName(highestNote, true, true, 1));
         d.log(patternNoteSet.getDebugInfo());

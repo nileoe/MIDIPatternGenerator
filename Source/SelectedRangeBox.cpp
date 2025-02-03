@@ -95,10 +95,25 @@ void SelectedRangeBox::resized()
     mainFb.performLayout(getLocalBounds());
 }
 
-void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* source)
+void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetKeyboard)
 {
     auto& d = AppData::getInstance();
-    d.log("selected range box received change!");
+    d.log("selected range box: changed event received");
+    if (noteSetKeyboard == nullptr)
+    {
+        d.log("nullptr received in SelectedRangeBox (from change broadcaster)");
+        return;
+    }
+    if (!(settingLowestNoteMode || settingHighestNoteMode))
+    {
+        d.log("resetting buttons (note set)");
+        resetButton(&setLowestNoteButton);
+        resetButton(&setHighestNoteButton);
+    }
+    else
+    {
+        d.log("not resetting button: setting note failed, a set note mode is still active");
+    }
 }
 
 void SelectedRangeBox::updateSelectedRangeText()
