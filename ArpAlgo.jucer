@@ -47,6 +47,10 @@
         </GROUP>
       </GROUP>
       <GROUP id="{8F3A9708-F946-0EA8-3B2E-C6D89CC9ECBA}" name="Model">
+        <FILE id="qwM8MV" name="GenerationAlgorithm.cpp" compile="1" resource="0"
+              file="Source/GenerationAlgorithm.cpp"/>
+        <FILE id="WHgQQ9" name="GenerationAlgorithm.h" compile="0" resource="0"
+              file="Source/GenerationAlgorithm.h"/>
         <FILE id="LjRkOc" name="RootNote.cpp" compile="1" resource="0" file="Source/RootNote.cpp"/>
         <FILE id="dAlKk1" name="RootNote.h" compile="0" resource="0" file="Source/RootNote.h"/>
         <FILE id="sXfn91" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>

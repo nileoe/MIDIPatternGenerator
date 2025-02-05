@@ -20,8 +20,6 @@ class NoteSetKeyboard  : public juce::MidiKeyboardComponent, public juce::Change
     NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     
-    ~NoteSetKeyboard();
-
     bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override;
     
     void changeListenerCallback(juce::ChangeBroadcaster* source) override;

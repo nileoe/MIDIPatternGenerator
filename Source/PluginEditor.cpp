@@ -7,15 +7,16 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     setSize (1200, 600);
-//    debugWindow.setVisible (true);
     DebugWindow& debugWindow = AppData::getInstance().getDebugWindow();
-    debugWindow.setVisible (true);
+    debugWindow.setVisible (true); // TODO something
     pianoKeyboard.addChangeListener(&selectedRangeBox);
     p.patternNoteSet.addChangeListener(&pianoKeyboard);
 }
 
 ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()
 {
+    pianoKeyboard .removeAllChangeListeners();
+    audioProcessor.patternNoteSet.removeAllChangeListeners();
 }
 
 //==============================================================================

@@ -74,6 +74,7 @@
 		C037717226E36B6776A80CEC /* VST3 Manifest Helper */ = {isa = PBXBuildFile; fileRef = 1A2DBC551BEEA9B1987DF88B; };
 		C3865558B968E1CA87DC5611 /* NoteSet.cpp */ = {isa = PBXBuildFile; fileRef = A5F967C5817D8E1C306754E9; };
 		C739AC460768B0ABCE6BE820 /* ScaleAndHarmonyBox.cpp */ = {isa = PBXBuildFile; fileRef = 23712CADAF10B97590A12381; };
+		C91C74892788989AEBCEBF05 /* GenerationAlgorithm.cpp */ = {isa = PBXBuildFile; fileRef = 4CF5A08DD4F8B5D33C3F9A53; };
 		CBC3893CEE6BE6F1E844049C /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = 70B103586AD7ED45CC99F28D; };
 		D1E01C2F630E071F5888C2EA /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 1AECAB017DEB4F799DA49D2F; };
 		D337B1DE8E44F9E350608C40 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = C01DB87DDADC1A8DCBC9BC12; };
@@ -109,6 +110,8 @@
 		4542AA3FB619A02719A66CC6 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
 		481DDA3C363E7ECA9DAA66CF /* PatternLengthBox.cpp */ /* PatternLengthBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PatternLengthBox.cpp; path = ../../Source/PatternLengthBox.cpp; sourceTree = SOURCE_ROOT; };
 		482B09063CF0DFEAAB0012CD /* RootNote.h */ /* RootNote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RootNote.h; path = ../../Source/RootNote.h; sourceTree = SOURCE_ROOT; };
+		485CABF9DD67EE172A88C7FC /* GenerationAlgorithm.h */ /* GenerationAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GenerationAlgorithm.h; path = ../../Source/GenerationAlgorithm.h; sourceTree = SOURCE_ROOT; };
+		4CF5A08DD4F8B5D33C3F9A53 /* GenerationAlgorithm.cpp */ /* GenerationAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GenerationAlgorithm.cpp; path = ../../Source/GenerationAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
 		5127798694EDBFE07D3AC36A /* Scale.cpp */ /* Scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Scale.cpp; path = ../../Source/Scale.cpp; sourceTree = SOURCE_ROOT; };
 		58A6A48979716869943B6B29 /* GenerationMethodsBox.cpp */ /* GenerationMethodsBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GenerationMethodsBox.cpp; path = ../../Source/GenerationMethodsBox.cpp; sourceTree = SOURCE_ROOT; };
 		5BA83CB1D3AAFF2A024E3BC2 /* PluginEditor.h */ /* PluginEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginEditor.h; path = ../../Source/PluginEditor.h; sourceTree = SOURCE_ROOT; };
@@ -277,6 +280,8 @@
 		5D50E9429F92C4BA7DDC3D60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CF5A08DD4F8B5D33C3F9A53,
+				485CABF9DD67EE172A88C7FC,
 				3C67D3530C31477C08D9AF22,
 				482B09063CF0DFEAAB0012CD,
 				A5F967C5817D8E1C306754E9,
@@ -815,6 +820,7 @@
 				9D8B19515D8BFB47B221EDF1,
 				388EB76AED8143F23EFC6015,
 				8C936DE4FD01DF5EB557531D,
+				C91C74892788989AEBCEBF05,
 				1289134C6C5ED910F0786E4A,
 				C3865558B968E1CA87DC5611,
 				43B8CC40712C7074B66CFBFC,

@@ -29,11 +29,6 @@ NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, 
 {
 }
 
-NoteSetKeyboard::~NoteSetKeyboard()
-{
-    removeAllChangeListeners();
-}
-
 void NoteSetKeyboard::changeListenerCallback(juce::ChangeBroadcaster* source)
 {
     syncStateWithNoteSet();
@@ -68,8 +63,10 @@ void NoteSetKeyboard::syncStateWithNoteSet()
     state.allNotesOff(1);
     for (int note : noteSetNotes)
     {
+        float velocity = note % 2 == 0 ? 0.2f : 1.0f;
         d.log("activating note " + juce::String(note) + " " + juce::MidiMessage::getMidiNoteName(note, true, true, 0));
-        state.noteOn(1, note, 127);
+//        state.noteOn(1, note, 1.0f);
+        state.noteOn(1, note, velocity);
     }
 }
 

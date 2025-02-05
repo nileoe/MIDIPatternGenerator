@@ -21,8 +21,8 @@ DebugWindow::DebugWindow(juce::String name,
 {
     setSize (400, 1200);
     debugBox.setMultiLine(true);
-    addAndMakeVisible (&debugBox);
-//    dbg("testing a debug");
+    // addAndMakeVisible (&debugBox); // NO
+    setContentOwned(&debugBox, false);
 }
 
 void DebugWindow::log(juce::String dbgText, bool shouldAppendNewline)

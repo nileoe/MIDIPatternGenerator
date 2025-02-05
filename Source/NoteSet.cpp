@@ -30,11 +30,6 @@ NoteSet::NoteSet(Scale scale,
 {
 }
 
-NoteSet::~NoteSet()
-{
-    removeAllChangeListeners();
-}
-
 const juce::Array<int> NoteSet::getNotesIndices() const
 {
     juce::Array<int> notes;

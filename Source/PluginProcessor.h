@@ -1,7 +1,8 @@
 #pragma once
 
-#include <JuceHeader.h>
+//#include "AppData.h"
 #include "NoteSet.h"
+#include <JuceHeader.h>
 
 class ArpAlgoAudioProcessor  : public juce::AudioProcessor
 {
@@ -48,5 +49,29 @@ public:
 
 private:
     //==============================================================================
+    juce::SortedSet<int> heldNotes;
+    int currentNote;
+    int lastNoteValue;
+    int time;
+    int rate;
+
+    
+    // TODO REMOVE (should be algorithm when implemented)
+    juce::Array<int> getActualNotes()
+    {
+        jassert(!heldNotes.isEmpty());
+        const int lowestHeldNote = heldNotes.getFirst();
+        juce::Array<int> actualNotes;
+        
+        for (const int note : patternNoteSet.getNotesIndices())
+        {
+            if (note >= lowestHeldNote)
+            {
+                actualNotes.add(note);
+            }
+        }
+        return actualNotes;
+    }
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };
