@@ -3,6 +3,7 @@
 //#include "AppData.h"
 #include "NoteSet.h"
 #include <JuceHeader.h>
+#include "Generators.h"
 
 class ArpAlgoAudioProcessor  : public juce::AudioProcessor
 {
@@ -54,24 +55,6 @@ private:
     int lastNoteValue;
     int time;
     int rate;
-
-    
-    // TODO REMOVE (should be in algorithm when implemented)
-    juce::Array<int> getActualNotes()
-    {
-        jassert(!heldNotes.isEmpty());
-        const int lowestHeldNote = heldNotes.getFirst();
-        juce::Array<int> actualNotes;
-        
-        for (const int note : patternNoteSet.getNotesIndices())
-        {
-            if (note >= lowestHeldNote)
-            {
-                actualNotes.add(note);
-            }
-        }
-        return actualNotes;
-    }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };

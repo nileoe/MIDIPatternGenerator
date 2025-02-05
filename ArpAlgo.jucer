@@ -53,8 +53,8 @@
       <GROUP id="{03FE3BF4-E5C5-4FBA-4EA7-DED8CCE99B07}" name="Generation Algorithms">
         <FILE id="ruqxRy" name="GenerationAlgorithm.h" compile="0" resource="0"
               file="Source/GenerationAlgorithm.h"/>
-        <FILE id="x4tXV2" name="ThreeNPlus1.cpp" compile="1" resource="0" file="Source/ThreeNPlus1.cpp"/>
-        <FILE id="X2nDqB" name="ThreeNPlus1.h" compile="0" resource="0" file="Source/ThreeNPlus1.h"/>
+        <FILE id="PmgPo8" name="Generators.cpp" compile="1" resource="0" file="Source/Generators.cpp"/>
+        <FILE id="X7fHPH" name="Generators.h" compile="0" resource="0" file="Source/Generators.h"/>
       </GROUP>
       <GROUP id="{D656C9D2-0977-ACDE-62D3-F2906D223A6A}" name="Notes">
         <FILE id="kPNhTI" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
