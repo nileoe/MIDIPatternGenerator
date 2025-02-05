@@ -8,19 +8,28 @@
   ==============================================================================
 */
 
-//#pragma once
-//
-//#include <JuceHeader.h>
-//
-//class GenerationAlgorithm
-//{
-//    public:
-//    virtual ~GenerationAlgorithm() = 0;
-//    virtual const juce::Array<int> getPattern(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) = 0;
-//    
-//    private:
-//    juce::Array<int> availableNotes;
-//};
-//
-//
+#pragma once
+
+#include <JuceHeader.h>
+
+class GenerationAlgorithm
+{
+    public:
+    GenerationAlgorithm();
+    GenerationAlgorithm(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) : heldNotes(heldNotes), availableNotes(availableNotes)
+    {}
+
+//    virtual ~GenerationAlgorithm();
+    
+    virtual juce::Array<int> getPattern() = 0;
+    
+    virtual int getAlgorithmId() const = 0;
+    
+    private:
+    static int id;
+    juce::SortedSet<int>& heldNotes;
+    juce::Array<int>& availableNotes;
+};
+
 //GenerationAlgorithm::~GenerationAlgorithm() {}
+

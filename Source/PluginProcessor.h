@@ -3,7 +3,9 @@
 //#include "AppData.h"
 #include "NoteSet.h"
 #include <JuceHeader.h>
-#include "Generators.h"
+#include "GenerationAlgorithm.h"
+#include "ThreeNGenerator.h"
+#include "RandomizerGenerator.h"
 
 class ArpAlgoAudioProcessor  : public juce::AudioProcessor
 {

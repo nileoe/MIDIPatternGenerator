@@ -47,14 +47,20 @@
     </GROUP>
     <GROUP id="{8026917F-F983-E828-76D0-A891BE6DDA4E}" name="Model">
       <GROUP id="{3B2E96A3-5EA5-92C1-B943-ACFB236113D3}" name="Data">
+        <FILE id="ruqxRy" name="GenerationAlgorithm.h" compile="0" resource="0"
+              file="Source/GenerationAlgorithm.h"/>
         <FILE id="PYuH1l" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
         <FILE id="ZCVe0o" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
       </GROUP>
       <GROUP id="{03FE3BF4-E5C5-4FBA-4EA7-DED8CCE99B07}" name="Generation Algorithms">
-        <FILE id="ruqxRy" name="GenerationAlgorithm.h" compile="0" resource="0"
-              file="Source/GenerationAlgorithm.h"/>
-        <FILE id="PmgPo8" name="Generators.cpp" compile="1" resource="0" file="Source/Generators.cpp"/>
-        <FILE id="X7fHPH" name="Generators.h" compile="0" resource="0" file="Source/Generators.h"/>
+        <FILE id="Om8wWM" name="RandomizerGenerator.cpp" compile="1" resource="0"
+              file="Source/RandomizerGenerator.cpp"/>
+        <FILE id="vXYJid" name="RandomizerGenerator.h" compile="0" resource="0"
+              file="Source/RandomizerGenerator.h"/>
+        <FILE id="PmgPo8" name="ThreeNGenerator.cpp" compile="1" resource="0"
+              file="Source/ThreeNGenerator.cpp"/>
+        <FILE id="X7fHPH" name="ThreeNGenerator.h" compile="0" resource="0"
+              file="Source/ThreeNGenerator.h"/>
       </GROUP>
       <GROUP id="{D656C9D2-0977-ACDE-62D3-F2906D223A6A}" name="Notes">
         <FILE id="kPNhTI" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>

@@ -142,7 +142,10 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     juce::Array<int> pattern;
     if (!heldNotes.isEmpty())
     {
-        pattern = Generators::getNotesHigherThan(heldNotes, patternNoteSet.getNotesIndices());
+        RandomizerGenerator gen;
+//        RandomizerGenerator gen{heldNotes, patternNoteSet.getNotesIndices()};
+        pattern = gen.getPattern();
+//        pattern = Generators::getNotesHigherThan(heldNotes, patternNoteSet.getNotesIndices());
     }
     
     if ((time + numSamples) >= noteDuration)
