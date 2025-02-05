@@ -18,6 +18,10 @@ patternNoteSet(patternNoteSet),
 settingLowestNoteMode(settingLowestNoteMode),
 settingHighestNoteMode(settingHighestNoteMode)
 {
+    setColour(juce::MidiKeyboardComponent::keyDownOverlayColourId,
+              juce::Colour(152, 188, 196));
+    setColour(juce::MidiKeyboardComponent::mouseOverKeyOverlayColourId,
+              juce::Colour(212, 248, 255));
 }
 
 NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)

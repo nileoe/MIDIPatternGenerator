@@ -56,7 +56,7 @@ private:
     int rate;
 
     
-    // TODO REMOVE (should be algorithm when implemented)
+    // TODO REMOVE (should be in algorithm when implemented)
     juce::Array<int> getActualNotes()
     {
         jassert(!heldNotes.isEmpty());

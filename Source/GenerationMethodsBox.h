@@ -26,6 +26,8 @@ class GenerationMethodsBox  : public juce::GroupComponent
                         melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;
     juce::TextButton    selectMelodyButton       { "Select Melody" };
+    juce::TextButton    editAlgorithmButton      { "Algorithm Settings" };
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenerationMethodsBox)
 };
 

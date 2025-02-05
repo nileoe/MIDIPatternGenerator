@@ -74,7 +74,6 @@ void SelectedRangeBox::resetButton(juce::TextButton* setNoteButton)
     juce::String defaultMessage = setNoteButton == &setLowestNoteButton ? "Set lowest note" : "Set highest note";
     setNoteButton->setButtonText(defaultMessage);
     juce::Colour defaultButtonBackgroundColour = juce::LookAndFeel::getDefaultLookAndFeel().findColour(juce::TextButton::buttonColourId);
-//    setNoteButton->setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
     setNoteButton->setColour(juce::TextButton::buttonColourId, defaultButtonBackgroundColour);
 }
 
@@ -85,8 +84,8 @@ void SelectedRangeBox::resized()
     
     juce::FlexBox buttonsFb;
     buttonsFb.alignItems = juce::FlexBox::AlignItems::center;
-    buttonsFb.items.add (FI (setLowestNoteButton) .withMinWidth (150).withMinHeight (25));
-    buttonsFb.items.add (FI (setHighestNoteButton).withMinWidth (150).withMinHeight (25).withMargin (FI::Margin(0, 0, 0, 10)));
+    buttonsFb.items.add (FI (setLowestNoteButton) .withMinWidth (200).withMinHeight (25));
+    buttonsFb.items.add (FI (setHighestNoteButton).withMinWidth (200).withMinHeight (25).withMargin (FI::Margin(0, 0, 0, 10)));
     
     juce::FlexBox mainFb;
     mainFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;

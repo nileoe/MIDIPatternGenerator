@@ -15,12 +15,14 @@
 class GenerationAlgorithm
 {
     public:
-    GenerationAlgorithm();
-    const juce::Array<int> getPattern(juce::SortedSet<int>& heldNotes, juce::Array<int>& targetNotes) const;
+//    GenerationAlgorithm();
+    virtual ~GenerationAlgorithm() = 0;
+    virtual const juce::Array<int> getPattern(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) = 0;
     
     int getId() const;
     
     private:
     static int nextId;
     int id;
+    juce::Array<int> availableNotes;
 };

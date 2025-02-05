@@ -1,11 +1,11 @@
 /*
   ==============================================================================
 
-    GenerationAlgorithm.cpp
-    Created: 4 Feb 2025 6:56:48pm
+    ThreeNPlus1.h
+    Created: 5 Feb 2025 12:08:59pm
     Author:  Lino Perdrix
 
   ==============================================================================
 */
 
-#include "GenerationAlgorithm.h"
+#pragma once

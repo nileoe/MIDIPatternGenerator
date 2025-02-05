@@ -4,72 +4,76 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn"
               companyName="nileoe" companyCopyright="linoperdrix">
   <MAINGROUP id="kN8P4F" name="ArpAlgo">
-    <GROUP id="{FDFE89E5-4EE5-145A-8DCC-13BD47EDBE9B}" name="Source">
-      <GROUP id="{9244DB67-7BB1-5C43-76DF-C5FDE77321CB}" name="Editors">
-        <FILE id="mpHRQA" name="PluginEditor.cpp" compile="1" resource="0"
+    <GROUP id="{EAE9D604-4F64-E4F8-B426-D9A92AB53369}" name="Components">
+      <GROUP id="{7AE6FE42-A785-3BCF-C3DB-6FD9857953CC}" name="Editors">
+        <FILE id="cAiEyg" name="PluginEditor.cpp" compile="1" resource="0"
               file="Source/PluginEditor.cpp"/>
-        <FILE id="srRsgq" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+        <FILE id="URr5NL" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       </GROUP>
-      <GROUP id="{6EE248B4-155F-2D8C-35E2-6D5BE44EE589}" name="Components">
-        <GROUP id="{6E06764A-8171-8F8D-59F9-D850B3E2285C}" name="MIDI">
-          <FILE id="kMxKD5" name="NoteSetKeyboard.cpp" compile="1" resource="0"
-                file="Source/NoteSetKeyboard.cpp"/>
-          <FILE id="FX54rq" name="NoteSetKeyboard.h" compile="0" resource="0"
-                file="Source/NoteSetKeyboard.h"/>
-        </GROUP>
-        <GROUP id="{36A79760-1C07-DAC5-F08B-07C05ED1BD23}" name="UI">
-          <FILE id="jlN24v" name="RoundRadioButton.cpp" compile="1" resource="0"
-                file="Source/RoundRadioButton.cpp"/>
-          <FILE id="KxfJe1" name="RoundRadioButton.h" compile="0" resource="0"
-                file="Source/RoundRadioButton.h"/>
-        </GROUP>
-        <GROUP id="{D00F4650-8C81-0FAC-8579-93FB141AB70A}" name="Layout">
-          <FILE id="L20AxL" name="SelectedRangeBox.cpp" compile="1" resource="0"
-                file="Source/SelectedRangeBox.cpp"/>
-          <FILE id="JKwf87" name="SelectedRangeBox.h" compile="0" resource="0"
-                file="Source/SelectedRangeBox.h"/>
-          <FILE id="AhwddC" name="ScaleAndHarmonyBox.cpp" compile="1" resource="0"
-                file="Source/ScaleAndHarmonyBox.cpp"/>
-          <FILE id="qAV0b8" name="ScaleAndHarmonyBox.h" compile="0" resource="0"
-                file="Source/ScaleAndHarmonyBox.h"/>
-          <FILE id="WTPLRf" name="GenerationMethodsBox.cpp" compile="1" resource="0"
-                file="Source/GenerationMethodsBox.cpp"/>
-          <FILE id="Y1utOX" name="GenerationMethodsBox.h" compile="0" resource="0"
-                file="Source/GenerationMethodsBox.h"/>
-          <FILE id="qR4Lqh" name="PatternLengthBox.cpp" compile="1" resource="0"
-                file="Source/PatternLengthBox.cpp"/>
-          <FILE id="sEQhvt" name="PatternLengthBox.h" compile="0" resource="0"
-                file="Source/PatternLengthBox.h"/>
-          <FILE id="XaMpSO" name="RhythmOverrideBox.cpp" compile="1" resource="0"
-                file="Source/RhythmOverrideBox.cpp"/>
-          <FILE id="huL3El" name="RhythmOverrideBox.h" compile="0" resource="0"
-                file="Source/RhythmOverrideBox.h"/>
-        </GROUP>
+      <GROUP id="{6B25DE54-ACD3-AB0B-C31C-3D70664EBCFB}" name="Layout">
+        <FILE id="RQpI9V" name="GenerationMethodsBox.cpp" compile="1" resource="0"
+              file="Source/GenerationMethodsBox.cpp"/>
+        <FILE id="GXg1qg" name="GenerationMethodsBox.h" compile="0" resource="0"
+              file="Source/GenerationMethodsBox.h"/>
+        <FILE id="IP1kzI" name="PatternLengthBox.cpp" compile="1" resource="0"
+              file="Source/PatternLengthBox.cpp"/>
+        <FILE id="tJvnsc" name="PatternLengthBox.h" compile="0" resource="0"
+              file="Source/PatternLengthBox.h"/>
+        <FILE id="td6Eje" name="RhythmOverrideBox.cpp" compile="1" resource="0"
+              file="Source/RhythmOverrideBox.cpp"/>
+        <FILE id="lHO5wP" name="RhythmOverrideBox.h" compile="0" resource="0"
+              file="Source/RhythmOverrideBox.h"/>
+        <FILE id="Kk2Awq" name="ScaleAndHarmonyBox.cpp" compile="1" resource="0"
+              file="Source/ScaleAndHarmonyBox.cpp"/>
+        <FILE id="pML84B" name="ScaleAndHarmonyBox.h" compile="0" resource="0"
+              file="Source/ScaleAndHarmonyBox.h"/>
+        <FILE id="mR8eDV" name="SelectedRangeBox.cpp" compile="1" resource="0"
+              file="Source/SelectedRangeBox.cpp"/>
+        <FILE id="PHFkoc" name="SelectedRangeBox.h" compile="0" resource="0"
+              file="Source/SelectedRangeBox.h"/>
       </GROUP>
-      <GROUP id="{8F3A9708-F946-0EA8-3B2E-C6D89CC9ECBA}" name="Model">
-        <FILE id="qwM8MV" name="GenerationAlgorithm.cpp" compile="1" resource="0"
-              file="Source/GenerationAlgorithm.cpp"/>
-        <FILE id="WHgQQ9" name="GenerationAlgorithm.h" compile="0" resource="0"
-              file="Source/GenerationAlgorithm.h"/>
-        <FILE id="LjRkOc" name="RootNote.cpp" compile="1" resource="0" file="Source/RootNote.cpp"/>
-        <FILE id="dAlKk1" name="RootNote.h" compile="0" resource="0" file="Source/RootNote.h"/>
-        <FILE id="sXfn91" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
-        <FILE id="Mrfxtx" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
-        <FILE id="wDSeeN" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
-        <FILE id="Z7NOxd" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
-        <FILE id="sqfB0y" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
-        <FILE id="SKm9lK" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
+      <GROUP id="{D6F288B5-AFCC-BDEC-6B1D-C254857D423B}" name="MIDI">
+        <FILE id="Lvg030" name="NoteSetKeyboard.cpp" compile="1" resource="0"
+              file="Source/NoteSetKeyboard.cpp"/>
+        <FILE id="buhuhm" name="NoteSetKeyboard.h" compile="0" resource="0"
+              file="Source/NoteSetKeyboard.h"/>
       </GROUP>
-      <GROUP id="{2CBA80E8-099E-1C3A-9B50-F4798DE10BED}" name="Testing">
-        <FILE id="qkQPD3" name="DebugWindow.cpp" compile="1" resource="0" file="Source/DebugWindow.cpp"/>
-        <FILE id="mBTzkR" name="DebugWindow.h" compile="0" resource="0" file="Source/DebugWindow.h"/>
-        <FILE id="tmVbD7" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
+      <GROUP id="{55690D0D-2287-BBB8-5735-75DE3577F10B}" name="UI">
+        <FILE id="JxqVHR" name="RoundRadioButton.cpp" compile="1" resource="0"
+              file="Source/RoundRadioButton.cpp"/>
+        <FILE id="ASDk08" name="RoundRadioButton.h" compile="0" resource="0"
+              file="Source/RoundRadioButton.h"/>
       </GROUP>
-      <FILE id="JwdRQb" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="yXqtlm" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
     </GROUP>
+    <GROUP id="{8026917F-F983-E828-76D0-A891BE6DDA4E}" name="Model">
+      <GROUP id="{3B2E96A3-5EA5-92C1-B943-ACFB236113D3}" name="Data">
+        <FILE id="PYuH1l" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
+        <FILE id="ZCVe0o" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
+      </GROUP>
+      <GROUP id="{03FE3BF4-E5C5-4FBA-4EA7-DED8CCE99B07}" name="Generation Algorithms">
+        <FILE id="ruqxRy" name="GenerationAlgorithm.h" compile="0" resource="0"
+              file="Source/GenerationAlgorithm.h"/>
+        <FILE id="x4tXV2" name="ThreeNPlus1.cpp" compile="1" resource="0" file="Source/ThreeNPlus1.cpp"/>
+        <FILE id="X2nDqB" name="ThreeNPlus1.h" compile="0" resource="0" file="Source/ThreeNPlus1.h"/>
+      </GROUP>
+      <GROUP id="{D656C9D2-0977-ACDE-62D3-F2906D223A6A}" name="Notes">
+        <FILE id="kPNhTI" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
+        <FILE id="E5273i" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
+        <FILE id="DzgjbX" name="RootNote.cpp" compile="1" resource="0" file="Source/RootNote.cpp"/>
+        <FILE id="i01gL0" name="RootNote.h" compile="0" resource="0" file="Source/RootNote.h"/>
+        <FILE id="kLMCAe" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
+        <FILE id="GrQFon" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing">
+      <FILE id="Vr8qb5" name="DebugWindow.cpp" compile="1" resource="0" file="Source/DebugWindow.cpp"/>
+      <FILE id="Ks3Nux" name="DebugWindow.h" compile="0" resource="0" file="Source/DebugWindow.h"/>
+      <FILE id="VpdlJX" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
+    </GROUP>
+    <FILE id="LDXDTr" name="PluginProcessor.cpp" compile="1" resource="0"
+          file="Source/PluginProcessor.cpp"/>
+    <FILE id="HXR4OS" name="PluginProcessor.h" compile="0" resource="0"
+          file="Source/PluginProcessor.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

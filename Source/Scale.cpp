@@ -21,7 +21,7 @@ Scale::Scale(const Scale& other) : id(other.id), name(other.name), noteIndices(o
 
 Scale::Scale(juce::String name, juce::Array<bool> notePattern, juce::String categoryName) : id(nextId ++), name(name), notePattern(notePattern), categoryName(categoryName)
 {
-    // scales must follow the 12-note western system.
+    // Scales must follow the 12-note western system.
     jassert (notePattern.size() == 12);
     // set the note indices
     juce::Array<int> noteIndices;
