@@ -10,8 +10,7 @@
 #include "ScaleAndHarmonyBox.h"
 #include "AppData.h"
 #include "Scale.h"
-#include "Tester.h"
-#include "DebugWindow.h"
+//#include "Tester.h"
 
 class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor
 {

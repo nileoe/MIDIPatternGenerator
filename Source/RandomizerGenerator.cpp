@@ -13,11 +13,14 @@
 
 //RandomizerGenerator::~GenerationAlgorithm() {}
 
-RandomizerGenerator::RandomizerGenerator() {}
+//RandomizerGenerator::RandomizerGenerator() {}
 
-RandomizerGenerator::RandomizerGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes)
-    : GenerationAlgorithm(heldNotes, availableNotes)
-{}
+//RandomizerGenerator::RandomizerGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes)
+//    : GenerationAlgorithm(heldNotes, availableNotes)
+//
+//RandomizerGenerator::RandomizerGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& targetNotes)
+//    : heldNotes(heldNotes), targetNotes(targetNotes)
+//{}
 
 juce::Array<int> RandomizerGenerator::getPattern()
 {
@@ -27,5 +30,5 @@ juce::Array<int> RandomizerGenerator::getPattern()
 
 int RandomizerGenerator::getAlgorithmId() const
 {
-    return 2;
+    return 1;
 }

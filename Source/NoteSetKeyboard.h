@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 #include "NoteSet.h"
-#include "AppData.h"
+//#include "AppData.h"
 
 class NoteSetKeyboard  : public juce::MidiKeyboardComponent, public juce::ChangeListener
 {

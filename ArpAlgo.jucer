@@ -71,11 +71,7 @@
         <FILE id="GrQFon" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
       </GROUP>
     </GROUP>
-    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing">
-      <FILE id="Vr8qb5" name="DebugWindow.cpp" compile="1" resource="0" file="Source/DebugWindow.cpp"/>
-      <FILE id="Ks3Nux" name="DebugWindow.h" compile="0" resource="0" file="Source/DebugWindow.h"/>
-      <FILE id="VpdlJX" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
-    </GROUP>
+    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing"/>
     <FILE id="LDXDTr" name="PluginProcessor.cpp" compile="1" resource="0"
           file="Source/PluginProcessor.cpp"/>
     <FILE id="HXR4OS" name="PluginProcessor.h" compile="0" resource="0"

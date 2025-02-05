@@ -14,21 +14,21 @@
 
 class GenerationAlgorithm
 {
-    public:
-    GenerationAlgorithm();
-    GenerationAlgorithm(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) : heldNotes(heldNotes), availableNotes(availableNotes)
-    {}
-
-//    virtual ~GenerationAlgorithm();
-    
-    virtual juce::Array<int> getPattern() = 0;
-    
-    virtual int getAlgorithmId() const = 0;
-    
-    private:
-    static int id;
-    juce::SortedSet<int>& heldNotes;
-    juce::Array<int>& availableNotes;
+//    public:
+//    GenerationAlgorithm();
+//    GenerationAlgorithm(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) : heldNotes(heldNotes), availableNotes(availableNotes)
+//    {}
+//
+////    virtual ~GenerationAlgorithm();
+//    
+//    virtual juce::Array<int> getPattern() = 0;
+//    
+//    virtual int getAlgorithmId() const = 0;
+//    
+//    private:
+//    static int id;
+//    juce::SortedSet<int>& heldNotes;
+//    juce::Array<int>& availableNotes;
 };
 
 //GenerationAlgorithm::~GenerationAlgorithm() {}

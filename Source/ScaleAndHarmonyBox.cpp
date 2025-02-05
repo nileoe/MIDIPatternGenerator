@@ -39,20 +39,12 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& pattern
     for (Scale s : scales)
     {
         scaleMenu.addItem (s.getName(), s.getId());
-//        data.log("scale menu: adding scale ", false);
-//        data.log(s.getName());
-//        data.log(juce::String(s.getId()));
-//        data.log();
     }
     
     const juce::Array<RootNote> rootNotes = data.getRootNotes();
     for (RootNote rn : rootNotes)
     {
         rootNoteMenu.addItem (rn.getName(), rn.getId());
-//        data.log("rootNote menu: adding rootnote ", false);
-//        data.log(rn.getName());
-//        data.log(juce::String(rn.getId()));
-//        data.log();
     }
     
     scaleMenu.onChange    = [this] { updatePatternScale(); };
@@ -81,8 +73,8 @@ void ScaleAndHarmonyBox::updatePatternRootNote()
     const RootNote* newRootNote = data.getRootNoteById(rootNoteMenu.getSelectedId());
     if (newRootNote == nullptr)
     {
-        data.log("nullptr returned from getRootNoteById (scaleAndHarmonyBox), with id ", false);
-        data.log(juce::String(rootNoteMenu.getSelectedId()));
+        DBG ("nullptr returned from getRootNoteById (scaleAndHarmonyBox), with id ");
+        DBG (juce::String(rootNoteMenu.getSelectedId()));
         return;
     }
     patternNoteSet.setRootNote(*newRootNote);
@@ -93,8 +85,8 @@ void ScaleAndHarmonyBox::updatePatternScale()
     const auto* newScale = data.getScaleById(scaleMenu.getSelectedId());
     if (newScale == nullptr)
     {
-        data.log("nullptr returned from getScaleById with id ", false);
-        data.log(juce::String(scaleMenu.getSelectedId()));
+        DBG ("nullptr returned from getScaleById with id ");
+        DBG (juce::String(scaleMenu.getSelectedId()));
         return;
     }
     patternNoteSet.setScale(*newScale);

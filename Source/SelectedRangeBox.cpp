@@ -38,7 +38,7 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
     if (setNoteButton == nullptr)
     {
-        AppData::getInstance().log("null pointer in setnote button wft???");
+        DBG ("null pointer in setnote button wft???");
         return;
     }
     
@@ -65,10 +65,9 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 
 void SelectedRangeBox::resetButton(juce::TextButton* setNoteButton)
 {
-    auto& d = AppData::getInstance();
     if (setNoteButton == nullptr)
     {
-        d.log ("nullptr button passed to resetButton");
+        DBG ("nullptr button passed to resetButton");
         return;
     }
     juce::String defaultMessage = setNoteButton == &setLowestNoteButton ? "Set lowest note" : "Set highest note";
@@ -98,23 +97,22 @@ void SelectedRangeBox::resized()
 
 void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetKeyboard)
 {
-    auto& d = AppData::getInstance();
-    d.log("selected range box: changed event received");
+    DBG ("selected range box: changed event received");
     if (noteSetKeyboard == nullptr)
     {
-        d.log("nullptr received in SelectedRangeBox (from change broadcaster)");
+        DBG ("nullptr received in SelectedRangeBox (from change broadcaster)");
         return;
     }
     if (!(settingLowestNoteMode || settingHighestNoteMode))
     {
-        d.log("resetting buttons (note set)");
+        DBG ("resetting buttons (note set)");
         resetButton(&setLowestNoteButton);
         resetButton(&setHighestNoteButton);
         updateSelectedRangeText();
     }
     else
     {
-        d.log("not resetting button: setting note failed, a set note mode is still active");
+        DBG ("not resetting button: setting note failed, a set note mode is still active");
     }
 }
 

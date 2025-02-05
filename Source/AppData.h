@@ -13,7 +13,7 @@
 #include <JuceHeader.h>
 #include "Scale.h"
 #include "RootNote.h"
-#include "DebugWindow.h" // TODO
+// #include "DebugWindow.h" // TODO
 
 class AppData
 {
@@ -32,10 +32,10 @@ class AppData
     
     void log(juce::String = "", bool shouldAppendNewline = true);
     
-    DebugWindow& getDebugWindow();
+//    DebugWindow& getDebugWindow();
 
     private:
-    DebugWindow debugWindow;
+//    DebugWindow debugWindow;
     juce::StringArray           algorithms;
     juce::Array<Scale>          scales;
     juce::Array<RootNote>       rootNotes;
