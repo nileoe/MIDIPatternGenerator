@@ -123,6 +123,7 @@
 		6B631B365CFA9840D7E780DE /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6DE385903DA7CEC19BD34B1E /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E336E3365C03B2EBCA30667 /* ThreeNGenerator.h */ /* ThreeNGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThreeNGenerator.h; path = ../../Source/ThreeNGenerator.h; sourceTree = SOURCE_ROOT; };
+		6EAD083BA11ADA48ECB6A46D /* Tester.h */ /* Tester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tester.h; path = ../../Source/Tester.h; sourceTree = SOURCE_ROOT; };
 		70618D491F6EBA9F8C6E28EB /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
 		70B103586AD7ED45CC99F28D /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		716E2DE9C924E8267D7F439C /* RhythmOverrideBox.cpp */ /* RhythmOverrideBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RhythmOverrideBox.cpp; path = ../../Source/RhythmOverrideBox.cpp; sourceTree = SOURCE_ROOT; };
@@ -294,6 +295,7 @@
 			children = (
 				00297CD5FD72C10775ADD3C4,
 				C299F7DFE97E19B178DD98CD,
+				C40E1F9045F93C398AC77907,
 				8AD48BD56E78F0E18DA11A42,
 				F99E08712C0A9FEAA27072FB,
 			);
@@ -396,6 +398,14 @@
 				496D633A3E1104039FC0FB43,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C40E1F9045F93C398AC77907 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				6EAD083BA11ADA48ECB6A46D,
+			);
+			name = Testing;
 			sourceTree = "<group>";
 		};
 		D6A3C4705FF66BFB3E600D13 /* JUCE Library Code */ = {

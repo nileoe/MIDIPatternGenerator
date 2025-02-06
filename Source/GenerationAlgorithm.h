@@ -14,22 +14,24 @@
 
 class GenerationAlgorithm
 {
-//    public:
-//    GenerationAlgorithm();
-//    GenerationAlgorithm(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes) : heldNotes(heldNotes), availableNotes(availableNotes)
-//    {}
-//
-////    virtual ~GenerationAlgorithm();
-//    
-//    virtual juce::Array<int> getPattern() = 0;
-//    
-//    virtual int getAlgorithmId() const = 0;
-//    
-//    private:
-//    static int id;
-//    juce::SortedSet<int>& heldNotes;
-//    juce::Array<int>& availableNotes;
-};
+    public:
+    GenerationAlgorithm(int id) : id(id)
+    {
+        DBG ("Created new generation algorithm with id " << id);
+    }
 
-//GenerationAlgorithm::~GenerationAlgorithm() {}
+    virtual ~GenerationAlgorithm() {}
+    
+    virtual const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const = 0;
+    
+    virtual juce::String getName() const = 0;
+    
+    int getId() const
+    {
+        return id;
+    }
+    
+    private:
+    int id; // mention: no setter for security
+};
 

@@ -71,7 +71,9 @@
         <FILE id="GrQFon" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
       </GROUP>
     </GROUP>
-    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing"/>
+    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing">
+      <FILE id="xJkGwC" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
+    </GROUP>
     <FILE id="LDXDTr" name="PluginProcessor.cpp" compile="1" resource="0"
           file="Source/PluginProcessor.cpp"/>
     <FILE id="HXR4OS" name="PluginProcessor.h" compile="0" resource="0"

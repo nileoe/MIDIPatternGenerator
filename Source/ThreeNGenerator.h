@@ -9,16 +9,17 @@
 */
 
 
-//#pragma once
-//
-//#include "GenerationAlgorithm.h"
-//#include <JuceHeader.h>
-//
-//class ThreeNGenerator : public GenerationAlgorithm
-//{
-//    public:
-//    ThreeNGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes);
-//    
-//    const juce::Array<int> getPattern() override;
-//    int getAlgorithmId() const override;
-//};
+#pragma once
+
+#include "GenerationAlgorithm.h"
+#include <JuceHeader.h>
+
+class ThreeNGenerator : public GenerationAlgorithm
+{
+    public:
+    ThreeNGenerator(int id);
+    
+    juce::String getName() const override;
+    
+    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const override;
+};

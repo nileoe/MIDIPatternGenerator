@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "AppData.h"
+#include "AppData.h"
 #include "NoteSet.h"
 #include <JuceHeader.h>
 #include "RandomizerGenerator.h"

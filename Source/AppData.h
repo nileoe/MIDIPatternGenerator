@@ -13,7 +13,11 @@
 #include <JuceHeader.h>
 #include "Scale.h"
 #include "RootNote.h"
-// #include "DebugWindow.h" // TODO
+// #include "DebugWindow.h"
+#include "RandomizerGenerator.h"
+#include "GenerationAlgorithm.h"
+#include "Tester.h"
+
 
 class AppData
 {
@@ -30,17 +34,27 @@ class AppData
     
     void addScale (Scale scale);
     
-    void log(juce::String = "", bool shouldAppendNewline = true);
-    
-//    DebugWindow& getDebugWindow();
+    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const;
+
+    const GenerationAlgorithm* getSelectedGenerator() const;
+    int getSelectedAlgorithmId() const;
+    void setSelectedAlgorithmId(int id);
 
     private:
-//    DebugWindow debugWindow;
-    juce::StringArray           algorithms;
-    juce::Array<Scale>          scales;
-    juce::Array<RootNote>       rootNotes;
-    
     AppData() noexcept;
+    
+    void addRootNotesData();
+    void addScaleData();
+    void addGenerationAlgorithms();
+
+//    DebugWindow debugWindow;
+    juce::StringArray                 algorithms;
+    juce::Array<GenerationAlgorithm*> generationAlgorithms;
+    juce::Array<Scale>                scales;
+    juce::Array<RootNote>             rootNotes;
+    
+    int selectedAlgorithmId = 2; // TODO
+//    static Algorithms selectedAlgorithmId;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AppData)
 };

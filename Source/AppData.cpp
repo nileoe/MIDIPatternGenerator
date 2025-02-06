@@ -9,6 +9,7 @@
 */
 
 #include "AppData.h"
+#include "RandomizerGenerator.h"
 
 AppData& AppData::getInstance()
 {
@@ -16,21 +17,19 @@ AppData& AppData::getInstance()
     return instance;
 }
 
-//AppData::AppData() noexcept : algorithms(juce::StringArray()), scales(juce::Array<Scale>()), rootNotes(juce::Array<RootNote>())
 AppData::AppData() noexcept
 {
+    addRootNotesData();
+    addScaleData();
+    addGenerationAlgorithms();
     algorithms.add("Algo 1");
     algorithms.add("Algo 2");
     algorithms.add("Algo 3");
     algorithms.add("Algo 4");
-    
-    scales.add (Scale{"Major",              juce::Array<int>{0, 2, 4, 5, 7, 9, 11},                 "7 notes Major and Minor"});
-    scales.add (Scale{"Melodic Minor",      juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor"});
-    scales.add (Scale{"Natural Minor",      juce::Array<int>{0, 2, 3, 5, 7, 8, 10},                 "7 notes Major and Minor"});
-    scales.add (Scale{"Harmonic Minor",     juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor"});
-    scales.add (Scale{"Pentatonic Major",   juce::Array<int>{0, 2, 4, 7, 9},                        "5 notes standard"});
-    scales.add (Scale{"Chromatic",          juce::Array<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, "Miscellaneous"});
+}
 
+void AppData::addRootNotesData()
+{
     rootNotes.add (RootNote{"C",     0});
     rootNotes.add (RootNote{"C#/Db", 1});
     rootNotes.add (RootNote{"D",     2});
@@ -44,6 +43,40 @@ AppData::AppData() noexcept
     rootNotes.add (RootNote{"A#/Bb", 10});
     rootNotes.add (RootNote{"B",     11});
 }
+void AppData::addScaleData()
+{
+    scales.add (Scale{ "Major",              juce::Array<int>{0, 2, 4, 5, 7, 9, 11},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Melodic Minor",      juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Natural Minor",      juce::Array<int>{0, 2, 3, 5, 7, 8, 10},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Harmonic Minor",     juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Pentatonic Major",   juce::Array<int>{0, 2, 4, 7, 9},                        "5 notes standard" });
+    scales.add (Scale{ "Chromatic",          juce::Array<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, "Miscellaneous" });
+}
+void AppData::addGenerationAlgorithms()
+{
+    int id = 1;
+    generationAlgorithms.add (new RandomizerGenerator {id ++});
+    generationAlgorithms.add (new ThreeNGenerator     {id ++});
+}
+
+const juce::Array<int> AppData::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
+{
+    return getSelectedGenerator()->getPattern(heldNotes, targetNotes);
+//    return juce::Array<int>();
+}
+
+const GenerationAlgorithm* AppData::getSelectedGenerator() const
+{
+    for (GenerationAlgorithm* algo : generationAlgorithms)
+    {
+        if (algo->getId() == selectedAlgorithmId)
+            return algo;
+    }
+    DBG ("ERROR: getGenerator did not find algorithm with currently selected algorithm id when called.");
+    jassertfalse;
+    return nullptr;
+}
+
 
 const juce::StringArray&        AppData::getAlgorithms()    const { return algorithms; }
 const juce::Array<Scale>&       AppData::getScales()        const { return scales; }
@@ -84,3 +117,14 @@ const RootNote* AppData::getRootNoteByOffsetFromC (int degree) const
     }
     return nullptr;
 }
+
+int AppData::getSelectedAlgorithmId() const
+{
+    return selectedAlgorithmId;
+}
+
+void AppData::setSelectedAlgorithmId(int id)
+{
+    selectedAlgorithmId = id;
+}
+

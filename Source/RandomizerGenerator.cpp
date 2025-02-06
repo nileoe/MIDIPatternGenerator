@@ -11,24 +11,17 @@
 #include "RandomizerGenerator.h"
 #include <random>
 
-//RandomizerGenerator::~GenerationAlgorithm() {}
+RandomizerGenerator::RandomizerGenerator(int id) : GenerationAlgorithm(id) {}
 
-//RandomizerGenerator::RandomizerGenerator() {}
-
-//RandomizerGenerator::RandomizerGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& availableNotes)
-//    : GenerationAlgorithm(heldNotes, availableNotes)
-//
-//RandomizerGenerator::RandomizerGenerator(juce::SortedSet<int>& heldNotes, juce::Array<int>& targetNotes)
-//    : heldNotes(heldNotes), targetNotes(targetNotes)
-//{}
-
-juce::Array<int> RandomizerGenerator::getPattern()
+const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
 {
+    DBG ("Getting pattern for Randomizer");
     juce::Array<int> pattern = {24, 36, 48, 60};
     return pattern;
 }
 
-int RandomizerGenerator::getAlgorithmId() const
+
+juce::String RandomizerGenerator::getName() const
 {
-    return 1;
+    return "Randomizer";
 }

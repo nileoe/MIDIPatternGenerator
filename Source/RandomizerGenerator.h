@@ -13,14 +13,12 @@
 #include "GenerationAlgorithm.h"
 #include <JuceHeader.h>
 
-class RandomizerGenerator // : public GenerationAlgorithm
+class RandomizerGenerator : public GenerationAlgorithm
 {
     public:
-    juce::Array<int> getPattern();// override;
-    int getAlgorithmId() const;// override;
+    RandomizerGenerator(int id);
     
-    private:
-    static int id;
-//    juce::SortedSet<int>& heldNotes;
-//    juce::Array<int>& targetNotes;
+    juce::String getName() const override;
+
+    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const override;
 };
