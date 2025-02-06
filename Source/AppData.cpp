@@ -17,6 +17,14 @@ AppData& AppData::getInstance()
     return instance;
 }
 
+AppData::~AppData()
+{
+    for (GenerationAlgorithm* algo : generationAlgorithms)
+    {
+        delete (algo); // using new so u musts delete them
+    }
+}
+
 AppData::AppData() noexcept
 {
     addRootNotesData();

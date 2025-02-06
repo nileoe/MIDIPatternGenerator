@@ -42,6 +42,7 @@ class AppData
 
     private:
     AppData() noexcept;
+    ~AppData();
     
     void addRootNotesData();
     void addScaleData();
