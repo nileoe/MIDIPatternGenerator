@@ -10,9 +10,10 @@
 
 #pragma once
 
-#include <JuceHeader.h>
 #include "RoundRadioButton.h"
 #include "AppData.h"
+#include "GenerationAlgorithm.h"
+#include <JuceHeader.h>
 
 class GenerationMethodsBox  : public juce::GroupComponent
 {
@@ -22,6 +23,7 @@ class GenerationMethodsBox  : public juce::GroupComponent
     void resized() override;
     
     private:
+    void handleAlgorithmChange() const;
     RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
                         melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;

@@ -29,15 +29,26 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId)
     algorithmButton
         .setToggleState (true, juce::NotificationType::dontSendNotification);
     
-    algorithmButton .onClick = [this] { algorithmMenu.     setEnabled (algorithmButton.getState()); };
-    melodyButton    .onClick = [this] { selectMelodyButton.setEnabled (melodyButton.   getState()); };
+    algorithmButton .onClick = [this] { algorithmMenu     .setEnabled (algorithmButton.getState()); };
+    melodyButton    .onClick = [this] { selectMelodyButton.setEnabled (melodyButton   .getState()); };
     
-    const juce::StringArray& algorithms = AppData::getInstance().getAlgorithms();
-    for (auto i = 0; i < algorithms.size(); i ++)
+    auto& data = AppData::getInstance();
+    const juce::Array<GenerationAlgorithm*>& algorithms = data.getGenerationAlgorithms();
+    for (auto* algo : algorithms)
     {
-        algorithmMenu.addItem (algorithms[i], i + 1);
+        algorithmMenu.addItem(algo->getName(), algo->getId());
     }
-    algorithmMenu.setSelectedId(1);
+    
+    algorithmMenu.setSelectedId(algorithms.getFirst()->getId());
+    
+    algorithmMenu.onChange = [this] { handleAlgorithmChange(); };
+}
+
+void GenerationMethodsBox::handleAlgorithmChange() const
+{
+    int newAlgoId = algorithmMenu.getSelectedId();
+    DBG ("Generation box: setting new algorithm selected id to " << newAlgoId);
+    AppData::getInstance().setSelectedAlgorithmId(newAlgoId);
 }
 
 void GenerationMethodsBox::updateToggleState (juce::ToggleButton* button)

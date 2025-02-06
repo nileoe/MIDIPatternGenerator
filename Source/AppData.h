@@ -24,10 +24,10 @@ class AppData
     public:
     static AppData& getInstance();
     
-    const juce::StringArray&        getAlgorithms()     const;
     const juce::Array<Scale>&       getScales()         const;
     const juce::Array<RootNote>&    getRootNotes()      const;
-    
+    const juce::Array<GenerationAlgorithm*>&        getGenerationAlgorithms()     const;
+
     const Scale*        getScaleById (int id) const;
     const RootNote*     getRootNoteById (int id) const;
     const RootNote*     getRootNoteByOffsetFromC (int degree) const;
@@ -49,13 +49,11 @@ class AppData
     void addGenerationAlgorithms();
 
 //    DebugWindow debugWindow;
-    juce::StringArray                 algorithms;
     juce::Array<GenerationAlgorithm*> generationAlgorithms;
     juce::Array<Scale>                scales;
     juce::Array<RootNote>             rootNotes;
     
-    int selectedAlgorithmId = 2; // TODO
-//    static Algorithms selectedAlgorithmId;
+    int selectedAlgorithmId;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AppData)
 };

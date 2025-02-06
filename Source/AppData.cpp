@@ -30,26 +30,22 @@ AppData::AppData() noexcept
     addRootNotesData();
     addScaleData();
     addGenerationAlgorithms();
-    algorithms.add("Algo 1");
-    algorithms.add("Algo 2");
-    algorithms.add("Algo 3");
-    algorithms.add("Algo 4");
 }
 
 void AppData::addRootNotesData()
 {
-    rootNotes.add (RootNote{"C",     0});
-    rootNotes.add (RootNote{"C#/Db", 1});
-    rootNotes.add (RootNote{"D",     2});
-    rootNotes.add (RootNote{"D#/Eb", 3});
-    rootNotes.add (RootNote{"E",     4});
-    rootNotes.add (RootNote{"F",     5});
-    rootNotes.add (RootNote{"F#/Gb", 6});
-    rootNotes.add (RootNote{"G",     7});
-    rootNotes.add (RootNote{"G#/Ab", 8});
-    rootNotes.add (RootNote{"A",     9});
-    rootNotes.add (RootNote{"A#/Bb", 10});
-    rootNotes.add (RootNote{"B",     11});
+    rootNotes.add (RootNote{ "C",     0 });
+    rootNotes.add (RootNote{ "C#/Db", 1 });
+    rootNotes.add (RootNote{ "D",     2 });
+    rootNotes.add (RootNote{ "D#/Eb", 3 });
+    rootNotes.add (RootNote{ "E",     4 });
+    rootNotes.add (RootNote{ "F",     5 });
+    rootNotes.add (RootNote{ "F#/Gb", 6 });
+    rootNotes.add (RootNote{ "G",     7 });
+    rootNotes.add (RootNote{ "G#/Ab", 8 });
+    rootNotes.add (RootNote{ "A",     9 });
+    rootNotes.add (RootNote{ "A#/Bb", 10 });
+    rootNotes.add (RootNote{ "B",     11 });
 }
 void AppData::addScaleData()
 {
@@ -86,9 +82,12 @@ const GenerationAlgorithm* AppData::getSelectedGenerator() const
 }
 
 
-const juce::StringArray&        AppData::getAlgorithms()    const { return algorithms; }
 const juce::Array<Scale>&       AppData::getScales()        const { return scales; }
 const juce::Array<RootNote>&    AppData::getRootNotes()     const { return rootNotes; }
+const juce::Array<GenerationAlgorithm*>& AppData::getGenerationAlgorithms() const
+{
+    return generationAlgorithms;
+}
 
 
 void AppData::addScale(Scale scale)
@@ -133,6 +132,7 @@ int AppData::getSelectedAlgorithmId() const
 
 void AppData::setSelectedAlgorithmId(int id)
 {
+    DBG ("Appdata: setting new algo id to " << id);
     selectedAlgorithmId = id;
 }
 

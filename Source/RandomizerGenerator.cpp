@@ -16,7 +16,7 @@ RandomizerGenerator::RandomizerGenerator(int id) : GenerationAlgorithm(id) {}
 const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
 {
     DBG ("Getting pattern for Randomizer");
-    juce::Array<int> pattern = {24, 36, 48, 60};
+    juce::Array<int> pattern = {50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70};
     return pattern;
 }
 
