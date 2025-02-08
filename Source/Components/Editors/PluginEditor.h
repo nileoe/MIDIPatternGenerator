@@ -9,6 +9,7 @@
 #include "../Layout/ScaleAndHarmonyBox.h"
 #include "../../Model/Data/AppData.h"
 #include "../../Model/Notes/Scale.h"
+#include "../../Model/Data/PatternSettings.h"
 #include <JuceHeader.h>
 //#include "Tester.h"
 
@@ -33,7 +34,7 @@ private:
     ArpAlgoAudioProcessor& audioProcessor;
     
     juce::MidiKeyboardState keyboardState;
-    NoteSetKeyboard   pianoKeyboard { keyboardState, 36, 95, audioProcessor.patternNoteSet, settingLowestNoteMode, settingHighestNoteMode };
+    NoteSetKeyboard   pianoKeyboard { keyboardState, 36, 95, settingLowestNoteMode, settingHighestNoteMode };
     
     bool settingLowestNoteMode  = false;
     bool settingHighestNoteMode = false;
@@ -41,8 +42,8 @@ private:
     GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
-    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId, audioProcessor.patternNoteSet };
-    SelectedRangeBox        selectedRangeBox        { pianoKeyboard, audioProcessor.patternNoteSet, settingLowestNoteMode, settingHighestNoteMode };
+    ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
+    SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
 
     juce::TextButton closeButton    { "Close" };
     juce::TextButton generateButton { "Generate Pattern" };

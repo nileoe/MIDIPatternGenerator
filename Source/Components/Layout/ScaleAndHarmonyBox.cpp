@@ -10,7 +10,8 @@
 
 #include "ScaleAndHarmonyBox.h"
 
-ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& patternNoteSet) : patternNoteSet(patternNoteSet)
+//ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& patternNoteSet) : patternNoteSet(patternNoteSet)
+ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId)
 {
     setText ("Scale and Harmony");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -77,7 +78,8 @@ void ScaleAndHarmonyBox::updatePatternRootNote()
         DBG (juce::String(rootNoteMenu.getSelectedId()));
         return;
     }
-    patternNoteSet.setRootNote(*newRootNote);
+//    patternNoteSet.setRootNote(*newRootNote); // TODO remove
+    PatternSettings::getInstance().getNoteSet().setRootNote(*newRootNote);
 }
 void ScaleAndHarmonyBox::updatePatternScale()
 {
@@ -89,7 +91,8 @@ void ScaleAndHarmonyBox::updatePatternScale()
         DBG (juce::String(scaleMenu.getSelectedId()));
         return;
     }
-    patternNoteSet.setScale(*newScale);
+//    patternNoteSet.setScale(*newScale); // TODO remove
+    PatternSettings::getInstance().getNoteSet().setScale(*newScale);
 }
 
 void ScaleAndHarmonyBox::resized()

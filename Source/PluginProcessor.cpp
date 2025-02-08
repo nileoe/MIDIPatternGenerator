@@ -142,7 +142,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     juce::Array<int> pattern;
     if (!heldNotes.isEmpty())
     {
-        pattern = AppData::getInstance().getPattern(heldNotes, patternNoteSet.getNotesIndices());
+        pattern = AppData::getInstance().getPattern(heldNotes);
     }
     
     if ((time + numSamples) >= noteDuration)

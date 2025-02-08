@@ -13,12 +13,14 @@
 #include <JuceHeader.h>
 #include "../UI/RoundRadioButton.h"
 #include "../../Model/Data/AppData.h"
+#include "../../Model/Data/PatternSettings.h"
 #include "../../Model/Notes/NoteSet.h"
 
 class ScaleAndHarmonyBox  : public juce::GroupComponent
 {
 public:
-    ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& patternNoteSet);
+//    ScaleAndHarmonyBox(int scaleHarmonyRadioId, NoteSet& patternNoteSet);
+    ScaleAndHarmonyBox(int scaleHarmonyRadioId);
     
     void updateToggleState();
     
@@ -28,8 +30,6 @@ public:
 private:
     void updatePatternRootNote();
     void updatePatternScale();
-
-    NoteSet&            patternNoteSet;
     
     RoundRadioButton    useHarmonyRadioButton       { "Use existing harmony to set available pitches" },
                         useScaleRadioButton         { "Choose scale" };

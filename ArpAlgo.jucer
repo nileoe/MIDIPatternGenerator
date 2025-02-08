@@ -49,6 +49,10 @@
       <GROUP id="{BAF88327-394B-4ECC-209B-5408156D5E7B}" name="Data">
         <FILE id="xbXfCs" name="AppData.cpp" compile="1" resource="0" file="Source/Model/Data/AppData.cpp"/>
         <FILE id="mh6VCb" name="AppData.h" compile="0" resource="0" file="Source/Model/Data/AppData.h"/>
+        <FILE id="VXimp8" name="PatternSettings.cpp" compile="1" resource="0"
+              file="Source/Model/Data/PatternSettings.cpp"/>
+        <FILE id="BKIsaI" name="PatternSettings.h" compile="0" resource="0"
+              file="Source/Model/Data/PatternSettings.h"/>
       </GROUP>
       <GROUP id="{284BBE4C-7DD0-54AF-5442-4F8AB654FA5B}" name="Generation Algorithms">
         <FILE id="SOwjqd" name="RandomizerGenerator.cpp" compile="1" resource="0"

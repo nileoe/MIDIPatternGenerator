@@ -17,6 +17,7 @@
 #include "../Generation Algorithms/RandomizerGenerator.h"
 #include "../Generation Algorithms/ThreeNGenerator.h"
 #include "../../Testing/Tester.h"
+#include "PatternSettings.h"
 
 
 class AppData
@@ -34,7 +35,7 @@ class AppData
     
     void addScale (Scale scale);
     
-    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const;
+    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes) const;
 
     const GenerationAlgorithm* getSelectedGenerator() const;
     int getSelectedAlgorithmId() const;

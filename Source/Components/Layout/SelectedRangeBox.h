@@ -13,11 +13,12 @@
 #include <JuceHeader.h>
 //#include "AppData.h"
 #include "../MIDI/NoteSetKeyboard.h"
+#include "../../Model/Data/PatternSettings.h"
 
 class SelectedRangeBox  : public juce::GroupComponent, public juce::ChangeListener
 {
 public:
-    SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
+    SelectedRangeBox(NoteSetKeyboard& keyboard, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     void resized() override;
     void changeListenerCallback (juce::ChangeBroadcaster* source) override;
     
@@ -27,7 +28,6 @@ private:
     void resetButton(juce::TextButton* setNoteButton);
     
     NoteSetKeyboard& keyboard;
-    NoteSet& patternNoteSet;
     
     juce::String selectedRangeString;
     juce::Label selectedRangeLabel;

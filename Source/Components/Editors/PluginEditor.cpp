@@ -10,13 +10,14 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
 //    DebugWindow& debugWindow = AppData::getInstance().getDebugWindow();
     // debugWindow.setVisible (true); // TODO something
     pianoKeyboard.addChangeListener(&selectedRangeBox);
-    p.patternNoteSet.addChangeListener(&pianoKeyboard);
+//    p.patternNoteSet.addChangeListener(&pianoKeyboard); // TODO Remove
 }
 
 ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()
 {
     pianoKeyboard .removeAllChangeListeners();
-    audioProcessor.patternNoteSet.removeAllChangeListeners();
+    PatternSettings::getInstance().getNoteSet().removeAllChangeListeners();
+//    audioProcessor.patternNoteSet.removeAllChangeListeners(); TODO remove
 }
 
 //==============================================================================

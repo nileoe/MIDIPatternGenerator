@@ -46,7 +46,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     // public attributes relevant to the plugin's or generated pattern choices state
-    NoteSet patternNoteSet;
+//    NoteSet patternNoteSet;
 
 private:
     //==============================================================================

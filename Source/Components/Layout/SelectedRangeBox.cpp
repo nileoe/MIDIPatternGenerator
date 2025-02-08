@@ -11,8 +11,8 @@
 
 #include "SelectedRangeBox.h"
 
-SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
-    : keyboard(keyboard), patternNoteSet(patternNoteSet), settingLowestNoteMode(settingLowestNoteMode), settingHighestNoteMode(settingHighestNoteMode)
+SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+    : keyboard(keyboard), settingLowestNoteMode(settingLowestNoteMode), settingHighestNoteMode(settingHighestNoteMode)
 {
     setText("Selected Range");
     setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -118,8 +118,9 @@ void SelectedRangeBox::changeListenerCallback (juce::ChangeBroadcaster* noteSetK
 
 void SelectedRangeBox::updateSelectedRangeText()
 {
-    const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(patternNoteSet.getLowestNote(),  true, true, 0);
-    const juce::String highestNoteName = juce::MidiMessage::getMidiNoteName(patternNoteSet.getHighestNote(), true, true, 0);
+    auto& noteSet = PatternSettings::getInstance().getNoteSet();
+    const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(noteSet.getLowestNote(),  true, true, 0);
+    const juce::String highestNoteName = juce::MidiMessage::getMidiNoteName(noteSet.getHighestNote(), true, true, 0);
     selectedRangeString = lowestNoteName + " - " + highestNoteName;
     selectedRangeLabel.setText ("Currently selected range: " + selectedRangeString, juce::NotificationType::dontSendNotification);
 }

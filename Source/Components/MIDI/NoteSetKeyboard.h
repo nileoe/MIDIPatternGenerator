@@ -10,15 +10,15 @@
 
 #pragma once
 
-#include "../../Model/Notes/NoteSet.h"
+#include "../../Model/Data/PatternSettings.h"
 #include <JuceHeader.h>
 //#include "AppData.h"
 
 class NoteSetKeyboard  : public juce::MidiKeyboardComponent, public juce::ChangeListener
 {
     public:
-    NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
-    NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
+    NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
+    NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, bool& settingLowestNoteMode, bool& settingHighestNoteMode);
     
     bool mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e) override;
     
@@ -39,7 +39,6 @@ class NoteSetKeyboard  : public juce::MidiKeyboardComponent, public juce::Change
     
     juce::MidiKeyboardState& state;
     juce::Range<int> range;
-    NoteSet& patternNoteSet;
     
     bool& settingLowestNoteMode;
     bool& settingHighestNoteMode;

@@ -10,24 +10,26 @@
 
 #include "NoteSetKeyboard.h"
 
-NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, juce::Range<int> keyboardRange, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
 : juce::MidiKeyboardComponent (state, juce::MidiKeyboardComponent::horizontalKeyboard),
 state(state),
 range(keyboardRange),
-patternNoteSet(patternNoteSet),
 settingLowestNoteMode(settingLowestNoteMode),
 settingHighestNoteMode(settingHighestNoteMode)
 {
+    PatternSettings::getInstance()
+        .getNoteSet()
+        .addChangeListener(this);
+
     setColour(juce::MidiKeyboardComponent::keyDownOverlayColourId,
               juce::Colour(152, 188, 196));
     setColour(juce::MidiKeyboardComponent::mouseOverKeyOverlayColourId,
               juce::Colour(212, 248, 255));
 }
 
-NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, NoteSet& patternNoteSet, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
+NoteSetKeyboard::NoteSetKeyboard(juce::MidiKeyboardState& state, int lowestKey, int highestKey, bool& settingLowestNoteMode, bool& settingHighestNoteMode)
 : NoteSetKeyboard(state,
                   juce::Range<int>{lowestKey, highestKey},
-                  patternNoteSet,
                   settingLowestNoteMode,
                   settingHighestNoteMode)
 {
@@ -60,7 +62,8 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
 
 void NoteSetKeyboard::syncStateWithNoteSet()
 {
-    const juce::Array<int>& noteSetNotes = patternNoteSet.getNotesIndices();
+    auto& noteSet = PatternSettings::getInstance().getNoteSet();
+    const juce::Array<int>& noteSetNotes = noteSet.getNotesIndices();
     state.allNotesOff(1);
     for (int note : noteSetNotes)
     {
@@ -72,7 +75,8 @@ void NoteSetKeyboard::syncStateWithNoteSet()
 
 void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 {
-    bool setLowestNoteWasSuccessful = patternNoteSet.setLowestNote(lowestNote);
+    auto& noteSet = PatternSettings::getInstance().getNoteSet();
+    bool setLowestNoteWasSuccessful = noteSet.setLowestNote(lowestNote);
     if (setLowestNoteWasSuccessful)
     {
         settingLowestNoteMode = false;
@@ -85,7 +89,8 @@ void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 }
 void NoteSetKeyboard::setPatternHighestNote(int highestNote)
 {
-    bool setHighestNoteWasSuccessful = patternNoteSet.setHighestNote(highestNote);
+    auto& noteSet = PatternSettings::getInstance().getNoteSet();
+    bool setHighestNoteWasSuccessful = noteSet.setHighestNote(highestNote);
     if (setHighestNoteWasSuccessful)
     {
         settingHighestNoteMode = false;
