@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "GenerationAlgorithm.h"
-#include "ThreeNGenerator.h"
-#include "RandomizerGenerator.h"
+#include "../Model/GenerationAlgorithm.h"
+#include "../Model/Generation Algorithms/ThreeNGenerator.h"
+#include "../Model/Generation Algorithms/RandomizerGenerator.h"
 
 class Tester
 {

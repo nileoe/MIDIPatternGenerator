@@ -11,12 +11,12 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Scale.h"
-#include "RootNote.h"
+#include "../Notes/Scale.h"
+#include "../Notes/RootNote.h"
 // #include "DebugWindow.h"
-#include "RandomizerGenerator.h"
-#include "GenerationAlgorithm.h"
-#include "Tester.h"
+#include "../Generation Algorithms/RandomizerGenerator.h"
+#include "../Generation Algorithms/ThreeNGenerator.h"
+#include "../../Testing/Tester.h"
 
 
 class AppData

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "AppData.h"
-#include "NoteSet.h"
+#include "./Model/Data/AppData.h"
+#include "./Model/Notes/NoteSet.h"
+//#include ".RandomizerGenerator.h"
 #include <JuceHeader.h>
-#include "RandomizerGenerator.h"
 
 class ArpAlgoAudioProcessor  : public juce::AudioProcessor
 {

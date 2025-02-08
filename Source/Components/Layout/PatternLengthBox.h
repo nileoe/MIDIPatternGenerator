@@ -11,7 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "RoundRadioButton.h"
+#include "../UI/RoundRadioButton.h"
 
 class PatternLengthBox  : public juce::GroupComponent
 {

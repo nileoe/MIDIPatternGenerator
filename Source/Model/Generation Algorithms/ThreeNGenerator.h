@@ -11,7 +11,7 @@
 
 #pragma once
 
-#include "GenerationAlgorithm.h"
+#include "../GenerationAlgorithm.h"
 #include <JuceHeader.h>
 
 class ThreeNGenerator : public GenerationAlgorithm

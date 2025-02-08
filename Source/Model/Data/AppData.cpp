@@ -9,7 +9,6 @@
 */
 
 #include "AppData.h"
-#include "RandomizerGenerator.h"
 
 AppData& AppData::getInstance()
 {

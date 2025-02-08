@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 //#include "AppData.h"
-#include "NoteSetKeyboard.h"
+#include "../MIDI/NoteSetKeyboard.h"
 
 class SelectedRangeBox  : public juce::GroupComponent, public juce::ChangeListener
 {

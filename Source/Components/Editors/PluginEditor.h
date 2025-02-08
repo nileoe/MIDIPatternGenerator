@@ -1,15 +1,15 @@
 #pragma once
 
+#include "../../PluginProcessor.h"
+#include "../Layout/GenerationMethodsBox.h"
+#include "../Layout/PatternLengthBox.h"
+#include "../Layout/RhythmOverrideBox.h"
+#include "../MIDI/NoteSetKeyboard.h"
+#include "../Layout/SelectedRangeBox.h"
+#include "../Layout/ScaleAndHarmonyBox.h"
+#include "../../Model/Data/AppData.h"
+#include "../../Model/Notes/Scale.h"
 #include <JuceHeader.h>
-#include "PluginProcessor.h"
-#include "GenerationMethodsBox.h"
-#include "PatternLengthBox.h"
-#include "RhythmOverrideBox.h"
-#include "NoteSetKeyboard.h"
-#include "SelectedRangeBox.h"
-#include "ScaleAndHarmonyBox.h"
-#include "AppData.h"
-#include "Scale.h"
 //#include "Tester.h"
 
 class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor

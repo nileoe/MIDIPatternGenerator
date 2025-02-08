@@ -1,5 +1,5 @@
 #include "PluginProcessor.h"
-#include "PluginEditor.h"
+#include "./Components/Editors/PluginEditor.h"
 
 //==============================================================================
 ArpAlgoAudioProcessor::ArpAlgoAudioProcessor()

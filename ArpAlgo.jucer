@@ -4,75 +4,75 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn"
               companyName="nileoe" companyCopyright="linoperdrix">
   <MAINGROUP id="kN8P4F" name="ArpAlgo">
-    <GROUP id="{EAE9D604-4F64-E4F8-B426-D9A92AB53369}" name="Components">
-      <GROUP id="{7AE6FE42-A785-3BCF-C3DB-6FD9857953CC}" name="Editors">
-        <FILE id="cAiEyg" name="PluginEditor.cpp" compile="1" resource="0"
-              file="Source/PluginEditor.cpp"/>
-        <FILE id="URr5NL" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    <GROUP id="{03ABFE2B-D044-B8C4-B272-17E848B41D68}" name="Components">
+      <GROUP id="{FDE8D203-73AB-569A-EBAA-69C13EDE5FFE}" name="Editors">
+        <FILE id="eTXshK" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/Components/Editors/PluginEditor.cpp"/>
+        <FILE id="t7qKKP" name="PluginEditor.h" compile="0" resource="0" file="Source/Components/Editors/PluginEditor.h"/>
       </GROUP>
-      <GROUP id="{6B25DE54-ACD3-AB0B-C31C-3D70664EBCFB}" name="Layout">
-        <FILE id="RQpI9V" name="GenerationMethodsBox.cpp" compile="1" resource="0"
-              file="Source/GenerationMethodsBox.cpp"/>
-        <FILE id="GXg1qg" name="GenerationMethodsBox.h" compile="0" resource="0"
-              file="Source/GenerationMethodsBox.h"/>
-        <FILE id="IP1kzI" name="PatternLengthBox.cpp" compile="1" resource="0"
-              file="Source/PatternLengthBox.cpp"/>
-        <FILE id="tJvnsc" name="PatternLengthBox.h" compile="0" resource="0"
-              file="Source/PatternLengthBox.h"/>
-        <FILE id="td6Eje" name="RhythmOverrideBox.cpp" compile="1" resource="0"
-              file="Source/RhythmOverrideBox.cpp"/>
-        <FILE id="lHO5wP" name="RhythmOverrideBox.h" compile="0" resource="0"
-              file="Source/RhythmOverrideBox.h"/>
-        <FILE id="Kk2Awq" name="ScaleAndHarmonyBox.cpp" compile="1" resource="0"
-              file="Source/ScaleAndHarmonyBox.cpp"/>
-        <FILE id="pML84B" name="ScaleAndHarmonyBox.h" compile="0" resource="0"
-              file="Source/ScaleAndHarmonyBox.h"/>
-        <FILE id="mR8eDV" name="SelectedRangeBox.cpp" compile="1" resource="0"
-              file="Source/SelectedRangeBox.cpp"/>
-        <FILE id="PHFkoc" name="SelectedRangeBox.h" compile="0" resource="0"
-              file="Source/SelectedRangeBox.h"/>
+      <GROUP id="{86A60C30-82C1-DBC8-F9F2-3716C92BC141}" name="Layout">
+        <FILE id="CCfXth" name="GenerationMethodsBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/GenerationMethodsBox.cpp"/>
+        <FILE id="vyUUNq" name="GenerationMethodsBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/GenerationMethodsBox.h"/>
+        <FILE id="ztEh5Z" name="PatternLengthBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/PatternLengthBox.cpp"/>
+        <FILE id="L3Sa4R" name="PatternLengthBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/PatternLengthBox.h"/>
+        <FILE id="JW12UO" name="RhythmOverrideBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/RhythmOverrideBox.cpp"/>
+        <FILE id="vV8DJo" name="RhythmOverrideBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/RhythmOverrideBox.h"/>
+        <FILE id="SZowOS" name="ScaleAndHarmonyBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/ScaleAndHarmonyBox.cpp"/>
+        <FILE id="UkLXFI" name="ScaleAndHarmonyBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/ScaleAndHarmonyBox.h"/>
+        <FILE id="FxQaim" name="SelectedRangeBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/SelectedRangeBox.cpp"/>
+        <FILE id="q0axAY" name="SelectedRangeBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/SelectedRangeBox.h"/>
       </GROUP>
-      <GROUP id="{D6F288B5-AFCC-BDEC-6B1D-C254857D423B}" name="MIDI">
-        <FILE id="Lvg030" name="NoteSetKeyboard.cpp" compile="1" resource="0"
-              file="Source/NoteSetKeyboard.cpp"/>
-        <FILE id="buhuhm" name="NoteSetKeyboard.h" compile="0" resource="0"
-              file="Source/NoteSetKeyboard.h"/>
+      <GROUP id="{15A2C959-3C0B-7C08-E137-76B0FA326BBE}" name="MIDI">
+        <FILE id="WD8ZqE" name="NoteSetKeyboard.cpp" compile="1" resource="0"
+              file="Source/Components/MIDI/NoteSetKeyboard.cpp"/>
+        <FILE id="mG20IV" name="NoteSetKeyboard.h" compile="0" resource="0"
+              file="Source/Components/MIDI/NoteSetKeyboard.h"/>
       </GROUP>
-      <GROUP id="{55690D0D-2287-BBB8-5735-75DE3577F10B}" name="UI">
-        <FILE id="JxqVHR" name="RoundRadioButton.cpp" compile="1" resource="0"
-              file="Source/RoundRadioButton.cpp"/>
-        <FILE id="ASDk08" name="RoundRadioButton.h" compile="0" resource="0"
-              file="Source/RoundRadioButton.h"/>
-      </GROUP>
-    </GROUP>
-    <GROUP id="{8026917F-F983-E828-76D0-A891BE6DDA4E}" name="Model">
-      <GROUP id="{3B2E96A3-5EA5-92C1-B943-ACFB236113D3}" name="Data">
-        <FILE id="ruqxRy" name="GenerationAlgorithm.h" compile="0" resource="0"
-              file="Source/GenerationAlgorithm.h"/>
-        <FILE id="PYuH1l" name="AppData.cpp" compile="1" resource="0" file="Source/AppData.cpp"/>
-        <FILE id="ZCVe0o" name="AppData.h" compile="0" resource="0" file="Source/AppData.h"/>
-      </GROUP>
-      <GROUP id="{03FE3BF4-E5C5-4FBA-4EA7-DED8CCE99B07}" name="Generation Algorithms">
-        <FILE id="Om8wWM" name="RandomizerGenerator.cpp" compile="1" resource="0"
-              file="Source/RandomizerGenerator.cpp"/>
-        <FILE id="vXYJid" name="RandomizerGenerator.h" compile="0" resource="0"
-              file="Source/RandomizerGenerator.h"/>
-        <FILE id="PmgPo8" name="ThreeNGenerator.cpp" compile="1" resource="0"
-              file="Source/ThreeNGenerator.cpp"/>
-        <FILE id="X7fHPH" name="ThreeNGenerator.h" compile="0" resource="0"
-              file="Source/ThreeNGenerator.h"/>
-      </GROUP>
-      <GROUP id="{D656C9D2-0977-ACDE-62D3-F2906D223A6A}" name="Notes">
-        <FILE id="kPNhTI" name="NoteSet.cpp" compile="1" resource="0" file="Source/NoteSet.cpp"/>
-        <FILE id="E5273i" name="NoteSet.h" compile="0" resource="0" file="Source/NoteSet.h"/>
-        <FILE id="DzgjbX" name="RootNote.cpp" compile="1" resource="0" file="Source/RootNote.cpp"/>
-        <FILE id="i01gL0" name="RootNote.h" compile="0" resource="0" file="Source/RootNote.h"/>
-        <FILE id="kLMCAe" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
-        <FILE id="GrQFon" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
+      <GROUP id="{D16C1064-C00C-FBCC-C2C9-3B77F3CEF849}" name="UI">
+        <FILE id="Lp0G6Y" name="RoundRadioButton.cpp" compile="1" resource="0"
+              file="Source/Components/UI/RoundRadioButton.cpp"/>
+        <FILE id="t5d59j" name="RoundRadioButton.h" compile="0" resource="0"
+              file="Source/Components/UI/RoundRadioButton.h"/>
       </GROUP>
     </GROUP>
-    <GROUP id="{50F4FBFE-C293-49D1-3742-61C5305679C9}" name="Testing">
-      <FILE id="xJkGwC" name="Tester.h" compile="0" resource="0" file="Source/Tester.h"/>
+    <GROUP id="{4AAECF3F-7738-E020-D6B3-517A3FCCCDDB}" name="Model">
+      <GROUP id="{BAF88327-394B-4ECC-209B-5408156D5E7B}" name="Data">
+        <FILE id="xbXfCs" name="AppData.cpp" compile="1" resource="0" file="Source/Model/Data/AppData.cpp"/>
+        <FILE id="mh6VCb" name="AppData.h" compile="0" resource="0" file="Source/Model/Data/AppData.h"/>
+      </GROUP>
+      <GROUP id="{284BBE4C-7DD0-54AF-5442-4F8AB654FA5B}" name="Generation Algorithms">
+        <FILE id="SOwjqd" name="RandomizerGenerator.cpp" compile="1" resource="0"
+              file="Source/Model/Generation Algorithms/RandomizerGenerator.cpp"/>
+        <FILE id="qL75cl" name="RandomizerGenerator.h" compile="0" resource="0"
+              file="Source/Model/Generation Algorithms/RandomizerGenerator.h"/>
+        <FILE id="xydPVD" name="ThreeNGenerator.cpp" compile="1" resource="0"
+              file="Source/Model/Generation Algorithms/ThreeNGenerator.cpp"/>
+        <FILE id="AvxRWM" name="ThreeNGenerator.h" compile="0" resource="0"
+              file="Source/Model/Generation Algorithms/ThreeNGenerator.h"/>
+      </GROUP>
+      <GROUP id="{A123E225-73A9-692C-566A-0DC034567814}" name="Notes">
+        <FILE id="kPF3rR" name="NoteSet.cpp" compile="1" resource="0" file="Source/Model/Notes/NoteSet.cpp"/>
+        <FILE id="VWnLKT" name="NoteSet.h" compile="0" resource="0" file="Source/Model/Notes/NoteSet.h"/>
+        <FILE id="yedAbi" name="RootNote.cpp" compile="1" resource="0" file="Source/Model/Notes/RootNote.cpp"/>
+        <FILE id="TOx8To" name="RootNote.h" compile="0" resource="0" file="Source/Model/Notes/RootNote.h"/>
+        <FILE id="QUsJAF" name="Scale.cpp" compile="1" resource="0" file="Source/Model/Notes/Scale.cpp"/>
+        <FILE id="Bhe9QT" name="Scale.h" compile="0" resource="0" file="Source/Model/Notes/Scale.h"/>
+      </GROUP>
+      <FILE id="yLmS74" name="GenerationAlgorithm.h" compile="0" resource="0"
+            file="Source/Model/GenerationAlgorithm.h"/>
+    </GROUP>
+    <GROUP id="{6B96561F-8920-CDFC-FE9D-05A621647EF2}" name="Testing">
+      <FILE id="mUKEna" name="Tester.h" compile="0" resource="0" file="Source/Testing/Tester.h"/>
     </GROUP>
     <FILE id="LDXDTr" name="PluginProcessor.cpp" compile="1" resource="0"
           file="Source/PluginProcessor.cpp"/>

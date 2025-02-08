@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "GenerationAlgorithm.h"
+#include "../GenerationAlgorithm.h"
 #include <JuceHeader.h>
 
 class RandomizerGenerator : public GenerationAlgorithm

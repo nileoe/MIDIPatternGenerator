@@ -11,9 +11,9 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "RoundRadioButton.h"
-#include "AppData.h"
-#include "NoteSet.h"
+#include "../UI/RoundRadioButton.h"
+#include "../../Model/Data/AppData.h"
+#include "../../Model/Notes/NoteSet.h"
 
 class ScaleAndHarmonyBox  : public juce::GroupComponent
 {

@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "RoundRadioButton.h"
-#include "AppData.h"
-#include "GenerationAlgorithm.h"
+#include "../UI/RoundRadioButton.h"
+#include "../../Model/Data/AppData.h"
+#include "../../Model/GenerationAlgorithm.h"
 #include <JuceHeader.h>
 
 class GenerationMethodsBox  : public juce::GroupComponent
