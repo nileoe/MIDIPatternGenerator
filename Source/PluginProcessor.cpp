@@ -85,6 +85,7 @@ void ArpAlgoAudioProcessor::changeProgramName (int index, const juce::String& ne
 //==============================================================================
 void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    Tester t;
     heldNotes.clear();
     currentNote = 0;
     lastNoteValue = -1;

@@ -13,26 +13,32 @@
 #include "../Model/GenerationAlgorithm.h"
 #include "../Model/Generation Algorithms/ThreeNGenerator.h"
 #include "../Model/Generation Algorithms/RandomizerGenerator.h"
+#include "../Model/Data/PatternSettings.h"
+#include <JuceHeader.h>
 
 class Tester
 {
     public:
     Tester()
     {
-        DBG ("TEST");
-        
-        juce::Array<GenerationAlgorithm*> arr;
-        
-        int id = 1;
-        
-        arr.add(new RandomizerGenerator{id++});
-        arr.add(new ThreeNGenerator{id++});
-        
-        for (GenerationAlgorithm* algo : arr)
-        {
-            DBG (algo->getId());
-            DBG (algo->getName());
-            DBG ("");
-        }
+//        juce::String s("abc");
+//        switch (s.toRawUTF8()) {
+//            case "abc":
+//                DBG ("yess");
+//                break;
+//            default:
+//                DBG ("nope");
+//                break;
+//        }
+//        
+//        juce::String k("ac");
+//        switch (k.toStdString()) {
+//            case "abc":
+//                DBG ("yess");
+//                break;
+//            default:
+//                DBG ("nope");
+//                break;
+//        }
     }
 };

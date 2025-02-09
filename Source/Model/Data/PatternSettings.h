@@ -27,15 +27,14 @@ class PatternSettings
     
     static PatternSettings& getInstance();
     
-    NoteSet&     getNoteSet()        ;
+    NoteSet&     getNoteSet()        ; // todo put cost
     int          getLength()         const;
     juce::String getLengthUnitName() const; // mention: no get length int, only name (string)
     
-//    void setNoteSet             (NoteSet& noteSet); // no noteset setter as
+    void setGenerationAlgorithm (GenerationAlgorithm* algo);
     void setLength              (int length);
     void setLengthUnit          (LengthUnit unit);
-    void setGenerationAlgorithm (GenerationAlgorithm* algo);
-    
+    void setLengthUnit          (juce::String unitName);
     private:
     PatternSettings() noexcept;
     

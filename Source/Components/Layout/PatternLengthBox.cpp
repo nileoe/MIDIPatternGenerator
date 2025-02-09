@@ -32,19 +32,26 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
     barsOption      .setRadioGroupId(patternRadioGroupId);
     secondsOption   .setRadioGroupId(patternRadioGroupId);
     
-    notesOption     .onClick = [this] { setSliderUnit (notesLengthRange,    " notes"); };
-    barsOption      .onClick = [this] { setSliderUnit (barsLengthRange,     " bars" ); };
-    secondsOption   .onClick = [this] { setSliderUnit (secondsLengthRange,  " secs" ); };
+    notesOption     .onClick = [this] { handleUnitChange (notesLengthRange,    "notes"); };
+    barsOption      .onClick = [this] { handleUnitChange (barsLengthRange,     "bars" ); };
+    secondsOption   .onClick = [this] { handleUnitChange (secondsLengthRange,  "secs" ); };
     
     notesOption
         .setToggleState (true, juce::NotificationType::sendNotification);
     lengthSlider.setValue (20);
 }
 
-void PatternLengthBox::setSliderUnit (juce::Range<double> unitRange, juce::String suffix)
+void PatternLengthBox::handleUnitChange(juce::Range<double> unitRange, juce::String unitName)
+{
+    // TODO: double switching from off and THEN the new state, issue?
+    setSliderUnit(unitRange, unitName + " ");
+    PatternSettings::getInstance().setLengthUnit(unitName);
+}
+
+void PatternLengthBox::setSliderUnit (juce::Range<double> unitRange, juce::String sliderSuffix)
 {
     lengthSlider.setRange(unitRange, 1);
-    lengthSlider.setTextValueSuffix(suffix);
+    lengthSlider.setTextValueSuffix(sliderSuffix);
     lengthSlider.setSkewFactorFromMidPoint (unitRange.getEnd() / 4);
 }
 

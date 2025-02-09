@@ -12,17 +12,20 @@
 
 #include <JuceHeader.h>
 #include "../UI/RoundRadioButton.h"
+#include "../../Model/Data/PatternSettings.h"
 
 class PatternLengthBox  : public juce::GroupComponent
 {
     public:
     PatternLengthBox (int patternRadioGroupId);
     
-    void setSliderUnit (juce::Range<double> unitRange, juce::String suffix);
     void resized() override;
     
     
     private:
+    void handleUnitChange(juce::Range<double> unitRange, juce::String unitName);
+    void setSliderUnit (juce::Range<double> unitRange, juce::String sliderSuffix);
+
     juce::Slider lengthSlider;
     RoundRadioButton    notesOption     { "Notes" },
                         barsOption      { "Bars" },
