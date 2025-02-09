@@ -38,14 +38,25 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
     
     notesOption
         .setToggleState (true, juce::NotificationType::sendNotification);
+    
+    lengthSlider.onValueChange = [this] { handleLengthValueChange(); };
+    
     lengthSlider.setValue (20);
+}
+
+void PatternLengthBox::handleLengthValueChange()
+{
+    PatternSettings::getInstance().setLength(lengthSlider.getValue());
 }
 
 void PatternLengthBox::handleUnitChange(juce::Range<double> unitRange, juce::String unitName)
 {
     // TODO: double switching from off and THEN the new state, issue?
-    setSliderUnit(unitRange, unitName + " ");
+    setSliderUnit(unitRange, " " + unitName);
     PatternSettings::getInstance().setLengthUnit(unitName);
+    // In case the value for the previous unit exceeds the range of the new unit, update the
+    // length with the updated range
+    handleLengthValueChange();
 }
 
 void PatternLengthBox::setSliderUnit (juce::Range<double> unitRange, juce::String sliderSuffix)
