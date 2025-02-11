@@ -133,6 +133,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     jassert (buffer.getNumChannels() == 0);
     const int numSamples = buffer.getNumSamples();
     auto noteDuration = static_cast<int> (std::ceil (rate / 6)); // 6 notes/seconds for now
+    int bufferLastPressedKey = -1;
 
     // CAPTURING PRESSED NOTES (INPUT)
     for (const juce::MidiMessageMetadata metadata : midiMessages)
@@ -141,11 +142,17 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         if      (message.isNoteOn())
         {
             heldNotes.add(message.getNoteNumber());
-            lastPressedKey = message.getNoteNumber(); // recording last pressed key
+//            lastPressedKey = message.getNoteNumber(); // recording last pressed key
+            bufferLastPressedKey = message.getNoteNumber(); // recording last pressed key
         }
         else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
     }
     
+    if (differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.data.size()))
+    {
+        DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0));
+        lastPressedKey = bufferLastPressedKey;
+    }
     midiMessages.clear();
 //    DBG ("pattern size: " << pattern.size());
 
@@ -246,13 +253,19 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new ArpAlgoAudioProcessor();
 }
 
+bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, int midiBufferSize) const
+{
+    // a different key cannot be pressed if there is no new notes (buffer size == 0), the new key is different from
+    // the previous value and not still initialised to -1 (initial value).
+    return midiBufferSize != 0 && lastPressedKey != bufferLastPressedKey && bufferLastPressedKey != -1;
+}
 void ArpAlgoAudioProcessor::togglePatternWritingMode()
 {
     writingPatternMode = !writingPatternMode;
     DBG ("switching writingPatternMode to " << (writingPatternMode ? "TRUE" : "FALSE"));
 }
 
-bool ArpAlgoAudioProcessor::getPatternWritingMode() const;
+bool ArpAlgoAudioProcessor::getPatternWritingMode() const
 {
     return writingPatternMode;
 }
