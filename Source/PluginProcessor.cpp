@@ -88,9 +88,12 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     Tester t;
     heldNotes.clear();
     currentNote = 0;
+    patternNoteIndex = 0;
     lastNoteValue = -1;
     time = 0;
     rate = static_cast<float> (sampleRate);
+    // NEW
+    lastPressedKey = -1;
 }
 
 void ArpAlgoAudioProcessor::releaseResources()
@@ -135,35 +138,81 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     for (const juce::MidiMessageMetadata metadata : midiMessages)
     {
         const juce::MidiMessage message = metadata.getMessage();
-        if      (message.isNoteOn())  heldNotes.add(message.getNoteNumber());
+        if      (message.isNoteOn())
+        {
+            heldNotes.add(message.getNoteNumber());
+            lastPressedKey = message.getNoteNumber(); // recording last pressed key
+        }
         else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
     }
     
     midiMessages.clear();
-    juce::Array<int> pattern;
-    if (!heldNotes.isEmpty())
-    {
-        pattern = AppData::getInstance().getPattern(heldNotes);
-    }
-    
-    if ((time + numSamples) >= noteDuration)
-    {
-        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
-        
-        if (lastNoteValue > 0)
-        {
-            midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
-            lastNoteValue = -1;
-        }
-        if (pattern.size() > 0)
-        {
-            currentNote = (currentNote + 1) % pattern.size();
-            lastNoteValue = pattern[currentNote];
-            midiMessages.addEvent (juce::MidiMessage::noteOn  (1, lastNoteValue, (juce::uint8) 127), offset);
-        }
-    }
-    time = (time + numSamples) % noteDuration;
+    DBG ("pattern size: " << pattern.size());
+
+////    juce::Array<int> pattern;
+//    // if a key is held AND we haven't exhausted t
+//    if (!heldNotes.isEmpty() && patternNoteIndex >= currentPattern.size())
+//    {
+//        currentPattern = AppData::getInstance().getPattern(heldNotes);
+//    }
+//    
+//    if ((time + numSamples) >= noteDuration)
+//    {
+//        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
+//        
+//        if (lastNoteValue > 0)
+//        {
+//            midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
+//            lastNoteValue = -1;
+//        }
+//        if (pattern.size() > 0)
+//        {
+//            currentNote = (currentNote + 1) % pattern.size();
+//            lastNoteValue = pattern[currentNote];
+//            midiMessages.addEvent (juce::MidiMessage::noteOn  (1, lastNoteValue, (juce::uint8) 127), offset);
+//        }
+//    }
+//    time = (time + numSamples) % noteDuration;
 }
+//void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+//{
+//    jassert (buffer.getNumChannels() == 0);
+//    const int numSamples = buffer.getNumSamples();
+//    auto noteDuration = static_cast<int> (std::ceil (rate / 6)); // 6 notes/seconds for now
+//
+//    // CAPTURING PRESSED NOTES (INPUT)
+//    for (const juce::MidiMessageMetadata metadata : midiMessages)
+//    {
+//        const juce::MidiMessage message = metadata.getMessage();
+//        if      (message.isNoteOn())  heldNotes.add(message.getNoteNumber());
+//        else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
+//    }
+//    
+//    midiMessages.clear();
+//    juce::Array<int> pattern;
+//    if (!heldNotes.isEmpty())
+//    {
+//        pattern = AppData::getInstance().getPattern(heldNotes);
+//    }
+//    
+//    if ((time + numSamples) >= noteDuration)
+//    {
+//        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
+//        
+//        if (lastNoteValue > 0)
+//        {
+//            midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
+//            lastNoteValue = -1;
+//        }
+//        if (pattern.size() > 0)
+//        {
+//            currentNote = (currentNote + 1) % pattern.size();
+//            lastNoteValue = pattern[currentNote];
+//            midiMessages.addEvent (juce::MidiMessage::noteOn  (1, lastNoteValue, (juce::uint8) 127), offset);
+//        }
+//    }
+//    time = (time + numSamples) % noteDuration;
+//}
 
 //==============================================================================
 bool ArpAlgoAudioProcessor::hasEditor() const

@@ -18,8 +18,9 @@ PatternSettings& PatternSettings::getInstance()
     return instance;
 }
 
-NoteSet&     PatternSettings::getNoteSet()       { return noteSet; }
-int          PatternSettings::getLength()         const { return length; }
+NoteSet&     PatternSettings::getNoteSet()              { return noteSet; }
+int          PatternSettings::getLengthInUnits()  const { return length; }
+int          PatternSettings::getLengthInNotes()  const { return length; } // TODO calculate actual note count
 juce::String PatternSettings::getLengthUnitName() const
 {
     switch (lengthUnit) {
