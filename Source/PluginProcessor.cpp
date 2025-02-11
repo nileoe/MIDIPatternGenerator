@@ -154,6 +154,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0) << ". CREATING NEW PATTERN");
         lastPressedKey = bufferLastPressedKey;
         pattern = AppData::getInstance().getPattern(heldNotes, lastPressedKey);
+        currentNote = 0; // reset the index of the pattern note to play.
     }
     midiMessages.clear();
 ////    juce::Array<int> pattern;
