@@ -157,13 +157,36 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         currentNote = 0; // reset the index of the pattern note to play.
     }
     midiMessages.clear();
-////    juce::Array<int> pattern;
-//    // if a key is held AND we haven't exhausted t
-//    if (!heldNotes.isEmpty() && patternNoteIndex >= currentPattern.size())
-//    {
-//        currentPattern = AppData::getInstance().getPattern(heldNotes);
-//    }
-//    
+    if (!shouldPatternBeOutputed())
+    {
+//        DBG ("nothing to output. current note:" << currentNote << ", patten length: " << pattern.size());
+        return;
+    }
+//    DBG ("SHIT TO OUTPUT, currentNote: " << currentNote);
+//    DBG ("Note would be outputted: " << juce::MidiMessage::getMidiNoteName(pattern[currentNote++], true, true, 0));
+    
+    if ((time + numSamples) >= noteDuration)
+    {
+        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
+        if (lastNoteValue > 0)
+        {
+            DBG ("Sending note OFF with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0));
+            midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
+            lastNoteValue = -1;
+        }
+        if (pattern.size() == 0)
+        {
+            DBG ("pattern should NOT be empty at that point (should have returned earlier)");
+            jassertfalse;
+        }
+        currentNote = (currentNote + 1) % pattern.size();
+        lastNoteValue = pattern[currentNote];
+        DBG ("Sending note ON with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0));
+        midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
+    }
+    time = (time + numSamples) % noteDuration;
+}
+
 //    if ((time + numSamples) >= noteDuration)
 //    {
 //        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
@@ -181,7 +204,8 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 //        }
 //    }
 //    time = (time + numSamples) % noteDuration;
-}
+// }
+
 //void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 //{
 //    jassert (buffer.getNumChannels() == 0);
@@ -259,6 +283,36 @@ bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, i
     // a different key cannot be pressed if there is no new notes (buffer size == 0), the new key is different from
     // the previous value and not still initialised to -1 (initial value).
     return midiBufferSize != 0 && lastPressedKey != bufferLastPressedKey && bufferLastPressedKey != -1;
+}
+bool ArpAlgoAudioProcessor::shouldPatternBeOutputed() const
+{
+    // Do NOT output notes (no pattern to output) if the pattern is exhausted (currentNote exceeds pattern size)
+    if (currentNote >= pattern.size())
+    {
+//        DBG ("should output FALSE: currentNote (" << currentNote << ") >= pattern.size() (" << pattern.size() << ")");
+        return false;
+    }
+    // DO output pattern if writing pattern mode is on, and a pattern has been created
+    if (writingPatternMode && !pattern.isEmpty())
+    {
+//        DBG ("Should output TRUE: writing mode is on, pattern is not empty");
+        return true;
+    }
+    // DO output pattern if not in writing mode, but keys are currently pressed held.
+    if (!writingPatternMode && !heldNotes.isEmpty())
+//    if (!writingPatternMode && !heldNotes.isEmpty())
+    {
+        if (pattern.isEmpty())
+        {
+            DBG ("pattern shouldn't be empty???");
+            jassertfalse;
+        }
+//        DBG ("Should output TRUE: writing mode is off, held notes is not empty");
+        return true;
+    }
+    // Default case: no notes to output.
+//    DBG ("Default case: output OFF");
+    return false;
 }
 void ArpAlgoAudioProcessor::togglePatternWritingMode()
 {

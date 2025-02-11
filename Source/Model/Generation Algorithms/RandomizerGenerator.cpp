@@ -21,17 +21,26 @@ const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> held
     int length = PatternSettings::getInstance().getLengthInNotes();
     juce::Array<int> pattern;
     
-    juce::Array<int> offsets = {0, 1, 2, 1, 0, -1, -2, -1};
+//    juce::Array<int> offsets = {0, 1, 2, 1, 0, -1, -2, -1};
     for (auto i = 0; i < length; ++i)
     {
-        pattern.add(lastPressedKey + offsets[i % offsets.size()]);
+//        pattern.add(lastPressedKey + offsets[i % offsets.size()]);
+        pattern.add(lastPressedKey + i);
     }
     
-    DBG ("finished creating pattern:");
-    for (auto note : pattern)
+    if (length == pattern.size())
     {
-        DBG (juce::MidiMessage::getMidiNoteName(note, true, true, 0));
+        DBG ("Finished pattern of length " << length << " (expected length matches)");
     }
+    else
+    {
+        DBG ("Wrong pattern length: expected " << length << ", got " << pattern.size());
+        jassertfalse;
+    }
+//    for (auto note : pattern)
+//    {
+//        DBG (juce::MidiMessage::getMidiNoteName(note, true, true, 0)); // TODO
+//    }
     
     return pattern;
 }
