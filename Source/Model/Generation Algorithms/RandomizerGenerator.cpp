@@ -9,14 +9,30 @@
 */
 
 #include "RandomizerGenerator.h"
+#include "../Data/PatternSettings.h"
 #include <random>
 
 RandomizerGenerator::RandomizerGenerator(int id) : GenerationAlgorithm(id) {}
 
-const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
+// const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
+const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {
     DBG ("Getting pattern for Randomizer");
-    juce::Array<int> pattern = {50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70};
+    int length = PatternSettings::getInstance().getLengthInNotes();
+    juce::Array<int> pattern;
+    
+    juce::Array<int> offsets = {0, 1, 2, 1, 0, -1, -2, -1};
+    for (auto i = 0; i < length; ++i)
+    {
+        pattern.add(lastPressedKey + offsets[i % offsets.size()]);
+    }
+    
+    DBG ("finished creating pattern:");
+    for (auto note : pattern)
+    {
+        DBG (juce::MidiMessage::getMidiNoteName(note, true, true, 0));
+    }
+    
     return pattern;
 }
 

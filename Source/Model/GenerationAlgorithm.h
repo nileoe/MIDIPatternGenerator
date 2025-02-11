@@ -22,7 +22,7 @@ class GenerationAlgorithm
 
     virtual ~GenerationAlgorithm() {}
     
-    virtual const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const = 0;
+    virtual const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const = 0;
     
     virtual juce::String getName() const = 0;
     

@@ -148,14 +148,14 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
     }
     
-    if (differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.data.size()))
+    if (differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.getNumEvents()))
     {
-        DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0));
+        
+        DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0) << ". CREATING NEW PATTERN");
         lastPressedKey = bufferLastPressedKey;
+        pattern = AppData::getInstance().getPattern(heldNotes, lastPressedKey);
     }
     midiMessages.clear();
-//    DBG ("pattern size: " << pattern.size());
-
 ////    juce::Array<int> pattern;
 //    // if a key is held AND we haven't exhausted t
 //    if (!heldNotes.isEmpty() && patternNoteIndex >= currentPattern.size())

@@ -62,10 +62,11 @@ void AppData::addGenerationAlgorithms()
     generationAlgorithms.add (new ThreeNGenerator     {id ++});
 }
 
-const juce::Array<int> AppData::getPattern(juce::SortedSet<int> heldNotes) const
+const juce::Array<int> AppData::getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const
 {
+    // TODO check that all variables are set
     juce::Array<int> targetNotes = PatternSettings::getInstance().getNoteSet().getNotesIndices();
-    return getSelectedGenerator()->getPattern(heldNotes, targetNotes);
+    return getSelectedGenerator()->getPattern(heldNotes, targetNotes, lastPressedKey);
 //    return juce::Array<int>();
 }
 

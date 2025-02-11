@@ -35,7 +35,7 @@ class AppData
     
     void addScale (Scale scale);
     
-    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes) const;
+    const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const;
 
     const GenerationAlgorithm* getSelectedGenerator() const;
     int getSelectedAlgorithmId() const;
