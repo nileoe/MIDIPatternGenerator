@@ -32,6 +32,8 @@ public:
 private:
     ArpAlgoAudioProcessor& audioProcessor;
     
+    void handleStartPatternRecordingPress();
+    
     juce::MidiKeyboardState keyboardState;
     NoteSetKeyboard   pianoKeyboard { keyboardState, 36, 95, settingLowestNoteMode, settingHighestNoteMode };
     
@@ -44,8 +46,8 @@ private:
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
 
-    juce::TextButton closeButton    { "Close" };
-    juce::TextButton generateButton { "Generate Pattern" };
+    juce::TextButton closeButton                    { "Close" };
+    juce::TextButton patternWritingButton          { "Start Pattern Recording" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

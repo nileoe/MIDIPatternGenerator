@@ -147,7 +147,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     }
     
     midiMessages.clear();
-    DBG ("pattern size: " << pattern.size());
+//    DBG ("pattern size: " << pattern.size());
 
 ////    juce::Array<int> pattern;
 //    // if a key is held AND we haven't exhausted t
@@ -244,6 +244,17 @@ void ArpAlgoAudioProcessor::setStateInformation (const void* data, int sizeInByt
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new ArpAlgoAudioProcessor();
+}
+
+void ArpAlgoAudioProcessor::togglePatternWritingMode()
+{
+    writingPatternMode = !writingPatternMode;
+    DBG ("switching writingPatternMode to " << (writingPatternMode ? "TRUE" : "FALSE"));
+}
+
+bool ArpAlgoAudioProcessor::getPatternWritingMode() const;
+{
+    return writingPatternMode;
 }
 
 
