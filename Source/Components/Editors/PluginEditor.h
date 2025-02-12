@@ -51,7 +51,7 @@ private:
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
 
     juce::TextButton closeButton                    { "Close" };
-    juce::TextButton patternWritingButton          { "Start Pattern Recording" };
+    juce::TextButton patternWritingButton           { "Start Pattern Recording" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };

@@ -70,6 +70,9 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
             DBG ("Sending manual note off message to " << juce::MidiMessage::getMidiNoteName(currentNote, true, true, 0) << " (offset: (manual=0)");
             DBG ("also resetting currentNote to 0");
             currentNote = 0;
+            DBG ("And resetting pattern");
+            pattern = juce::Array<int>();
+            currentNote = 0;
             midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), 0);
             lastNoteValue = -1;
         }
@@ -81,7 +84,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
         if (lastNoteValue > 0)
         {
-            DBG ("Sending note OFF with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0) << " (offset: " << offset << ")");
+//            DBG ("Sending note OFF with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0) << " (offset: " << offset << ")");
             midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
             lastNoteValue = -1;
         }
@@ -92,7 +95,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         }
         //        currentNote = (currentNote + 1) % pattern.size();
         lastNoteValue = pattern[currentNote];
-        DBG ("Sending note ON with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0) << " (offset: " << offset << ")");
+//        DBG ("Sending note ON with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0) << " (offset: " << offset << ")");
         midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
         currentNote ++;
     }
@@ -104,7 +107,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         {
             isWritingPatternModeOn = false;
             pattern = juce::Array<int>();
-            DBG ("Setting writing mode OFF. Setting pattern to empty pattern of initial size " << pattern.size() << ".");
+//            DBG ("Setting writing mode OFF. Setting pattern to empty pattern of initial size " << pattern.size() << ".");
             DBG ("Sending change message to button...");
             // TODO send midi stop message
         }

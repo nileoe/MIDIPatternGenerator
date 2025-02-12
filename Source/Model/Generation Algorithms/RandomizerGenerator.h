@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "../Data/PatternSettings.h"
 #include "../GenerationAlgorithm.h"
 #include <JuceHeader.h>
 

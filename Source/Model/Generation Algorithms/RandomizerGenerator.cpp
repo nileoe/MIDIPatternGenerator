@@ -9,7 +9,6 @@
 */
 
 #include "RandomizerGenerator.h"
-#include "../Data/PatternSettings.h"
 #include <random>
 
 RandomizerGenerator::RandomizerGenerator(int id) : GenerationAlgorithm(id) {}
