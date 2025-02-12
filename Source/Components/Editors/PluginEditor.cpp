@@ -6,12 +6,14 @@
 ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    startTimer(300);
     setSize (1200, 600);
 //    DebugWindow& debugWindow = AppData::getInstance().getDebugWindow();
     // debugWindow.setVisible (true); // TODO something
     pianoKeyboard.addChangeListener(&selectedRangeBox);
 //    p.patternNoteSet.addChangeListener(&pianoKeyboard); // TODO Remove
     patternWritingButton.onClick = [this] { handleStartPatternRecordingPress(); };
+//    p.addChangeListener(this);
 }
 
 ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()
@@ -21,16 +23,39 @@ ArpAlgoAudioProcessorEditor::~ArpAlgoAudioProcessorEditor()
 //    audioProcessor.patternNoteSet.removeAllChangeListeners(); TODO remove
 }
 
-//==============================================================================
+//void ArpAlgoAudioProcessorEditor::changeListenerCallback(juce::ChangeBroadcaster *source)
+void ArpAlgoAudioProcessorEditor::timerCallback()
+{
+    if (audioProcessor.getPatternWritingMode()) // processor recording mode is ON
+    {
+        // Turning ON OR doing nothing
+        if (!patternRecordingModeIsOn)
+        {
+            patternRecordingModeIsOn = true;
+            setRecordButtonState(true);
+            DBG ("new state: mode is ON!");
+        }
+    }
+    else // processor recording mode is OFF
+    {
+        // Turning OFF, OR doing nothing
+        if (patternRecordingModeIsOn)
+        {
+            patternRecordingModeIsOn = false;
+            setRecordButtonState(false);
+            DBG ("new state: mode is OFF!");
+        }
+    }
+}
+
 void ArpAlgoAudioProcessorEditor::paint (juce::Graphics& g)
 {
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 }
 
-void ArpAlgoAudioProcessorEditor::handleStartPatternRecordingPress()
+void ArpAlgoAudioProcessorEditor::setRecordButtonState(bool newState)
 {
-    audioProcessor.togglePatternWritingMode();
-    if (audioProcessor.getPatternWritingMode())
+    if (newState)
     {
         patternWritingButton.setButtonText ("Recording pattern...");
         patternWritingButton.setColour (juce::TextButton::buttonColourId, juce::Colours::orange);
@@ -41,6 +66,25 @@ void ArpAlgoAudioProcessorEditor::handleStartPatternRecordingPress()
         juce::Colour defaultButtonBackgroundColour = juce::LookAndFeel::getDefaultLookAndFeel().findColour(juce::TextButton::buttonColourId);
         patternWritingButton.setColour(juce::TextButton::buttonColourId, defaultButtonBackgroundColour);
     }
+}
+
+void ArpAlgoAudioProcessorEditor::handleStartPatternRecordingPress()
+{
+    audioProcessor.togglePatternWritingMode();
+    
+    setRecordButtonState(patternRecordingModeIsOn);
+    
+//    if (audioProcessor.getPatternWritingMode())
+//    {
+//        patternWritingButton.setButtonText ("Recording pattern...");
+//        patternWritingButton.setColour (juce::TextButton::buttonColourId, juce::Colours::orange);
+//    }
+//    else
+//    {
+//        patternWritingButton.setButtonText ("Start Pattern Recording");
+//        juce::Colour defaultButtonBackgroundColour = juce::LookAndFeel::getDefaultLookAndFeel().findColour(juce::TextButton::buttonColourId);
+//        patternWritingButton.setColour(juce::TextButton::buttonColourId, defaultButtonBackgroundColour);
+//    }
 }
 
 void ArpAlgoAudioProcessorEditor::resized()

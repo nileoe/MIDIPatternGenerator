@@ -12,7 +12,7 @@
 #include "../../Model/Data/PatternSettings.h"
 #include <JuceHeader.h>
 
-class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor
+class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Timer
 {
 public:
     ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&);
@@ -21,6 +21,8 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    
+    void timerCallback() override;
     
     enum RadioButtonIds // TODO private?
     {
@@ -33,12 +35,14 @@ private:
     ArpAlgoAudioProcessor& audioProcessor;
     
     void handleStartPatternRecordingPress();
-    
+    void setRecordButtonState (bool newState);
+
     juce::MidiKeyboardState keyboardState;
     NoteSetKeyboard   pianoKeyboard { keyboardState, 36, 95, settingLowestNoteMode, settingHighestNoteMode };
     
     bool settingLowestNoteMode  = false;
     bool settingHighestNoteMode = false;
+    bool patternRecordingModeIsOn = false;
 
     GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
