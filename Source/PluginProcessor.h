@@ -62,10 +62,12 @@ private:
     // NEW
     int lastPressedKey;
     juce::Array<int> pattern;
-    bool writingPatternMode;
+    bool isWritingPatternModeOn;
 //    bool reachedPatternEnd(); // { currentNote >= pattern.size() };
     bool differentNewKeyIsPressed (int bufferLastPressedKey, int midiBufferSize) const;
     bool shouldPatternBeOutputed() const;
+    bool shouldSendCleanupNoteOffMessage() const;
+    bool patternIsExhausted() const;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };
 
