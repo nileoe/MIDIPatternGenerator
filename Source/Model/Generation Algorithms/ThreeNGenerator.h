@@ -24,5 +24,6 @@ class ThreeNGenerator : public GenerationAlgorithm
     
     private:
     int findClosestValidNoteIndex (juce::Array<int> notes, int targetNote) const;
-    int getNextIndex(int currentIndex) const;
+    int getNextIndex (int currentIndex) const;
+    int findMaximumElement (juce::Array<int> arr) const;
 };

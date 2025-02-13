@@ -33,6 +33,7 @@ class AppData
     const RootNote*             getRootNoteById (int id)              const;
     const RootNote*             getRootNoteByOffsetFromC (int degree) const;
     const GenerationAlgorithm*  getSelectedGenerator()                const;
+    juce::String                getSelectedGeneratorName()            const;
     int getSelectedAlgorithmId() const;
 
     void addScale (Scale scale);
@@ -40,8 +41,23 @@ class AppData
     const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const;
 
     void setSelectedAlgorithmId (int id);
+    
+    // DELETE THIS
+//    void log(juce::String dbgText, bool newLine = true)
+//    {
+//        jassert(dbox != nullptr);
+//        dbox->log(dbgText, newLine);
+//    }
+//    void setDbox(AlgorithmSettingsBox& box)
+//    {
+//        this->dbox = box;
+//    }
+    //
 
+//    AlgorithmSettingsBox* dbox;
     private:
+    //
+    //
     AppData() noexcept;
     ~AppData();
     

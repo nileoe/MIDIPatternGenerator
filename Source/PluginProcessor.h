@@ -48,7 +48,8 @@ public:
     // NEW
     void togglePatternWritingMode();
     bool getPatternWritingMode() const;
-    void setIsNewAlgorithmUsed(bool newIsUsed); // no getter (no point)
+    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
+    juce::String getDebugText() const { return debugText; }
 
 private:
     int time;
@@ -70,5 +71,7 @@ private:
     bool patternIsExhausted() const;
     void updateHeldNotes(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey);
     bool isNewAlgorithmUsed;
+    bool isRecordingInProgress;
+    juce::String debugText;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };

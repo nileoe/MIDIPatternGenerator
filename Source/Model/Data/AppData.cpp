@@ -81,6 +81,10 @@ const GenerationAlgorithm* AppData::getSelectedGenerator() const
     jassertfalse;
     return nullptr;
 }
+juce::String AppData::getSelectedGeneratorName() const
+{
+    return getSelectedGenerator()->getName();
+}
 
 
 const juce::Array<Scale>&       AppData::getScales()        const { return scales; }

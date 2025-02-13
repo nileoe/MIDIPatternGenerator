@@ -44,12 +44,13 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProces
     algorithmMenu.onChange = [this] { handleAlgorithmChange(); };
 }
 
-void GenerationMethodsBox::handleAlgorithmChange() const
+void GenerationMethodsBox::handleAlgorithmChange()
 {
     int newAlgoId = algorithmMenu.getSelectedId();
     DBG ("Generation box: setting new algorithm selected id to " << newAlgoId << ", processor newAlgorithmWasChosen to TRUE.");
     AppData::getInstance().setSelectedAlgorithmId(newAlgoId);
     audioProcessor.setIsNewAlgorithmUsed(true);
+    sendChangeMessage();
 }
 
 void GenerationMethodsBox::updateToggleState (juce::ToggleButton* button)

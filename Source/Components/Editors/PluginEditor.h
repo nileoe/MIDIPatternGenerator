@@ -4,9 +4,10 @@
 #include "../Layout/GenerationMethodsBox.h"
 #include "../Layout/PatternLengthBox.h"
 #include "../Layout/RhythmOverrideBox.h"
-#include "../MIDI/NoteSetKeyboard.h"
 #include "../Layout/SelectedRangeBox.h"
 #include "../Layout/ScaleAndHarmonyBox.h"
+#include "../Layout/AlgorithmSettingsBox.h"
+#include "../MIDI/NoteSetKeyboard.h"
 #include "../../Model/Data/AppData.h"
 #include "../../Model/Notes/Scale.h"
 #include "../../Model/Data/PatternSettings.h"
@@ -49,8 +50,8 @@ private:
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
+    AlgorithmSettingsBox    algorithmSettingsBox    { audioProcessor };
 
-    juce::TextButton closeButton                    { "Close" };
     juce::TextButton patternWritingButton           { "Start Pattern Recording" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)

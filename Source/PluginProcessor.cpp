@@ -33,6 +33,9 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     // NEW
     lastPressedKey = -1;
     isNewAlgorithmUsed = false;
+    isRecordingInProgress = false;
+    // DELETE
+    debugText = "";
 }
 
 
@@ -43,7 +46,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     const int numSamples = buffer.getNumSamples();
     auto noteDuration = static_cast<int> (std::ceil (rate / 6)); // 6 notes/seconds for now
     int bufferLastPressedKey = -1;
-
+    
     updateHeldNotes(midiMessages, bufferLastPressedKey);
     
     if (isNewAlgorithmUsed || differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.getNumEvents()))
@@ -62,6 +65,34 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         isNewAlgorithmUsed = false;
     }
     midiMessages.clear();
+    
+    
+    if (isWritingPatternModeOn)
+    {
+        if (!isRecordingInProgress)
+        {
+            debugText += "STARTING RECORDING";
+            DBG ("STARTING RECORDING");
+//            midiMessages .addEvent (juce::MidiMessage::midiMachineControlCommand(juce::MidiMessage::MidiMachineControlCommand::mmc_recordStart), 0);
+            midiMessages
+                .addEvent (juce::MidiMessage::midiMachineControlCommand(juce::MidiMessage::MidiMachineControlCommand::mmc_play),
+                           0);
+            isRecordingInProgress = true;
+        }
+    }
+    else
+    {
+        if (isRecordingInProgress)
+        {
+            debugText += "turning recording OFF";
+            DBG ("turning recording OFF");
+            midiMessages
+                .addEvent (juce::MidiMessage::midiMachineControlCommand(juce::MidiMessage::MidiMachineControlCommand::mmc_stop),
+                           0);
+            isRecordingInProgress = false;
+        }
+    }
+
     if (!shouldPatternBeOutputed())
     {
         if (shouldSendCleanupNoteOffMessage())

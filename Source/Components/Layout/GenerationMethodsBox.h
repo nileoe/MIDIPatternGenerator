@@ -16,7 +16,7 @@
 #include "../../PluginProcessor.h"
 #include <JuceHeader.h>
 
-class GenerationMethodsBox  : public juce::GroupComponent
+class GenerationMethodsBox  : public juce::GroupComponent, public juce::ChangeBroadcaster
 {
     public:
     GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProcessor& processor);
@@ -24,7 +24,7 @@ class GenerationMethodsBox  : public juce::GroupComponent
     void resized() override;
     
     private:
-    void handleAlgorithmChange() const;
+    void handleAlgorithmChange();
     ArpAlgoAudioProcessor& audioProcessor;
     
     RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
