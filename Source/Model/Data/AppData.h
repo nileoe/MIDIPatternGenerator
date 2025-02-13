@@ -29,17 +29,17 @@ class AppData
     const juce::Array<RootNote>&    getRootNotes()      const;
     const juce::Array<GenerationAlgorithm*>&        getGenerationAlgorithms()     const;
 
-    const Scale*        getScaleById (int id) const;
-    const RootNote*     getRootNoteById (int id) const;
-    const RootNote*     getRootNoteByOffsetFromC (int degree) const;
-    
+    const Scale*                getScaleById (int id)                 const;
+    const RootNote*             getRootNoteById (int id)              const;
+    const RootNote*             getRootNoteByOffsetFromC (int degree) const;
+    const GenerationAlgorithm*  getSelectedGenerator()                const;
+    int getSelectedAlgorithmId() const;
+
     void addScale (Scale scale);
     
     const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const;
 
-    const GenerationAlgorithm* getSelectedGenerator() const;
-    int getSelectedAlgorithmId() const;
-    void setSelectedAlgorithmId(int id);
+    void setSelectedAlgorithmId (int id);
 
     private:
     AppData() noexcept;

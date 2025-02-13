@@ -48,6 +48,7 @@ public:
     // NEW
     void togglePatternWritingMode();
     bool getPatternWritingMode() const;
+    void setIsNewAlgorithmUsed(bool newIsUsed); // no getter (no point)
 
 private:
     int time;
@@ -67,12 +68,7 @@ private:
     bool shouldPatternBeOutputed() const;
     bool shouldSendCleanupNoteOffMessage() const;
     bool patternIsExhausted() const;
+    void updateHeldNotes(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey);
+    bool isNewAlgorithmUsed;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };
-
-/*
- Using getLengthInNotes() to get the target number of notes from the pattern.
- - The last pressed MIDI input key is recorded. Should be displayed on the on-screen keyboard.
- - Pressing a new key DOES restart the pattern, leading to a "new" length-sized pattern to be outputted.
- - Releasing a key stops the output. The user must keep the key pressed to output. However, to generate the output pressing generate just uses the last recorded key press.
-*/

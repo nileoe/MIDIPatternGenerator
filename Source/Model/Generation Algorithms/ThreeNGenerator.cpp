@@ -10,31 +10,35 @@ juce::String ThreeNGenerator::getName() const
 
 const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {
-    DBG ("GETTING PATTERN FOR THREE_N");
+    DBG ("\n############### GETTING PATTERN FOR THREE_N ###############");
+    DBG ("Starting note: " << juce::MidiMessage::getMidiNoteName (lastPressedKey, true, true, 0) << ", target notes range:");
+    DBG (targetNotes.getFirst() << " - " << targetNotes.getLast() << "length: " << targetNotes.size());
+    DBG (juce::MidiMessage::getMidiNoteName(targetNotes.getFirst(), true, true, 0) << " - " << juce::MidiMessage::getMidiNoteName(targetNotes.getLast(), true, true, 0) << "\n");
+    
     auto& settings = PatternSettings::getInstance();
     juce::Array<int> pattern;
     int patternLength = settings.getLengthInNotes();
     int targetNotesSize = targetNotes.size();
     
-    int index = targetNotes.indexOf(lastPressedKey);
-    if (index == -1)
-        // lastPressedKey does not belong to the noteset
-        index = findClosestValidNoteIndex (targetNotes, index);
+//    int index = targetNotes.indexOf(lastPressedKey);
+//    if (index == -1)
+//         lastPressedKey does not belong to the noteset
+    int index = findClosestValidNoteIndex (targetNotes, lastPressedKey);
     
     for (auto i = 0; i < patternLength; ++i)
     {
         if (index < 0)
         {
-            DBG ("index is negative: " << index);
+            DBG ("Error: index is negative: " << index);
             jassertfalse;
         }
         
         pattern.add (targetNotes[(index - 1) % targetNotesSize]);
-        DBG ("index is " << index << "\t % (adjusted for) noteset size = " << index % targetNotesSize << ": " << juce::MidiMessage::getMidiNoteName (index, true, true, 0));
+        DBG ("index " << i << ": " << index << "\t(-> " << index % targetNotesSize << ") ->" << juce::MidiMessage::getMidiNoteName (index, true, true, 0));
         index = getNextIndex(index);
     }
     
-    DBG ("FINISHED PATTERN:");
+    DBG ("\n############### finished pattern ###############");
     return pattern;
 }
 
@@ -45,29 +49,24 @@ int ThreeNGenerator::getNextIndex(int currentIndex) const
 
 int ThreeNGenerator::findClosestValidNoteIndex(juce::Array<int> notes, int targetNote) const
 {
-    DBG ("targetNote not in set: " << juce::MidiMessage::getMidiNoteName(targetNote, true, true, 0));
-    // binary search
     int notesLength = notes.size();
+    jassert(notesLength != 0);
+    // binary search
     int low = 0;
     int high = notesLength - 1;
 
-    // Handle edge cases
-    if (notesLength == 0)
-        return -1; // Return -1 if notes array is empty
-
     if (targetNote <= notes[0])
-        return notes[0]; // Return the first element if targetNote is less than or equal to the first element
+        return notes[0];
 
     if (targetNote >= notes[high])
-        return notes[high]; // Return the last element if targetNote is greater than or equal to the last element
+        return notes[high];
 
-    // Binary search for the closest note
     while (low <= high)
     {
         int middle = (low + high) / 2;
-
+        
         if (notes[middle] == targetNote)
-            return notes[middle]; // Return the targetNote if it's exactly found
+            return notes[middle];
 
         if (notes[middle] < targetNote)
             low = middle + 1;
@@ -79,14 +78,9 @@ int ThreeNGenerator::findClosestValidNoteIndex(juce::Array<int> notes, int targe
     int closestLow = notes[high];
     int closestHigh = notes[low];
     
-    if (targetNote - closestLow <= closestHigh - targetNote)
-    {
-        DBG ("returning " << juce::MidiMessage::getMidiNoteName(closestLow, true, true, 0));
-        return closestLow;
-    }
-    else
-    {
-        DBG ("returning " << juce::MidiMessage::getMidiNoteName(closestHigh, true, true, 0));
-        return closestHigh;
-    }
+    int closest = (targetNote - closestLow <= closestHigh - targetNote) ? closestLow : closestHigh;
+    
+    DBG ("targetNote " << juce::MidiMessage::getMidiNoteName(targetNote, true, true, 0) << " not in set: returning closest match in noteset:" << juce::MidiMessage::getMidiNoteName(closest, true, true, 0));
+    
+    return closest;
 }

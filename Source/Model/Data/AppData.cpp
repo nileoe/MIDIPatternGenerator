@@ -133,7 +133,7 @@ int AppData::getSelectedAlgorithmId() const
 
 void AppData::setSelectedAlgorithmId(int id)
 {
-    DBG ("Appdata: setting new algo id to " << id);
+    DBG ("Appdata: setting new algo id to " << id << ", processor newAlgorithmWasChosen to .");
     selectedAlgorithmId = id;
 }
 

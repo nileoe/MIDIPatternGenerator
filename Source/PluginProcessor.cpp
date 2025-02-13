@@ -32,9 +32,11 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     rate = static_cast<float> (sampleRate);
     // NEW
     lastPressedKey = -1;
+    isNewAlgorithmUsed = false;
 }
 
 
+// ################################################################################################
 void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     jassert (buffer.getNumChannels() == 0);
@@ -42,25 +44,22 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     auto noteDuration = static_cast<int> (std::ceil (rate / 6)); // 6 notes/seconds for now
     int bufferLastPressedKey = -1;
 
-    // CAPTURING PRESSED NOTES (INPUT)
-    for (const juce::MidiMessageMetadata metadata : midiMessages)
-    {
-        const juce::MidiMessage message = metadata.getMessage();
-        if      (message.isNoteOn())
-        {
-            heldNotes.add(message.getNoteNumber());
-            bufferLastPressedKey = message.getNoteNumber(); // recording last pressed key
-        }
-        else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
-    }
+    updateHeldNotes(midiMessages, bufferLastPressedKey);
     
-    if (differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.getNumEvents()))
+    if (isNewAlgorithmUsed || differentNewKeyIsPressed(bufferLastPressedKey, midiMessages.getNumEvents()))
     {
-        
-        DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0) << ". CREATING NEW PATTERN");
+        if (isNewAlgorithmUsed)
+        {
+            DBG ("new algo detected with id " << AppData::getInstance().getSelectedAlgorithmId() << ". CREATING NEW PATTERN");
+        }
+        else
+        {
+            DBG ("new key pressed: " << juce::MidiMessage::getMidiNoteName(bufferLastPressedKey, true, true, 0) << ". CREATING NEW PATTERN");
+        }
         lastPressedKey = bufferLastPressedKey;
         pattern = AppData::getInstance().getPattern(heldNotes, lastPressedKey);
         currentNote = 0; // reset the index of the pattern note to play.
+        isNewAlgorithmUsed = false;
     }
     midiMessages.clear();
     if (!shouldPatternBeOutputed())
@@ -93,7 +92,6 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
             DBG ("Error: Pattern should NOT be empty at this point");
             jassertfalse;
         }
-        //        currentNote = (currentNote + 1) % pattern.size();
         lastNoteValue = pattern[currentNote];
 //        DBG ("Sending note ON with lastNoteValue of " << juce::MidiMessage::getMidiNoteName (lastNoteValue, true, true, 0) << " (offset: " << offset << ")");
         midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
@@ -113,7 +111,21 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         }
     }
 }
+// ################################################################################################
 
+void ArpAlgoAudioProcessor::updateHeldNotes(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey)
+{
+    for (const juce::MidiMessageMetadata metadata : midiMessages)
+    {
+        const juce::MidiMessage message = metadata.getMessage();
+        if (message.isNoteOn())
+        {
+            heldNotes.add(message.getNoteNumber());
+            bufferLastPressedKey = message.getNoteNumber(); // recording last pressed key
+        }
+        else if (message.isNoteOff()) heldNotes.removeValue(message.getNoteNumber());
+    }
+}
 
 bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, int midiBufferSize) const
 {
@@ -170,6 +182,11 @@ void ArpAlgoAudioProcessor::togglePatternWritingMode()
 bool ArpAlgoAudioProcessor::getPatternWritingMode() const
 {
     return isWritingPatternModeOn;
+}
+
+void ArpAlgoAudioProcessor::setIsNewAlgorithmUsed(bool newIsUsed)
+{
+    isNewAlgorithmUsed = newIsUsed;
 }
 
 // DEFAULT PLUGIN FUNCTIONS

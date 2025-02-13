@@ -44,7 +44,7 @@ private:
     bool settingHighestNoteMode = false;
     bool patternRecordingModeIsOn = false;
 
-    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId };
+    GenerationMethodsBox    generationMethodsBox    { GenerationMethodsRadioId, audioProcessor };
     PatternLengthBox        patternLengthBox        { PatternLengthRadioId };
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };

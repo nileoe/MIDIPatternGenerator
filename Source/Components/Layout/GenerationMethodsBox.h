@@ -13,22 +13,26 @@
 #include "../UI/RoundRadioButton.h"
 #include "../../Model/Data/AppData.h"
 #include "../../Model/GenerationAlgorithm.h"
+#include "../../PluginProcessor.h"
 #include <JuceHeader.h>
 
 class GenerationMethodsBox  : public juce::GroupComponent
 {
     public:
-    GenerationMethodsBox (int radioGroupId);
+    GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProcessor& processor);
     void updateToggleState (juce::ToggleButton* button); // TODO use
     void resized() override;
     
     private:
     void handleAlgorithmChange() const;
+    ArpAlgoAudioProcessor& audioProcessor;
+    
     RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
                         melodyButton             { "Generate from Input Melody" };
     juce::ComboBox      algorithmMenu;
     juce::TextButton    selectMelodyButton       { "Select Melody" };
     juce::TextButton    editAlgorithmButton      { "Algorithm Settings" };
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenerationMethodsBox)
 };

@@ -10,7 +10,7 @@
 
 #include "GenerationMethodsBox.h"
 
-GenerationMethodsBox::GenerationMethodsBox (int radioGroupId)
+GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProcessor& processor) : audioProcessor(processor)
 {
     setText ("Generation Method");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -47,8 +47,9 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId)
 void GenerationMethodsBox::handleAlgorithmChange() const
 {
     int newAlgoId = algorithmMenu.getSelectedId();
-    DBG ("Generation box: setting new algorithm selected id to " << newAlgoId);
+    DBG ("Generation box: setting new algorithm selected id to " << newAlgoId << ", processor newAlgorithmWasChosen to TRUE.");
     AppData::getInstance().setSelectedAlgorithmId(newAlgoId);
+    audioProcessor.setIsNewAlgorithmUsed(true);
 }
 
 void GenerationMethodsBox::updateToggleState (juce::ToggleButton* button)
