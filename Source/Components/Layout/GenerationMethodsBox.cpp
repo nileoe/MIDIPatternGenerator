@@ -49,7 +49,6 @@ void GenerationMethodsBox::handleAlgorithmChange()
     int newAlgoId = algorithmMenu.getSelectedId();
     DBG ("Generation box: setting new algorithm selected id to " << newAlgoId << ", processor newAlgorithmWasChosen to TRUE.");
     AppData::getInstance().setSelectedAlgorithmId(newAlgoId);
-    audioProcessor.setIsNewAlgorithmUsed(true);
     sendChangeMessage();
 }
 
@@ -77,7 +76,4 @@ void GenerationMethodsBox::resized()
     melodyOptionFb.alignItems = juce::FlexBox::AlignItems::center;
     melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth (210.0f).withMinHeight (20.0f));
     melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth (100.0f).withMinHeight (30.0f));
-//    melodyOptionFb.performLayout(optionsArea);
-    
-    
 }

@@ -46,9 +46,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     // NEW
-    void togglePatternWritingMode();
-    bool getPatternWritingMode() const;
-    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
+//    void togglePatternWritingMode();
+//    bool getPatternWritingMode() const;
+//    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
     juce::String getDebugText() const { return debugText; }
 
 private:
@@ -56,22 +56,23 @@ private:
     int rate;
     
     int patternNoteIndex;
-    juce::SortedSet<int> heldNotes;
+    juce::SortedSet<int> pressedKeys;
     int currentNote;
     int lastNoteValue;
     
     // NEW
     int lastPressedKey;
     juce::Array<int> pattern;
-    bool isWritingPatternModeOn;
+//    bool isWritingPatternModeOn;
 //    bool reachedPatternEnd(); // { currentNote >= pattern.size() };
-    bool differentNewKeyIsPressed (int bufferLastPressedKey, int midiBufferSize) const;
-    bool shouldPatternBeOutputed() const;
+//    bool differentNewKeyIsPressed (int bufferLastPressedKey, int midiBufferSize) const;
+    bool shouldOutputNotes() const;
     bool shouldSendCleanupNoteOffMessage() const;
     bool patternIsExhausted() const;
-    void updateHeldNotes(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey);
-    bool isNewAlgorithmUsed;
-    bool isRecordingInProgress;
+//    void recordPressedKeys(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey);
+    void recordPressedKeys(juce::MidiBuffer& midiMessages);
+//    bool isNewAlgorithmUsed;
+//    bool isRecordingInProgress;
     juce::String debugText;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };

@@ -13,7 +13,7 @@
 #include "../../Model/Data/PatternSettings.h"
 #include <JuceHeader.h>
 
-class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Timer
+class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
     ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&);
@@ -22,8 +22,6 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-    
-    void timerCallback() override;
     
     enum RadioButtonIds // TODO private?
     {
@@ -52,7 +50,7 @@ private:
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
     AlgorithmSettingsBox    algorithmSettingsBox    { audioProcessor };
 
-    juce::TextButton patternWritingButton           { "Start Pattern Recording" };
+//    juce::TextButton patternWritingButton           { "Start Pattern Recording" };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessorEditor)
 };
