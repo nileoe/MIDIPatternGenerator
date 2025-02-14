@@ -23,8 +23,6 @@ AlgorithmSettingsBox::AlgorithmSettingsBox(ArpAlgoAudioProcessor& p) : processor
 }
 void AlgorithmSettingsBox::timerCallback()
 {
-    DBG ("setting debug box text to");
-    DBG (processor.getDebugText());
     debugBox.setText(processor.getDebugText());
 }
 
@@ -52,5 +50,5 @@ void AlgorithmSettingsBox::syncTextWithCurrentAlgorithm()
 
 void AlgorithmSettingsBox::resized()
 {
-    debugBox.setBounds (getLocalBounds().reduced (30));
+    debugBox.setBounds (getLocalBounds().reduced (15));
 }

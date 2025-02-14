@@ -31,9 +31,6 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     lastPressedKey = -1;
     time = 0;
     rate = static_cast<float> (sampleRate);
-    // NEW
-//    isNewAlgorithmUsed = false;
-    // DELETE
     debugText = "";
 }
 
@@ -43,67 +40,36 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 {
     jassert (buffer.getNumChannels() == 0);
     const int numSamples = buffer.getNumSamples();
-    auto noteDuration = static_cast<int> (std::ceil (rate / 6)); // 6 notes/seconds for now
     
-    double bpm { 120 }; // default fallback when host does not provide info
-    const juce::AudioPlayHead* playHead = getPlayHead();
-    if (playHead != nullptr)
-    {
-        debugText = "playhead is valid\n";
-        DBG ("playhead is valid");
-        juce::Optional<juce::AudioPlayHead::PositionInfo> position = playHead->getPosition();
-        if (position.hasValue())
-        {
-            debugText += "position has a value, trying to access it\n";
-            DBG ("position has a value, trying to access it\n");
-            juce::Optional<double> foundBPM = position->getBpm();
-            if (foundBPM.hasValue())
-            {
-                debugText += "BPM has a value of ";
-                debugText += juce::String(*foundBPM);
-                debugText += "\n";
-                DBG ("BPM has a value of " << *foundBPM);
-            }
-            else
-            {
-                debugText += "no value found for BPM\n";
-                DBG ("no value found for BPM");
-            }
-            
-        }
-        else
-        {
-            debugText += "position has no value.\n";
-            DBG ("position has no value.");
-        }
-    }
-    else
-    {
-        debugText = "playhead is nullptr";
-        DBG ("playhead is nullptr");
-    }
-//    if (auto bpmFromHost = *getPlayHead()->getPosition()->getBpm())
-//    {
-//        bpm = bpmFromHost;
-//        debugText += "found bpm: " + juce::String(bpm);
-//    }
-//    else
-//    {
-//        debugText += "did NOT find bpm: staying at default " + juce::String(bpm);
-//    }
-    
-    
+    double bpm = getHostBpmOrDefault();
+    auto noteDuration = static_cast<int> (std::ceil ((rate * 60.0 / bpm) / 4)); // fixed sixteenth notes for now (4 notes per beat)
+
+//    int bufferLastPressedKey = -1; // TODO delete if unused
+//    recordPressedKeys(midiMessages, bufferLastPressedKey);
     recordPressedKeys(midiMessages);
+    //
+    if (!pressedKeys.isEmpty())
+    {
+//        DBG (pressedKeys.size() << "currently keys pressed");
+//        DBG ("buffer last pressed key: " << bufferLastPressedKey);
+//        DBG ("Last pressed key recorded: " << lastPressedKey << "\n"); // WORKS FINE
+    }
+     //
     midiMessages.clear();
+//    if (pressedKeys.isEmpty() || patternIsExhausted())
+    if (pressedKeys.isEmpty())
+    {
+        // allow for new pattern to be created even if pressed key is the same as before (forget about last pressed key)
+//        lastPressedKey = -1; // doesnt work
+        patternBaseNote = -1; // doesnt work
+    }
     if (pressedKeys.isEmpty() || patternIsExhausted())
     {
-//        if (pressedKeys.isEmpty())
-//            DBG ("no notes held");
-//        if (patternIsExhausted())
-//            DBG ("exhansted pattern");
+        // No keys are currently pressed, or the pattern has finished playing: will reset pattern, set current note to -1 and return early.
+        // May send a noteOff message to clean up last note before.
         if (shouldSendCleanupNoteOffMessage())
         {
-            DBG ("Sending manual note off message to " << juce::MidiMessage::getMidiNoteName(currentNote, true, true, 0) << " (offset: (manual=0)");
+            DBG ("Sending clean-up note off message to " << juce::MidiMessage::getMidiNoteName(currentNote, true, true, 0) << " (offset: (manual=0)");
             midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), 0);
             lastNoteValue = -1;
         }
@@ -112,12 +78,26 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         return;
     }
     
-    jassert (lastPressedKey != -1);
     
-    if (pattern.isEmpty())
+    if (patternBaseNote == lastPressedKey && currentNote == -1)
     {
+        return;
+    }
+    jassert (!pressedKeys.isEmpty());
+    
+    // CREATE NEW PATTERN if empty or a new key was pressed.
+    if (pattern.isEmpty() || differentNewKeyIsPressed(midiMessages.getNumEvents()))
+    {
+        if (pressedKeys.isEmpty())
+            DBG ("no notes held");
+        if (differentNewKeyIsPressed(midiMessages.getNumEvents()))
+            DBG ("different key was pressed: lastPressedKey = " << lastPressedKey << ", pattern base = " << lastPressedKey);
+//        lastPressedKey = bufferLastPressedKey;
         currentNote = 0;
-        pattern = AppData::getInstance().getPattern(pressedKeys, lastPressedKey);
+//        jassert (patternBaseKey != -1);
+        patternBaseNote = lastPressedKey;
+        pattern = AppData::getInstance().getPattern(pressedKeys, patternBaseNote);
+        DBG ("CREATING NEW PATTERN: base note = " << patternBaseNote << ", lastPressedKey = " << lastPressedKey);
     }
 
     if ((time + numSamples) >= noteDuration)
@@ -131,6 +111,11 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         jassert (!pattern.isEmpty());
         
         lastNoteValue = pattern[currentNote];
+        if (lastNoteValue == -1)
+        {
+            DBG ("lastNoteValue == -1 nooo");
+            jassertfalse;
+        }
         midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
         currentNote ++;
     }
@@ -138,31 +123,108 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 }
 // ################################################################################################
 
+//void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey)
 void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages)
 {
     for (const juce::MidiMessageMetadata metadata : midiMessages)
     {
         const juce::MidiMessage message = metadata.getMessage();
-        if (message.isNoteOn())
+        if (message.isNoteOnOrOff()) // TODO could do a "continue" to return early
         {
-            pressedKeys.add(message.getNoteNumber());
-            lastPressedKey = message.getNoteNumber(); // recording last pressed key to use for starting point in most algorithms
-//            DBG ("UPDATING lastPressedKey to: " << lastPressedKey);
-        }
-        else if (message.isNoteOff())
-        {
-//            DBG ("laspressedKey : note off found" << lastPressedKey);
-            pressedKeys.removeValue(message.getNoteNumber());
+            int noteNumber = message.getNoteNumber();
+            if (message.isNoteOn())
+            {
+                pressedKeys.add (noteNumber);
+                lastPressedKey = noteNumber; // recording last pressed key to use for starting point in most algorithms
+                //            bufferLastPressedKey = newNoteNumber;
+                DBG ("UPDATING lastPressedKey to: " << lastPressedKey);
+                //            DBG ("UPDATING bufferLastPressedKey to: " << bufferLastPressedKey);
+            }
+            else if (message.isNoteOff())
+            {
+                //            DBG ("laspressedKey : note off found" << lastPressedKey);
+                pressedKeys.removeValue(noteNumber);
+            }
         }
     }
 }
 
+double ArpAlgoAudioProcessor::getHostBpmOrDefault()
+{
+    const double BPM_DEFAULT = 120;
+    const juce::AudioPlayHead* playHead = getPlayHead();
+    if (playHead != nullptr)
+    {
+//        debugText = "playhead is valid\n";
+//        DBG ("playhead is valid");
+        juce::Optional<juce::AudioPlayHead::PositionInfo> position = playHead->getPosition();
+        if (position.hasValue())
+        {
+//            debugText += "position has a value, trying to access it\n";
+//            DBG ("position has a value, trying to access it\n");
+            juce::Optional<double> foundBPM = position->getBpm();
+            if (foundBPM.hasValue())
+            {
+//                debugText += "BPM has a value of ";
+//                debugText += juce::String(*foundBPM);
+//                debugText += "\n";
+//                DBG ("BPM has a value of " << *foundBPM);
+                return *foundBPM;
+            }
+            else
+            {
+//                debugText += "no value found for BPM\n";
+//                DBG ("no value found for BPM (will defatult to 120");
+            }
+            
+        }
+        else
+        {
+//            debugText += "position has no value.\n";
+//            DBG ("position has no value.");
+        }
+    }
+    else
+    {
+//        debugText = "playhead is nullptr";
+//        DBG ("playhead is nullptr");
+    }
+    return BPM_DEFAULT;
+}
+
 //bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, int midiBufferSize) const
-//{
-//    // a different key cannot be pressed if there is no new notes (buffer size == 0), the new key is different from
-//    // the previous value and not still initialised to -1 (initial value).
-//    return midiBufferSize != 0 && lastPressedKey != bufferLastPressedKey && bufferLastPressedKey != -1;
-//}
+bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
+{
+    // DBG ("diffent key? pattern base key:" << patternBaseKey << ", buffer last pressed key: " << bufferLastPressedKey);
+    // a different key cannot be pressed if there is no new notes (buffer size == 0).
+    // It is new if the new key is different from the previous recorded value and not
+    // still initialised to -1 (default value).
+//    if (midiBufferSize == 0)
+//    {
+//        DBG ("differentNewKeyIsPressed returning false, buffersize = 0");
+//        return false;
+//    }
+//    else if (lastPressedKey != patternBaseNote)
+        if (lastPressedKey != patternBaseNote)
+    {
+        DBG ("NEW DIFFERRENT KEY FOUND: lastPressedKey is " << lastPressedKey << ", patternBaseNote is " << patternBaseNote);
+        return true;
+    }
+//    else if (bufferLastPressedKey == -1)
+//    {
+//        DBG ("buffer last pressed key is -1");
+////        newKeyFound = false;
+//    }
+
+//    if (midiBufferSize != 0 && patternBaseKey != bufferLastPressedKey && bufferLastPressedKey != -1)
+//      if (midiBufferSize != 0 && lastPressedKey != bufferLastPressedKey)
+//    {
+//        DBG ("\t\t NEW KEY FOUND");
+//        return true;
+//    }
+    DBG ("differentNewKeyIsPressed default case: returning FALSE");
+    return false;
+}
 
 //bool ArpAlgoAudioProcessor::shouldOutputNotes() const
 //{
@@ -199,9 +261,14 @@ void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages)
 
 bool ArpAlgoAudioProcessor::patternIsExhausted() const
 {
-//    DBG ("current note is " << currentNote);
-//    DBG ("pattern size is " << pattern.size());
-    return currentNote != -1 && currentNote >= pattern.size();
+    bool isExhausted = currentNote != -1 && currentNote >= pattern.size();
+    if (isExhausted)
+    {
+        DBG ("PATTERN IS EXHAUSTED");
+        DBG ("current note is " << currentNote);
+        DBG ("pattern size is " << pattern.size());
+    }
+    return isExhausted;
 }
 
 bool ArpAlgoAudioProcessor::shouldSendCleanupNoteOffMessage() const
