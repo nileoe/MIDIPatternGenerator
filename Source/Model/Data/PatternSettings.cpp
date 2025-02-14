@@ -20,10 +20,35 @@ PatternSettings& PatternSettings::getInstance()
 
 NoteSet&     PatternSettings::getNoteSet()              { return noteSet; }
 int          PatternSettings::getLengthInUnits()  const { return length; }
-int          PatternSettings::getLengthInNotes()  const { return length; } // TODO calculate actual note count
+
+int PatternSettings::getLengthInNotes() const
+{
+    // TODO calculate actual note count
+    int lengthInNotes;
+    switch (lengthUnit)
+    {
+        case PatternSettings::Note:
+            lengthInNotes = length;
+            break;
+        case PatternSettings::Bar:
+            lengthInNotes = 0;
+            break;
+        case PatternSettings::Second:
+            lengthInNotes = 0;
+            break;
+        default:
+            DBG ("Invalid length unit enum in PatternSettings");
+            jassertfalse;
+            return -1;
+    }
+
+    return lengthInNotes;
+}
+
 juce::String PatternSettings::getLengthUnitName() const
 {
-    switch (lengthUnit) {
+    switch (lengthUnit)
+    {
         case PatternSettings::Note:
             return "Note";
         case PatternSettings::Bar:
