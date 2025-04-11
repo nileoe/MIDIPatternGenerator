@@ -18,12 +18,29 @@ AlgorithmSettingsBox::AlgorithmSettingsBox(ArpAlgoAudioProcessor& p) : processor
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     //
     debugBox.setMultiLine (true);
-    addAndMakeVisible (debugBox);
+//    addAndMakeVisible (debugBox);
+    addAndMakeVisible (bpmLabel);
+    addAndMakeVisible (speedMenuLabel);
+    addAndMakeVisible (speedMenu);
+    
+    const juce::Array<NoteValue> noteValues = AppData::getInstance().getNoteValues();
+    for (auto noteValue : noteValues)
+    {
+        speedMenu.addItem(noteValue.getName(), noteValue.getId());
+    }
+    speedMenu.setSelectedId(3);
+    
     startTimer(500);
 }
 void AlgorithmSettingsBox::timerCallback()
 {
     debugBox.setText(processor.getDebugText());
+    const auto bpm = 165;
+    if (true)
+    {
+        juce::String bpmString {"Project speed is " + juce::String(bpm) };
+        bpmLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
+    }
 }
 
 void AlgorithmSettingsBox::log(juce::String dbgText, bool shouldAppendNewline)
@@ -34,8 +51,6 @@ void AlgorithmSettingsBox::log(juce::String dbgText, bool shouldAppendNewline)
         return;
     debugBox.insertTextAtCaret("\n");
 }
-
-
 
 void AlgorithmSettingsBox::changeListenerCallback(juce::ChangeBroadcaster *source)
 {
@@ -50,5 +65,16 @@ void AlgorithmSettingsBox::syncTextWithCurrentAlgorithm()
 
 void AlgorithmSettingsBox::resized()
 {
-    debugBox.setBounds (getLocalBounds().reduced (15));
+//    debugBox.setBounds (getLocalBounds().reduced (15));
+    using FI = juce::FlexItem;
+
+    juce::Rectangle bounds = getLocalBounds().reduced(20);
+    bpmLabel.setBounds (bounds.removeFromTop(bounds.getHeight() / 2));
+    juce::Rectangle menuArea = bounds.reduced (0, 10);
+
+    juce::FlexBox menuAreaFb;
+    menuAreaFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+    menuAreaFb.items.add (FI(speedMenuLabel).withMinWidth (140.0f).withMinHeight (30.0f));
+    menuAreaFb.items.add (FI(speedMenu)     .withMinWidth (170.0f).withMinHeight (30.0f));
+    menuAreaFb.performLayout(menuArea);
 }

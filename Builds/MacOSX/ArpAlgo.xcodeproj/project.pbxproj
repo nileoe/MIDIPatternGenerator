@@ -73,6 +73,7 @@
 		BFC1AA6597CAB45722508A5A /* include_juce_audio_utils.mm */ = {isa = PBXBuildFile; fileRef = 026390392FDFAC84C6F8D116; };
 		C037717226E36B6776A80CEC /* VST3 Manifest Helper */ = {isa = PBXBuildFile; fileRef = 1A2DBC551BEEA9B1987DF88B; };
 		C3BE258729E30D3C565603F8 /* PatternLengthBox.cpp */ = {isa = PBXBuildFile; fileRef = EEE6602B43EA662DFB3E5604; };
+		C93704BBDF4F7CA041F66647 /* NoteValue.cpp */ = {isa = PBXBuildFile; fileRef = F454E1E6F72051BAB5B825B4; };
 		CBC3893CEE6BE6F1E844049C /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = 70B103586AD7ED45CC99F28D; };
 		D17650B4269C35DB5A46D28B /* juce_VST3ManifestHelper.mm */ = {isa = PBXBuildFile; fileRef = 3F9CA75E01C4BBD629E907CB; settings = { COMPILER_FLAGS = "-fobjc-arc -w -DJUCE_SKIP_PRECOMPILED_HEADER"; }; };
 		D1E01C2F630E071F5888C2EA /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 1AECAB017DEB4F799DA49D2F; };
@@ -164,6 +165,7 @@
 		BA2CAAF8AD0FBF422F7D1602 /* Accelerate.framework */ /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BC0934343332D6C463E15537 /* Standalone Plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArpAlgo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C01DB87DDADC1A8DCBC9BC12 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C8496D536A30A973C2F0C031 /* NoteValue.h */ /* NoteValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoteValue.h; path = ../../Source/Model/Notes/NoteValue.h; sourceTree = SOURCE_ROOT; };
 		D2773667D4C3C041313DA35B /* DiscRecording.framework */ /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		D593A4670C8214E984A4C397 /* PatternSettings.cpp */ /* PatternSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PatternSettings.cpp; path = ../../Source/Model/Data/PatternSettings.cpp; sourceTree = SOURCE_ROOT; };
 		D8282FF7F7CB16324B6259B5 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
@@ -179,6 +181,7 @@
 		EE4B91CC2D16545E659BB881 /* Metal.framework */ /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EEE6602B43EA662DFB3E5604 /* PatternLengthBox.cpp */ /* PatternLengthBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PatternLengthBox.cpp; path = ../../Source/Components/Layout/PatternLengthBox.cpp; sourceTree = SOURCE_ROOT; };
 		F0B7AAF2E08507144E5961C7 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
+		F454E1E6F72051BAB5B825B4 /* NoteValue.cpp */ /* NoteValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NoteValue.cpp; path = ../../Source/Model/Notes/NoteValue.cpp; sourceTree = SOURCE_ROOT; };
 		F4D997ED3B93DF63597805AD /* juce_audio_formats */ /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_formats; path = /Users/nil_/newJuce/JUCE/modules/juce_audio_formats; sourceTree = "<absolute>"; };
 		F90BB63D016C1F2E4FDC6781 /* Info-AU.plist */ /* Info-AU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AU.plist"; path = "Info-AU.plist"; sourceTree = SOURCE_ROOT; };
 		F99E08712C0A9FEAA27072FB /* PluginProcessor.h */ /* PluginProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginProcessor.h; path = ../../Source/PluginProcessor.h; sourceTree = SOURCE_ROOT; };
@@ -404,6 +407,8 @@
 			children = (
 				5992A500E331A68A2926A2F2,
 				5F8C6B6442B732253D2B486E,
+				F454E1E6F72051BAB5B825B4,
+				C8496D536A30A973C2F0C031,
 				16F9B92CF0E2E9D75E304B32,
 				72CD15F2559CE274CB20DE5A,
 				69633C07511624D41D514114,
@@ -854,6 +859,7 @@
 				7BE45ADD17F706F8360CDFB5,
 				75E975156E15840E87EE1ED8,
 				441F4EC829EB3759A2B673BE,
+				C93704BBDF4F7CA041F66647,
 				FDD27F8707E83A943BC64D5D,
 				B67773E14DFE3263981388CF,
 				99C723E8618B9781895D3B2A,

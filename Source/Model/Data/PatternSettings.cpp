@@ -20,6 +20,7 @@ PatternSettings& PatternSettings::getInstance()
 
 NoteSet&     PatternSettings::getNoteSet()              { return noteSet; }
 int          PatternSettings::getLengthInUnits()  const { return length; }
+NoteValue    PatternSettings::getNoteValue()      const { return noteValue; }
 
 int PatternSettings::getLengthInNotes() const
 {
@@ -64,6 +65,7 @@ juce::String PatternSettings::getLengthUnitName() const
 }
 
 void PatternSettings::setGenerationAlgorithm (GenerationAlgorithm* algo) { this->generationAlgorithm = algo; }
+void PatternSettings::setNoteValue           (NoteValue noteValue)       { this->noteValue = noteValue; }
 void PatternSettings::setLength              (int length)                { this->length = length; }
 void PatternSettings::setLengthUnit          (LengthUnit unit)           { this->lengthUnit = unit; }
 void PatternSettings::setLengthUnit (juce::String unitName)

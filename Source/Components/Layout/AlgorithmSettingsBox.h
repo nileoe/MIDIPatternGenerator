@@ -12,6 +12,7 @@
 
 //#include "../../Model/Data/AppData.h"
 #include "../../PluginProcessor.h"
+#include "../../Model/Notes/NoteValue.h"
 #include <JuceHeader.h>
 
 //==============================================================================
@@ -33,6 +34,10 @@ private:
     void syncTextWithCurrentAlgorithm();
     juce::TextEditor debugBox;
     ArpAlgoAudioProcessor& processor;
+    
+    juce::Label bpmLabel { "bpmLabel", "Unable to get project BPM"};
+    juce::Label speedMenuLabel { "speedMenuLabel", "Pattern note speed"};
+    juce::ComboBox speedMenu;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AlgorithmSettingsBox)
 };

@@ -36,7 +36,7 @@ void ArpAlgoAudioProcessorEditor::resized()
     addAndMakeVisible (scaleAndHarmonyBox);
     
     generationMethodsBox.setBounds (leftArea.removeFromTop (190).reduced (20, 10));
-    algorithmSettingsBox.setBounds (leftArea.removeFromTop (200).reduced (20, 10));
+    algorithmSettingsBox.setBounds (leftArea.removeFromTop (180).reduced (20, 10));
     patternLengthBox    .setBounds (leftArea.reduced (20, 10));
     
     pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));

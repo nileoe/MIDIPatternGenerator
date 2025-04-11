@@ -28,6 +28,7 @@ AppData::AppData() noexcept
 {
     addRootNotesData();
     addScaleData();
+    addNoteValues();
     addGenerationAlgorithms();
 }
 
@@ -54,6 +55,15 @@ void AppData::addScaleData()
     scales.add (Scale{ "Harmonic Minor",     juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor" });
     scales.add (Scale{ "Pentatonic Major",   juce::Array<int>{0, 2, 4, 7, 9},                        "5 notes standard" });
     scales.add (Scale{ "Chromatic",          juce::Array<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, "Miscellaneous" });
+}
+void AppData::addNoteValues()
+{
+    noteValues.add(NoteValue { "Whole note", 4.0 });
+    noteValues.add(NoteValue { "Half note", 2.0 });
+    noteValues.add(NoteValue { "Quarter note", 1.0 });
+    noteValues.add(NoteValue { "8th note", 0.5 });
+    noteValues.add(NoteValue { "16th note", 0.25 });
+    noteValues.add(NoteValue { "32th note", 0.125 });
 }
 void AppData::addGenerationAlgorithms()
 {
@@ -89,6 +99,7 @@ juce::String AppData::getSelectedGeneratorName() const
 
 const juce::Array<Scale>&       AppData::getScales()        const { return scales; }
 const juce::Array<RootNote>&    AppData::getRootNotes()     const { return rootNotes; }
+const juce::Array<NoteValue>    AppData::getNoteValues()    const { return noteValues; }
 const juce::Array<GenerationAlgorithm*>& AppData::getGenerationAlgorithms() const
 {
     return generationAlgorithms;

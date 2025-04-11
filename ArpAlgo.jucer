@@ -71,6 +71,8 @@
       <GROUP id="{A123E225-73A9-692C-566A-0DC034567814}" name="Notes">
         <FILE id="kPF3rR" name="NoteSet.cpp" compile="1" resource="0" file="Source/Model/Notes/NoteSet.cpp"/>
         <FILE id="VWnLKT" name="NoteSet.h" compile="0" resource="0" file="Source/Model/Notes/NoteSet.h"/>
+        <FILE id="xZrawl" name="NoteValue.cpp" compile="1" resource="0" file="Source/Model/Notes/NoteValue.cpp"/>
+        <FILE id="eLYG3q" name="NoteValue.h" compile="0" resource="0" file="Source/Model/Notes/NoteValue.h"/>
         <FILE id="yedAbi" name="RootNote.cpp" compile="1" resource="0" file="Source/Model/Notes/RootNote.cpp"/>
         <FILE id="TOx8To" name="RootNote.h" compile="0" resource="0" file="Source/Model/Notes/RootNote.h"/>
         <FILE id="QUsJAF" name="Scale.cpp" compile="1" resource="0" file="Source/Model/Notes/Scale.cpp"/>
