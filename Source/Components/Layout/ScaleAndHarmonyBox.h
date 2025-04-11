@@ -31,15 +31,16 @@ private:
     void updatePatternRootNote();
     void updatePatternScale();
     
-    RoundRadioButton    useHarmonyRadioButton       { "Use existing harmony to set available pitches" },
-                        useScaleRadioButton         { "Choose scale" };
+//    RoundRadioButton    useHarmonyRadioButton       { "Use existing harmony to set available pitches" },
+//    RoundRadioButton    useScaleRadioButton         { "Choose scale" };
+    juce::Label chooseScaleLabel {"chooseScaleLabel", "Choose Scale" };
     
-    juce::ToggleButton  strictModeTickbox           { "Strict mode" };
+//    juce::ToggleButton  strictModeTickbox           { "Strict mode" };
     
-    juce::ToggleButton  useCustomScaleTickbox;
+//    juce::ToggleButton  useCustomScaleTickbox;
     juce::ComboBox      rootNoteMenu,
                         scaleMenu;
-    juce::TextButton    customScaleButton           { "Use custom scale" };
+//    juce::TextButton    customScaleButton           { "Use custom scale" };
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScaleAndHarmonyBox)
 };

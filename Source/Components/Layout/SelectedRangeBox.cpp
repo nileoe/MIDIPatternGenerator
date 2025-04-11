@@ -83,14 +83,14 @@ void SelectedRangeBox::resized()
     
     juce::FlexBox buttonsFb;
     buttonsFb.alignItems = juce::FlexBox::AlignItems::center;
-    buttonsFb.items.add (FI (setLowestNoteButton) .withMinWidth (200).withMinHeight (25));
-    buttonsFb.items.add (FI (setHighestNoteButton).withMinWidth (200).withMinHeight (25).withMargin (FI::Margin(0, 0, 0, 10)));
+    buttonsFb.items.add (FI (setLowestNoteButton) .withMinWidth (200).withMinHeight (40));
+    buttonsFb.items.add (FI (setHighestNoteButton).withMinWidth (200).withMinHeight (40).withMargin (FI::Margin(0, 0, 0, 10)));
     
     juce::FlexBox mainFb;
     mainFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     mainFb.alignItems = juce::FlexBox::AlignItems::center;
-    mainFb.items.add (FI (buttonsFb)            .withMinWidth (200).withMinHeight (25).withMargin (FI::Margin(0, 0, 0, 20)));
-    mainFb.items.add (FI (selectedRangeLabel)   .withMinWidth (300).withMinHeight (30).withMargin (FI::Margin(0, 20, 0, 0)));
+    mainFb.items.add (FI (buttonsFb)            .withMinWidth (200).withMinHeight (50).withMargin (FI::Margin(0, 0, 0, 20)));
+    mainFb.items.add (FI (selectedRangeLabel)   .withMinWidth (300).withMinHeight (55).withMargin (FI::Margin(0, 20, 0, 0)));
 
     mainFb.performLayout(getLocalBounds());
 }

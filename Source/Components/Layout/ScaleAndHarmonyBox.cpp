@@ -16,24 +16,27 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId)
     setText ("Scale and Harmony");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     
-    addAndMakeVisible(useHarmonyRadioButton);
-    addAndMakeVisible(useScaleRadioButton);
+//    addAndMakeVisible(useHarmonyRadioButton);
+//    addAndMakeVisible(useScaleRadioButton);
     
-    addAndMakeVisible(strictModeTickbox);
+//    addAndMakeVisible(strictModeTickbox);
     
-    addAndMakeVisible(useCustomScaleTickbox);
+//    addAndMakeVisible(useCustomScaleTickbox);
     addAndMakeVisible(rootNoteMenu);
     addAndMakeVisible(scaleMenu);
-    addAndMakeVisible(customScaleButton);
+//    chooseScaleLabel.setText("Choose Scale", juce::NotificationType::dontSendNotification);
     
-    useHarmonyRadioButton   .onClick = [this] { updateToggleState(); };
-    useScaleRadioButton     .onClick = [this] { updateToggleState(); };
+    addAndMakeVisible(chooseScaleLabel);
+//    addAndMakeVisible(customScaleButton);
     
-    useHarmonyRadioButton   .setRadioGroupId(scaleHarmonyRadioId);
-    useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
+//    useHarmonyRadioButton   .onClick = [this] { updateToggleState(); };
+//    useScaleRadioButton     .onClick = [this] { updateToggleState(); };
     
-    useScaleRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
-    updateToggleState();
+//    useHarmonyRadioButton   .setRadioGroupId(scaleHarmonyRadioId);
+//    useScaleRadioButton     .setRadioGroupId(scaleHarmonyRadioId);
+    
+//    useScaleRadioButton   .setToggleState (true, juce::NotificationType::sendNotification);
+//    updateToggleState();
     
     AppData& data = AppData::getInstance();
     const juce::Array<Scale> scales = data.getScales();
@@ -57,15 +60,15 @@ ScaleAndHarmonyBox::ScaleAndHarmonyBox(int scaleHarmonyRadioId)
 
 void ScaleAndHarmonyBox::updateToggleState()
 {
-    bool harmonyIsSelected = useHarmonyRadioButton.getToggleState();
-    bool scaleIsSelected = !harmonyIsSelected;
-    
-    strictModeTickbox.setEnabled(harmonyIsSelected);
-    
-    scaleMenu.setEnabled(scaleIsSelected);
-    rootNoteMenu.setEnabled(scaleIsSelected);
-    useCustomScaleTickbox.setEnabled(scaleIsSelected);
-    customScaleButton.setEnabled(scaleIsSelected);
+//    bool harmonyIsSelected = useHarmonyRadioButton.getToggleState();
+//    bool scaleIsSelected = !harmonyIsSelected;
+//    
+//    strictModeTickbox.setEnabled(harmonyIsSelected);
+//    
+//    scaleMenu.setEnabled(scaleIsSelected);
+//    rootNoteMenu.setEnabled(scaleIsSelected);
+//    useCustomScaleTickbox.setEnabled(scaleIsSelected);
+//    customScaleButton.setEnabled(scaleIsSelected);
 }
 
 void ScaleAndHarmonyBox::updatePatternRootNote()
@@ -78,7 +81,6 @@ void ScaleAndHarmonyBox::updatePatternRootNote()
         DBG (juce::String(rootNoteMenu.getSelectedId()));
         return;
     }
-//    patternNoteSet.setRootNote(*newRootNote); // TODO remove
     PatternSettings::getInstance().getNoteSet().setRootNote(*newRootNote);
 }
 void ScaleAndHarmonyBox::updatePatternScale()
@@ -91,35 +93,49 @@ void ScaleAndHarmonyBox::updatePatternScale()
         DBG (juce::String(scaleMenu.getSelectedId()));
         return;
     }
-//    patternNoteSet.setScale(*newScale); // TODO remove
     PatternSettings::getInstance().getNoteSet().setScale(*newScale);
 }
 
 void ScaleAndHarmonyBox::resized()
 {
     using FI = juce::FlexItem;
-    juce::Rectangle<int> harmonyArea = getLocalBounds().reduced (20);
-    juce::Rectangle<int> scaleArea = harmonyArea.removeFromTop (harmonyArea.getHeight() / 2);
-    
-    juce::FlexBox harmonyFb;
-    harmonyFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
-    harmonyFb.items.add (FI(useHarmonyRadioButton)  .withMinWidth (500.0f).withMinHeight (20.0f));
-    harmonyFb.items .add (FI(strictModeTickbox)     .withMinWidth (200.0f).withMinHeight (20.0f));
-    harmonyFb.performLayout(harmonyArea);
+    juce::Rectangle<int> scaleArea = getLocalBounds().reduced (20);
     
     juce::FlexBox scaleFb;
-    scaleFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+    scaleFb.justifyContent = juce::FlexBox::JustifyContent::flexStart;
     scaleFb.alignItems = juce::FlexBox::AlignItems::center;
-    scaleFb.items.add (FI(useScaleRadioButton)      .withMinWidth (130.0f).withMinHeight (30.0f));
-    scaleFb.items.add (FI(rootNoteMenu)             .withMinWidth (95.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
-    scaleFb.items.add (FI(scaleMenu)                .withMinWidth (250.0f).withMinHeight (30.0f));
-    
-    juce:: FlexBox customScaleFb;
-    customScaleFb.justifyContent = juce::FlexBox::JustifyContent::flexEnd;
-    customScaleFb.alignItems = juce::FlexBox::AlignItems::center;
-    customScaleFb.items.add (FI(useCustomScaleTickbox)    .withMinWidth (30.0f) .withMinHeight (30.0f));
-    customScaleFb.items.add (FI(customScaleButton)        .withMinWidth (150.0f).withMinHeight (30.0f));
-    
-    scaleFb.items.add (FI(customScaleFb).withFlex(1.0f)   .withMinWidth (200.0f));
+    scaleFb.items.add (FI(chooseScaleLabel).withMinWidth (130.0f).withMinHeight (30.0f));
+    scaleFb.items.add (FI(rootNoteMenu)    .withMinWidth (95.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
+    scaleFb.items.add (FI(scaleMenu)       .withMinWidth (250.0f).withMinHeight (30.0f));
     scaleFb.performLayout (scaleArea);
 }
+
+// Final layout
+//void ScaleAndHarmonyBox::resized()
+//{
+//    using FI = juce::FlexItem;
+//    juce::Rectangle<int> harmonyArea = getLocalBounds().reduced (20);
+//    juce::Rectangle<int> scaleArea = harmonyArea.removeFromTop (harmonyArea.getHeight() / 2);
+//    
+//    juce::FlexBox harmonyFb;
+//    harmonyFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+//    harmonyFb.items.add (FI(useHarmonyRadioButton)  .withMinWidth (500.0f).withMinHeight (20.0f));
+//    harmonyFb.items .add (FI(strictModeTickbox)     .withMinWidth (200.0f).withMinHeight (20.0f));
+//    harmonyFb.performLayout(harmonyArea);
+//    
+//    juce::FlexBox scaleFb;
+//    scaleFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+//    scaleFb.alignItems = juce::FlexBox::AlignItems::center;
+//    scaleFb.items.add (FI(useScaleRadioButton)      .withMinWidth (130.0f).withMinHeight (30.0f));
+//    scaleFb.items.add (FI(rootNoteMenu)             .withMinWidth (95.0f) .withMinHeight (30.0f).withMargin (FI::Margin(0, 10, 0, 0)));
+//    scaleFb.items.add (FI(scaleMenu)                .withMinWidth (250.0f).withMinHeight (30.0f));
+//    
+//    juce:: FlexBox customScaleFb;
+//    customScaleFb.justifyContent = juce::FlexBox::JustifyContent::flexEnd;
+//    customScaleFb.alignItems = juce::FlexBox::AlignItems::center;
+//    customScaleFb.items.add (FI(useCustomScaleTickbox)    .withMinWidth (30.0f) .withMinHeight (30.0f));
+//    customScaleFb.items.add (FI(customScaleButton)        .withMinWidth (150.0f).withMinHeight (30.0f));
+//    
+//    scaleFb.items.add (FI(customScaleFb).withFlex(1.0f)   .withMinWidth (200.0f));
+//    scaleFb.performLayout (scaleArea);
+//}
