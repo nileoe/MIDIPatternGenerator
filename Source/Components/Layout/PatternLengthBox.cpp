@@ -16,7 +16,7 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
     barsLengthRange     = juce::Range<double>{1, 20};
     secondsLengthRange  = juce::Range<double>{2, 30};
     
-    setText ("Pattern Length");
+    setText ("Pattern Maximum Length");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     addAndMakeVisible(lengthSlider);
     lengthSlider.setSliderStyle (juce::Slider::LinearHorizontal);

@@ -31,10 +31,10 @@ int PatternSettings::getLengthInNotes() const
             lengthInNotes = length;
             break;
         case PatternSettings::Bar:
-            lengthInNotes = 0;
+            lengthInNotes = length * 8;
             break;
         case PatternSettings::Second:
-            lengthInNotes = 0;
+            lengthInNotes = length * 4;
             break;
         default:
             DBG ("Invalid length unit enum in PatternSettings");

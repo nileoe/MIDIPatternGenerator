@@ -16,7 +16,6 @@ RandomizerGenerator::RandomizerGenerator(int id) : GenerationAlgorithm(id) {}
 // const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes) const
 const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {
-    DBG ("Getting pattern for Randomizer, base key = " << lastPressedKey);
     int length = PatternSettings::getInstance().getLengthInNotes();
     juce::Array<int> pattern;
     

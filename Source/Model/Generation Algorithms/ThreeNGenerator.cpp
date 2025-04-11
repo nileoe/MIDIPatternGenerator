@@ -33,7 +33,9 @@ const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNote
             jassertfalse;
         }
         
+        if (index == 1) break;
         patternIndexes.add (index);
+        DBG ("Index is " << index);
         index = getNextIndex(index);
     }
     

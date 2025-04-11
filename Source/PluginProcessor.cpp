@@ -222,7 +222,6 @@ bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
 //        DBG ("\t\t NEW KEY FOUND");
 //        return true;
 //    }
-    DBG ("differentNewKeyIsPressed default case: returning FALSE");
     return false;
 }
 
