@@ -18,10 +18,10 @@
 //==============================================================================
 /*
 */
-class AlgorithmSettingsBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
+class NoteSpeedBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
 {
 public:
-    AlgorithmSettingsBox(ArpAlgoAudioProcessor& p);
+    NoteSpeedBox(ArpAlgoAudioProcessor& p);
 
     void resized() override;
     
@@ -39,5 +39,5 @@ private:
     juce::Label speedMenuLabel { "speedMenuLabel", "Pattern note speed"};
     juce::ComboBox speedMenu;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AlgorithmSettingsBox)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoteSpeedBox)
 };

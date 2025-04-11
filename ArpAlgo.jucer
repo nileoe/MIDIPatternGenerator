@@ -11,14 +11,13 @@
         <FILE id="t7qKKP" name="PluginEditor.h" compile="0" resource="0" file="Source/Components/Editors/PluginEditor.h"/>
       </GROUP>
       <GROUP id="{86A60C30-82C1-DBC8-F9F2-3716C92BC141}" name="Layout">
-        <FILE id="GliPnK" name="AlgorithmSettingsBox.cpp" compile="1" resource="0"
-              file="Source/Components/Layout/AlgorithmSettingsBox.cpp"/>
-        <FILE id="mqos6u" name="AlgorithmSettingsBox.h" compile="0" resource="0"
-              file="Source/Components/Layout/AlgorithmSettingsBox.h"/>
         <FILE id="CCfXth" name="GenerationMethodsBox.cpp" compile="1" resource="0"
               file="Source/Components/Layout/GenerationMethodsBox.cpp"/>
         <FILE id="vyUUNq" name="GenerationMethodsBox.h" compile="0" resource="0"
               file="Source/Components/Layout/GenerationMethodsBox.h"/>
+        <FILE id="UbN0LD" name="NoteSpeedBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/NoteSpeedBox.cpp"/>
+        <FILE id="PiUjc3" name="NoteSpeedBox.h" compile="0" resource="0" file="Source/Components/Layout/NoteSpeedBox.h"/>
         <FILE id="ztEh5Z" name="PatternLengthBox.cpp" compile="1" resource="0"
               file="Source/Components/Layout/PatternLengthBox.cpp"/>
         <FILE id="L3Sa4R" name="PatternLengthBox.h" compile="0" resource="0"

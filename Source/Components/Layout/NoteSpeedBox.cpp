@@ -9,12 +9,12 @@
 */
 
 #include <JuceHeader.h>
-#include "AlgorithmSettingsBox.h"
+#include "NoteSpeedBox.h"
 
 //==============================================================================
-AlgorithmSettingsBox::AlgorithmSettingsBox(ArpAlgoAudioProcessor& p) : processor(p)
+NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
 {
-    setText ("Algorithm Settings");
+    setText ("Pattern Speed");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     //
     debugBox.setMultiLine (true);
@@ -32,18 +32,18 @@ AlgorithmSettingsBox::AlgorithmSettingsBox(ArpAlgoAudioProcessor& p) : processor
     
     startTimer(500);
 }
-void AlgorithmSettingsBox::timerCallback()
+void NoteSpeedBox::timerCallback()
 {
     debugBox.setText(processor.getDebugText());
     const auto bpm = 165;
     if (true)
     {
-        juce::String bpmString {"Project speed is " + juce::String(bpm) };
+        juce::String bpmString {"Project BPM: " + juce::String(bpm) };
         bpmLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
     }
 }
 
-void AlgorithmSettingsBox::log(juce::String dbgText, bool shouldAppendNewline)
+void NoteSpeedBox::log(juce::String dbgText, bool shouldAppendNewline)
 {
     debugBox.moveCaretToEnd();
     debugBox.insertTextAtCaret(dbgText);
@@ -52,18 +52,18 @@ void AlgorithmSettingsBox::log(juce::String dbgText, bool shouldAppendNewline)
     debugBox.insertTextAtCaret("\n");
 }
 
-void AlgorithmSettingsBox::changeListenerCallback(juce::ChangeBroadcaster *source)
+void NoteSpeedBox::changeListenerCallback(juce::ChangeBroadcaster *source)
 {
     syncTextWithCurrentAlgorithm();
 }
 
-void AlgorithmSettingsBox::syncTextWithCurrentAlgorithm()
+void NoteSpeedBox::syncTextWithCurrentAlgorithm()
 {
 //    juce::String newAlgorithmName = AppData::getInstance().getSelectedGeneratorName();
 //    setText (newAlgorithmName + " settings");
 }
 
-void AlgorithmSettingsBox::resized()
+void NoteSpeedBox::resized()
 {
 //    debugBox.setBounds (getLocalBounds().reduced (15));
     using FI = juce::FlexItem;
