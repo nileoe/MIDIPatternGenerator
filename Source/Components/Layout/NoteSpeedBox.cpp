@@ -35,7 +35,7 @@ NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
 void NoteSpeedBox::timerCallback()
 {
     debugBox.setText(processor.getDebugText());
-    const auto bpm = 165;
+    const auto bpm = processor.getHostBpmOrDefault();
     if (true)
     {
         juce::String bpmString {"Project BPM: " + juce::String(bpm) };

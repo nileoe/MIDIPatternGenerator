@@ -16,8 +16,6 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-/*
-*/
 class NoteSpeedBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
 {
 public:

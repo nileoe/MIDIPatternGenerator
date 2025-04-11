@@ -50,6 +50,7 @@ public:
 //    bool getPatternWritingMode() const;
 //    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
     juce::String getDebugText() const { return debugText; }
+    double getHostBpmOrDefault();
 
 private:
     int time;
@@ -75,7 +76,6 @@ private:
 //    void recordPressedKeys(juce::MidiBuffer& midiMessages);
 //    bool isNewAlgorithmUsed;
 //    bool isRecordingInProgress;
-    double getHostBpmOrDefault();
     juce::String debugText;
     
     //
