@@ -23,7 +23,7 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     
-    enum RadioButtonIds // TODO private?
+    enum RadioButtonIds
     {
         GenerationMethodsRadioId = 101,
         PatternLengthRadioId,
@@ -49,6 +49,8 @@ private:
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
     NoteSpeedBox            algorithmSettingsBox    { audioProcessor };
+    
+    juce::TooltipWindow tooltipWindow;
 
 //    juce::TextButton patternWritingButton           { "Start Pattern Recording" };
 

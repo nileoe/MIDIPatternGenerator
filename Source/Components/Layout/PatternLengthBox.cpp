@@ -24,6 +24,7 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
                                   false,
                                   80,
                                   20);
+    lengthSlider.setTooltip("Maximum pattern length in your chosen unit. Set the slider to the maximum value to allow for a pattern of any length.");
     addAndMakeVisible (notesOption);
     addAndMakeVisible (barsOption);
     addAndMakeVisible (secondsOption);
@@ -46,12 +47,35 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
 
 void PatternLengthBox::handleLengthValueChange()
 {
-    PatternSettings::getInstance().setLength(lengthSlider.getValue());
+    auto& patternSettings = PatternSettings::getInstance();
+    patternSettings.setLength(lengthSlider.getValue());
+    if (isMaxLengthValueSelected())
+    {
+        patternSettings.setInfinitePattern(true);
+        lengthSlider
+            .setColour(juce::Slider::ColourIds::textBoxTextColourId,
+                       juce::Colours::lightgrey);
+        lengthSlider
+            .setColour(juce::Slider::ColourIds::textBoxBackgroundColourId,
+                       juce::Colours::grey);
+    }
+    else
+    {
+        patternSettings.setInfinitePattern(false);
+        lengthSlider
+            .setColour(juce::Slider::ColourIds::textBoxTextColourId,
+                       getLookAndFeel()
+                       .findColour (juce::Slider::textBoxTextColourId));
+        lengthSlider
+            .setColour(juce::Slider::ColourIds::textBoxBackgroundColourId,
+                       getLookAndFeel()
+                       .findColour (juce::Slider::textBoxBackgroundColourId));
+        
+    }
 }
 
 void PatternLengthBox::handleUnitChange(juce::Range<double> unitRange, juce::String unitName)
 {
-    // TODO: double switching from off and THEN the new state, issue?
     setSliderUnit(unitRange, " " + unitName);
     PatternSettings::getInstance().setLengthUnit(unitName);
     // In case the value for the previous unit exceeds the range of the new unit, update the
@@ -64,6 +88,11 @@ void PatternLengthBox::setSliderUnit (juce::Range<double> unitRange, juce::Strin
     lengthSlider.setRange(unitRange, 1);
     lengthSlider.setTextValueSuffix(sliderSuffix);
     lengthSlider.setSkewFactorFromMidPoint (unitRange.getEnd() / 4);
+}
+bool PatternLengthBox::isMaxLengthValueSelected() const
+{
+    DBG ("IS max value selected? end value is " << lengthSlider.getRange().getEnd() << ", actual value is " << lengthSlider.getValue());
+    return lengthSlider.getRange().getEnd() == lengthSlider.getValue();
 }
 
 void PatternLengthBox::resized()

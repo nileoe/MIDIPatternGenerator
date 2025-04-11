@@ -78,7 +78,6 @@ void AppData::addGenerationAlgorithms()
 
 const juce::Array<int> AppData::getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const
 {
-    // TODO check that all variables are set
     juce::Array<int> targetNotes = PatternSettings::getInstance().getNoteSet().getNotesIndices();
     return getSelectedGenerator()->getPattern(heldNotes, targetNotes, lastPressedKey);
 //    return juce::Array<int>();
@@ -91,10 +90,9 @@ const GenerationAlgorithm* AppData::getSelectedGenerator() const
         if (algo->getId() == selectedAlgorithmId)
             return algo;
     }
-    DBG ("ERROR: getGenerator did not find algorithm with currently selected algorithm id when called.");
-    jassertfalse;
-    return nullptr;
+    return generationAlgorithms.getFirst();
 }
+
 juce::String AppData::getSelectedGeneratorName() const
 {
     return getSelectedGenerator()->getName();

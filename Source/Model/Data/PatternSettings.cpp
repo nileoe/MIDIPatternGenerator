@@ -18,13 +18,17 @@ PatternSettings& PatternSettings::getInstance()
     return instance;
 }
 
-NoteSet&     PatternSettings::getNoteSet()              { return noteSet; }
-int          PatternSettings::getLengthInUnits()  const { return length; }
-NoteValue    PatternSettings::getNoteValue()      const { return noteValue; }
+NoteSet&     PatternSettings::getNoteSet()                 { return noteSet; }
+int          PatternSettings::getLengthInUnits()     const { return length; }
+bool         PatternSettings::doesAllowOffKeyInput() const { return allowOffKeyInput; }
+bool         PatternSettings::isPatternInfinite()    const { return patternIsInfinite; }
+NoteValue    PatternSettings::getNoteValue()         const { return noteValue; }
 
 int PatternSettings::getLengthInNotes() const
 {
-    // TODO calculate actual note count
+    if (patternIsInfinite)
+        return 4096;
+    
     int lengthInNotes;
     switch (lengthUnit)
     {
@@ -65,6 +69,8 @@ juce::String PatternSettings::getLengthUnitName() const
 }
 
 void PatternSettings::setGenerationAlgorithm (GenerationAlgorithm* algo) { this->generationAlgorithm = algo; }
+void PatternSettings::setAllowOffKeyInput    (bool allowOffKeyInput)     { this->allowOffKeyInput = allowOffKeyInput; }
+void PatternSettings::setInfinitePattern     (bool infinitePattern)      { this->patternIsInfinite = infinitePattern; }
 void PatternSettings::setNoteValue           (NoteValue noteValue)       { this->noteValue = noteValue; }
 void PatternSettings::setLength              (int length)                { this->length = length; }
 void PatternSettings::setLengthUnit          (LengthUnit unit)           { this->lengthUnit = unit; }

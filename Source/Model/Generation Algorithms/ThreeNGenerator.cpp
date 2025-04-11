@@ -7,6 +7,10 @@ juce::String ThreeNGenerator::getName() const
 {
     return "Three N Plus One";
 }
+juce::String ThreeNGenerator::getDescription() const
+{
+    return "Follows a specific number sequence to jump between notes, forming a fixed size pattern using your last pressed key and the allowed notes.";
+}
 
 const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {

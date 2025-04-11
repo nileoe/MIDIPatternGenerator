@@ -19,7 +19,8 @@ class ThreeNGenerator : public GenerationAlgorithm
 {
     public:
     ThreeNGenerator(int id);
-    juce::String getName() const override;
+    juce::String getName()        const override;
+    juce::String getDescription() const override;
     const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const override;
     
     private:

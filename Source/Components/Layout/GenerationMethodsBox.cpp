@@ -17,7 +17,12 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProces
     
     addAndMakeVisible (algorithmMenu);
     addAndMakeVisible (algorithmLabel);
-
+    addAndMakeVisible (allowOffKeyNotesButton);
+    
+    allowOffKeyNotesButton.setButtonText ("Allow off-key notes");
+    allowOffKeyNotesButton.setTooltip("When enabled, the pattern will include all input notes, even those that are outside of the selected scale and range.");
+    allowOffKeyNotesButton.onClick = [this] { handleOffKeyButtonChange(); };
+    
     auto& data = AppData::getInstance();
     const juce::Array<GenerationAlgorithm*>& algorithms = data.getGenerationAlgorithms();
     for (auto* algo : algorithms)
@@ -26,35 +31,32 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProces
     }
     
     algorithmMenu.setSelectedId(algorithms.getFirst()->getId());
-    
     algorithmMenu.onChange = [this] { handleAlgorithmChange(); };
+}
+
+void GenerationMethodsBox::handleOffKeyButtonChange()
+{
+    bool newState = allowOffKeyNotesButton.getToggleState();
+    PatternSettings::getInstance().setAllowOffKeyInput(newState);
 }
 
 void GenerationMethodsBox::handleAlgorithmChange()
 {
+    auto& data = AppData::getInstance();
     int newAlgoId = algorithmMenu.getSelectedId();
-    DBG ("Generation box: setting new algorithm selected id to " << newAlgoId << ", processor newAlgorithmWasChosen to TRUE.");
-    AppData::getInstance().setSelectedAlgorithmId(newAlgoId);
+    data.setSelectedAlgorithmId(newAlgoId);
     sendChangeMessage();
+    auto description = data.getSelectedGenerator()->getDescription();
+    algorithmMenu.setTooltip(description);
 }
 
 void GenerationMethodsBox::resized()
 {
-    juce::Rectangle bounds = getLocalBounds().reduced(20);
-    algorithmLabel.setBounds(bounds.removeFromTop(bounds.getHeight() / 2));
-    algorithmMenu.setBounds(bounds.reduced(0, 15));
-//    juce::Rectangle<int> algoDropdownArea = getLocalBounds().reduced (20);
-//    juce::Rectangle<int> labelArea = algoDropdownArea.removeFromTop(algoDropdownArea.getHeight() / 2); // todo try smaller value
-//    juce::FlexBox algoOptionFb;
-//    algoOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
-//    algoOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-////    algoOptionFb.items.add (juce::FlexItem (algorithmButton).withMinWidth (210.0f).withMinHeight (20.0f));
-//    algoOptionFb.items.add (juce::FlexItem (algorithmMenu)  .withMinWidth (100.0f).withMinHeight (30.0f));
-//    algoOptionFb.performLayout(algoDropdownArea);
-//    
-//    juce::FlexBox melodyOptionFb;
-//    melodyOptionFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
-//    melodyOptionFb.alignItems = juce::FlexBox::AlignItems::center;
-////    melodyOptionFb.items.add (juce::FlexItem (melodyButton)        .withMinWidth (210.0f).withMinHeight (20.0f));
-////    melodyOptionFb.items.add (juce::FlexItem (selectMelodyButton)  .withMinWidth (100.0f).withMinHeight (30.0f));
+    juce::Rectangle bottomRowArea = getLocalBounds().reduced(20);
+    juce::Rectangle topRowArea = bottomRowArea.removeFromTop(bottomRowArea.getHeight() / 2);
+
+    algorithmLabel.setBounds(topRowArea.removeFromLeft(topRowArea.getWidth() / 2));
+    allowOffKeyNotesButton.setBounds(topRowArea);
+    
+    algorithmMenu.setBounds(bottomRowArea.reduced(0, 15));
 }

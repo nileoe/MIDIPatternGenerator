@@ -35,7 +35,6 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 }
 
 
-// ################################################################################################
 void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     jassert (buffer.getNumChannels() == 0);
@@ -47,21 +46,10 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     const auto noteDuration = static_cast<int> (std::ceil ((rate * 60.0 / bpm) * speedRatio));
 
     recordPressedKeys(midiMessages);
-    //
-    if (!pressedKeys.isEmpty())
-    {
-//        DBG (pressedKeys.size() << "currently keys pressed");
-//        DBG ("buffer last pressed key: " << bufferLastPressedKey);
-//        DBG ("Last pressed key recorded: " << lastPressedKey << "\n"); // WORKS FINE
-    }
-     //
     midiMessages.clear();
-//    if (pressedKeys.isEmpty() || patternIsExhausted())
     if (pressedKeys.isEmpty())
     {
-        // allow for new pattern to be created even if pressed key is the same as before (forget about last pressed key)
-//        lastPressedKey = -1; // doesnt work
-        patternBaseNote = -1; // doesnt work
+        patternBaseNote = -1;
     }
     if (pressedKeys.isEmpty() || patternIsExhausted())
     {
@@ -92,9 +80,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
             DBG ("no notes held");
         if (differentNewKeyIsPressed(midiMessages.getNumEvents()))
             DBG ("different key was pressed: lastPressedKey = " << lastPressedKey << ", pattern base = " << lastPressedKey);
-//        lastPressedKey = bufferLastPressedKey;
         currentNote = 0;
-//        jassert (patternBaseKey != -1);
         patternBaseNote = lastPressedKey;
         pattern = dataInstance.getPattern(pressedKeys, patternBaseNote);
         DBG ("CREATING NEW PATTERN: base note = " << patternBaseNote << ", lastPressedKey = " << lastPressedKey);
@@ -121,28 +107,23 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     }
     time = (time + numSamples) % noteDuration;
 }
-// ################################################################################################
 
-//void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey)
 void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages)
 {
     for (const juce::MidiMessageMetadata metadata : midiMessages)
     {
         const juce::MidiMessage message = metadata.getMessage();
-        if (message.isNoteOnOrOff()) // TODO could do a "continue" to return early
+        if (message.isNoteOnOrOff())
         {
             int noteNumber = message.getNoteNumber();
             if (message.isNoteOn())
             {
                 pressedKeys.add (noteNumber);
                 lastPressedKey = noteNumber; // recording last pressed key to use for starting point in most algorithms
-                //            bufferLastPressedKey = newNoteNumber;
                 DBG ("UPDATING lastPressedKey to: " << lastPressedKey);
-                //            DBG ("UPDATING bufferLastPressedKey to: " << bufferLastPressedKey);
             }
             else if (message.isNoteOff())
             {
-                //            DBG ("laspressedKey : note off found" << lastPressedKey);
                 pressedKeys.removeValue(noteNumber);
             }
         }
@@ -176,71 +157,15 @@ const std::optional<double> ArpAlgoAudioProcessor::getHostBpm() const
     return std::nullopt;
 }
 
-//bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, int midiBufferSize) const
 bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
 {
-    // DBG ("diffent key? pattern base key:" << patternBaseKey << ", buffer last pressed key: " << bufferLastPressedKey);
-    // a different key cannot be pressed if there is no new notes (buffer size == 0).
-    // It is new if the new key is different from the previous recorded value and not
-    // still initialised to -1 (default value).
-//    if (midiBufferSize == 0)
-//    {
-//        DBG ("differentNewKeyIsPressed returning false, buffersize = 0");
-//        return false;
-//    }
-//    else if (lastPressedKey != patternBaseNote)
         if (lastPressedKey != patternBaseNote)
     {
         DBG ("NEW DIFFERRENT KEY FOUND: lastPressedKey is " << lastPressedKey << ", patternBaseNote is " << patternBaseNote);
         return true;
     }
-//    else if (bufferLastPressedKey == -1)
-//    {
-//        DBG ("buffer last pressed key is -1");
-////        newKeyFound = false;
-//    }
-
-//    if (midiBufferSize != 0 && patternBaseKey != bufferLastPressedKey && bufferLastPressedKey != -1)
-//      if (midiBufferSize != 0 && lastPressedKey != bufferLastPressedKey)
-//    {
-//        DBG ("\t\t NEW KEY FOUND");
-//        return true;
-//    }
     return false;
 }
-
-//bool ArpAlgoAudioProcessor::shouldOutputNotes() const
-//{
-//    return !patternIsExhausted() && !heldNotes.isEmpty();
-//}
-    // Do NOT output notes (no pattern to output) if the pattern's end is reached
-//    if (patternIsExhausted())
-//    {
-//        return false;
-//    }
-//    if (heldNotes.isEmpty())
-//    {
-//        return false;
-//    }
-//    return true;
-//    // DO output pattern if writing pattern mode is on, and a pattern has been created
-//    if (isWritingPatternModeOn && !pattern.isEmpty())
-//    {
-//        return true;
-//    }
-//    // DO output pattern if not in writing mode, but keys are currently pressed held.
-//    if (!isWritingPatternModeOn && !heldNotes.isEmpty())
-//    {
-//        if (pattern.isEmpty())
-//        {
-//            DBG ("Pattern should NOT be empty");
-//            jassertfalse;
-//        }
-//        return true;
-//    }
-//    // Default case: no notes to output.
-//    return false;
-//}
 
 bool ArpAlgoAudioProcessor::patternIsExhausted() const
 {
@@ -257,13 +182,7 @@ bool ArpAlgoAudioProcessor::patternIsExhausted() const
 bool ArpAlgoAudioProcessor::shouldSendCleanupNoteOffMessage() const
 {
     return pressedKeys.isEmpty() && lastNoteValue != -1;
-    //    return heldNotes.isEmpty() && lastNoteValue != -1 && (!isWritingPatternModeOn || (isWritingPatternModeOn && patternIsExhausted()));
 }
-
-//void ArpAlgoAudioProcessor::setIsNewAlgorithmUsed(bool newIsUsed)
-//{
-//    isNewAlgorithmUsed = newIsUsed;
-//}
 
 // DEFAULT PLUGIN FUNCTIONS
 void ArpAlgoAudioProcessor::releaseResources()

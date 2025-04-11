@@ -40,7 +40,7 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
     if (setNoteButton == nullptr)
     {
-        DBG ("null pointer in setnote button wft???");
+        DBG ("ERROR: unexpected null pointer passed to setnote button");
         return;
     }
     
@@ -69,7 +69,7 @@ void SelectedRangeBox::resetButton(juce::TextButton* setNoteButton)
 {
     if (setNoteButton == nullptr)
     {
-        DBG ("nullptr button passed to resetButton");
+        DBG ("ERROR: unexpected null pointer passed to setnote button");
         return;
     }
     juce::String defaultMessage = setNoteButton == &setLowestNoteButton ? "Set lowest note" : "Set highest note";
@@ -123,6 +123,6 @@ void SelectedRangeBox::updateSelectedRangeText()
     auto& noteSet = PatternSettings::getInstance().getNoteSet();
     const juce::String lowestNoteName  = juce::MidiMessage::getMidiNoteName(noteSet.getLowestNote(),  true, true, 0);
     const juce::String highestNoteName = juce::MidiMessage::getMidiNoteName(noteSet.getHighestNote(), true, true, 0);
-    selectedRangeString = lowestNoteName + " - " + highestNoteName;
+    selectedRangeString = lowestNoteName + " → " + highestNoteName;
     selectedRangeLabel.setText ("Currently selected range: " + selectedRangeString, juce::NotificationType::dontSendNotification);
 }

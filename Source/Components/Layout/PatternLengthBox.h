@@ -25,6 +25,7 @@ class PatternLengthBox  : public juce::GroupComponent
     private:
     void handleUnitChange(juce::Range<double> unitRange, juce::String unitName);
     void handleLengthValueChange();
+    bool isMaxLengthValueSelected() const;
     void setSliderUnit (juce::Range<double> unitRange, juce::String sliderSuffix);
 
     juce::Slider lengthSlider;
