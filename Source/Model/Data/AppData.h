@@ -30,6 +30,7 @@ class AppData
     const juce::Array<RootNote>&    getRootNotes()      const;
     const juce::Array<NoteValue>    getNoteValues()     const;
     const juce::Array<GenerationAlgorithm*>&        getGenerationAlgorithms()     const;
+    double getNoteSpeedRatio() const;
 
     const Scale*                getScaleById (int id)                 const;
     const RootNote*             getRootNoteById (int id)              const;
@@ -43,7 +44,8 @@ class AppData
     const juce::Array<int> getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const;
 
     void setSelectedAlgorithmId (int id);
-    
+    void setNoteSpeedRatio (double ratio);
+
     private:
     AppData() noexcept;
     ~AppData();
@@ -60,6 +62,7 @@ class AppData
     juce::Array<GenerationAlgorithm*> generationAlgorithms;
 
     int selectedAlgorithmId;
+    double noteSpeedRatio = 2; // defaulting to eight notes
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AppData)
 };

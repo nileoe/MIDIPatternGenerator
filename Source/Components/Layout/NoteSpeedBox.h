@@ -29,6 +29,10 @@ public:
     void log(juce::String dbgText, bool shouldAppendNewline = true);
 
 private:
+    void handleSpeedMenuChange();
+    void populateSpeedMenu();
+    NoteValue getSelectedSpeedValue();
+    
     void syncTextWithCurrentAlgorithm();
     juce::TextEditor debugBox;
     ArpAlgoAudioProcessor& processor;

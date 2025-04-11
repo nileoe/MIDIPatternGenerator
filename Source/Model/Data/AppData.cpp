@@ -58,12 +58,16 @@ void AppData::addScaleData()
 }
 void AppData::addNoteValues()
 {
-    noteValues.add(NoteValue { "Whole note", 4.0 });
-    noteValues.add(NoteValue { "Half note", 2.0 });
-    noteValues.add(NoteValue { "Quarter note", 1.0 });
-    noteValues.add(NoteValue { "8th note", 0.5 });
-    noteValues.add(NoteValue { "16th note", 0.25 });
-    noteValues.add(NoteValue { "32th note", 0.125 });
+    noteValues.add(NoteValue { "Whole notes",            4.0,      false });
+    noteValues.add(NoteValue { "Half notes",             2.0,      false });
+    noteValues.add(NoteValue { "Quarter notes",          1.0,      false });
+    noteValues.add(NoteValue { "8th notes",              0.5,      false });
+    noteValues.add(NoteValue { "16th notes",             0.25,     false });
+    noteValues.add(NoteValue { "32th notes",             0.125,    false });
+    noteValues.add(NoteValue { "Quarter notes triplets", 2.0/3.0,  true });
+    noteValues.add(NoteValue { "8th notes triplets",     1.0/3.0,  true });
+    noteValues.add(NoteValue { "16th notes triplets",    1.0/6.0,  true });
+    noteValues.add(NoteValue { "32th notes triplets",    1.0/12.0, true });
 }
 void AppData::addGenerationAlgorithms()
 {
@@ -104,6 +108,7 @@ const juce::Array<GenerationAlgorithm*>& AppData::getGenerationAlgorithms() cons
 {
     return generationAlgorithms;
 }
+double AppData::getNoteSpeedRatio() const { return noteSpeedRatio; }
 
 
 void AppData::addScale(Scale scale)
@@ -151,4 +156,7 @@ void AppData::setSelectedAlgorithmId(int id)
     DBG ("Appdata: setting new algo id to " << id << ", processor newAlgorithmWasChosen to .");
     selectedAlgorithmId = id;
 }
-
+void AppData::setNoteSpeedRatio(double ratio)
+{
+    noteSpeedRatio = ratio;
+}

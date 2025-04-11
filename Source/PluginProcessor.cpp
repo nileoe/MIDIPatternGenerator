@@ -41,11 +41,11 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     jassert (buffer.getNumChannels() == 0);
     const int numSamples = buffer.getNumSamples();
     
-    double bpm = getHostBpmOrDefault();
-    auto noteDuration = static_cast<int> (std::ceil ((rate * 60.0 / bpm) / 4)); // fixed sixteenth notes for now (4 notes per beat)
+    const auto& dataInstance = AppData::getInstance();
+    const double bpm = getHostBpmOrDefault();
+    const double speedRatio = dataInstance.getNoteSpeedRatio();
+    const auto noteDuration = static_cast<int> (std::ceil ((rate * 60.0 / bpm) * speedRatio));
 
-//    int bufferLastPressedKey = -1; // TODO delete if unused
-//    recordPressedKeys(midiMessages, bufferLastPressedKey);
     recordPressedKeys(midiMessages);
     //
     if (!pressedKeys.isEmpty())
@@ -96,7 +96,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         currentNote = 0;
 //        jassert (patternBaseKey != -1);
         patternBaseNote = lastPressedKey;
-        pattern = AppData::getInstance().getPattern(pressedKeys, patternBaseNote);
+        pattern = dataInstance.getPattern(pressedKeys, patternBaseNote);
         DBG ("CREATING NEW PATTERN: base note = " << patternBaseNote << ", lastPressedKey = " << lastPressedKey);
     }
 

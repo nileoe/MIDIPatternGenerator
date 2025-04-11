@@ -15,16 +15,18 @@ class NoteValue
 {
     public:
     NoteValue();
-    NoteValue(juce::String name, double ratioFromBeat);
+    NoteValue(juce::String name, double ratioFromBeat, bool isTriplet);
 
     const juce::String& getName()   const;
     int getId()                     const;
     double getRatioFromBeat()       const;
+    bool isTriplet()                const;
 
     private:
     static int nextId;
     int id;
     juce::String name;
     double ratioFromBeat;
+    bool _isTriplet;
 };
 
