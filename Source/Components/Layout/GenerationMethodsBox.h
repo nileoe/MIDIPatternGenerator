@@ -27,10 +27,8 @@ class GenerationMethodsBox  : public juce::GroupComponent, public juce::ChangeBr
     void handleAlgorithmChange();
     ArpAlgoAudioProcessor& audioProcessor;
     
-    RoundRadioButton    algorithmButton          { "Generate from Algorithm" },
-                        melodyButton             { "Generate from Input Melody" };
+    juce::Label algorithmLabel {"algorithmLabel", "Select generation algorithm" };
     juce::ComboBox      algorithmMenu;
-    juce::TextButton    selectMelodyButton       { "Select Melody" };
     juce::TextButton    editAlgorithmButton      { "Algorithm Settings" };
     
     
