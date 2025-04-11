@@ -48,7 +48,7 @@ private:
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
-    NoteSpeedBox    algorithmSettingsBox    { audioProcessor };
+    NoteSpeedBox            algorithmSettingsBox    { audioProcessor };
 
 //    juce::TextButton patternWritingButton           { "Start Pattern Recording" };
 

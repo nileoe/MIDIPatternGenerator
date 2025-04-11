@@ -19,14 +19,16 @@ SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, bool& settingLowes
     selectedRangeString = "None";
     addAndMakeVisible(selectedRangeLabel);
     selectedRangeLabel.setJustificationType(juce::Justification::centredRight);
-    
+    selectedRangeLabel
+        .setFont(juce::FontOptions(selectedRangeLabel.getFont().getHeight(), juce::Font::italic));
+
     setLowestNoteButton.onClick = [this]
     {
-        toggleButton( & setLowestNoteButton);
+        toggleButton(& setLowestNoteButton);
     };
     setHighestNoteButton.onClick = [this]
     {
-        toggleButton( & setHighestNoteButton);
+        toggleButton(& setHighestNoteButton);
     };
     
     addAndMakeVisible(setLowestNoteButton);

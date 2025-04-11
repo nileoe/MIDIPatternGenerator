@@ -149,47 +149,31 @@ void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages)
     }
 }
 
-double ArpAlgoAudioProcessor::getHostBpmOrDefault()
+double ArpAlgoAudioProcessor::getHostBpmOrDefault() const
 {
-    const double BPM_DEFAULT = 120;
+    const double DEFAULT_BPM = 120.0;
+    auto bpm = getHostBpm();
+    if (bpm)
+        return *bpm;
+    return DEFAULT_BPM;
+}
+
+const std::optional<double> ArpAlgoAudioProcessor::getHostBpm() const
+{
     const juce::AudioPlayHead* playHead = getPlayHead();
     if (playHead != nullptr)
     {
-//        debugText = "playhead is valid\n";
-//        DBG ("playhead is valid");
         juce::Optional<juce::AudioPlayHead::PositionInfo> position = playHead->getPosition();
         if (position.hasValue())
         {
-//            debugText += "position has a value, trying to access it\n";
-//            DBG ("position has a value, trying to access it\n");
             juce::Optional<double> foundBPM = position->getBpm();
             if (foundBPM.hasValue())
             {
-//                debugText += "BPM has a value of ";
-//                debugText += juce::String(*foundBPM);
-//                debugText += "\n";
-//                DBG ("BPM has a value of " << *foundBPM);
                 return *foundBPM;
             }
-            else
-            {
-//                debugText += "no value found for BPM\n";
-//                DBG ("no value found for BPM (will defatult to 120");
-            }
-            
-        }
-        else
-        {
-//            debugText += "position has no value.\n";
-//            DBG ("position has no value.");
         }
     }
-    else
-    {
-//        debugText = "playhead is nullptr";
-//        DBG ("playhead is nullptr");
-    }
-    return BPM_DEFAULT;
+    return std::nullopt;
 }
 
 //bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int bufferLastPressedKey, int midiBufferSize) const

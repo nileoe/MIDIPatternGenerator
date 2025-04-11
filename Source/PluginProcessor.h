@@ -50,7 +50,8 @@ public:
 //    bool getPatternWritingMode() const;
 //    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
     juce::String getDebugText() const { return debugText; }
-    double getHostBpmOrDefault();
+    double getHostBpmOrDefault() const;
+    const std::optional<double> getHostBpm() const;
 
 private:
     int time;

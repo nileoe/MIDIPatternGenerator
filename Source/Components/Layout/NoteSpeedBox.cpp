@@ -20,6 +20,11 @@ NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
     debugBox.setMultiLine (true);
 //    addAndMakeVisible (debugBox);
     addAndMakeVisible (bpmLabel);
+    addAndMakeVisible (bpmValueLabel);
+    bpmValueLabel
+        .setJustificationType(juce::Justification(juce::Justification::Flags::right));
+    bpmValueLabel
+        .setFont(juce::FontOptions(bpmValueLabel.getFont().getHeight(), juce::Font::bold));
     addAndMakeVisible (speedMenuLabel);
     addAndMakeVisible (speedMenu);
     
@@ -61,9 +66,17 @@ void NoteSpeedBox::populateSpeedMenu()
 void NoteSpeedBox::timerCallback()
 {
     debugBox.setText(processor.getDebugText());
-    const auto bpm = processor.getHostBpmOrDefault();
-    juce::String bpmString {"Project BPM: " + juce::String(bpm) };
-    bpmLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
+    const auto bpm = processor.getHostBpm();
+    juce::String bpmString;
+    if (bpm)
+    {
+        bpmString = juce::String(*bpm);
+    }
+    else
+    {
+        bpmString = "Not found";
+    }
+    bpmValueLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
 }
 NoteValue NoteSpeedBox::getSelectedSpeedValue()
 {
@@ -104,8 +117,16 @@ void NoteSpeedBox::resized()
     using FI = juce::FlexItem;
 
     juce::Rectangle bounds = getLocalBounds().reduced(20);
-    bpmLabel.setBounds (bounds.removeFromTop(bounds.getHeight() / 2));
+    juce::Rectangle labelArea = bounds.removeFromTop(bounds.getHeight() / 2);
     juce::Rectangle menuArea = bounds.reduced (0, 10);
+
+    juce::FlexBox labelAreaFb;
+    labelAreaFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
+    labelAreaFb.items.add (FI(bpmLabel)     .withMinWidth (140.0f).withMinHeight (30.0f));
+    labelAreaFb.items.add (FI(bpmValueLabel).withMinWidth (170.0f).withMinHeight (30.0f));
+    labelAreaFb.performLayout(labelArea);
+//    bpmLabel.setBounds (labelArea.removeFromLeft(labelArea.getWidth() * 0.8));
+//    bpmValueLabel.setBounds (labelArea);
 
     juce::FlexBox menuAreaFb;
     menuAreaFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;

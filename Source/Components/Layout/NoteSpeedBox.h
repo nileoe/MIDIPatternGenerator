@@ -37,7 +37,8 @@ private:
     juce::TextEditor debugBox;
     ArpAlgoAudioProcessor& processor;
     
-    juce::Label bpmLabel { "bpmLabel", "Unable to get project BPM"};
+    juce::Label bpmLabel { "bpmLabel", "Project BPM:"};
+    juce::Label bpmValueLabel { "bpmValueLabel", "Not found"};
     juce::Label speedMenuLabel { "speedMenuLabel", "Pattern note speed"};
     juce::ComboBox speedMenu;
     
