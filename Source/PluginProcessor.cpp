@@ -51,9 +51,9 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     {
         patternBaseNote = -1;
     }
-    if (pressedKeys.isEmpty() || patternIsExhausted())
+    if (pressedKeys.isEmpty() || patternIsExhausted() || noteSetIsEmpty())
     {
-        // No keys are currently pressed, or the pattern has finished playing: will reset pattern, set current note to -1 and return early.
+        // No keys are currently pressed, the noteSet is empty (the user selected a small range and a scale that does not select these notes) or the pattern has finished playing: will reset pattern, set current note to -1 and return early.
         // May send a noteOff message to clean up last note before.
         if (shouldSendCleanupNoteOffMessage())
         {
@@ -73,7 +73,6 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     }
     jassert (!pressedKeys.isEmpty());
     
-    // CREATE NEW PATTERN if empty or a new key was pressed.
     if (pattern.isEmpty() || differentNewKeyIsPressed(midiMessages.getNumEvents()))
     {
         if (pressedKeys.isEmpty())
@@ -182,6 +181,11 @@ bool ArpAlgoAudioProcessor::patternIsExhausted() const
 bool ArpAlgoAudioProcessor::shouldSendCleanupNoteOffMessage() const
 {
     return pressedKeys.isEmpty() && lastNoteValue != -1;
+}
+
+bool ArpAlgoAudioProcessor::noteSetIsEmpty() const
+{
+    return PatternSettings::getInstance().getNoteSet().getNoteCount() == 0;
 }
 
 // DEFAULT PLUGIN FUNCTIONS

@@ -45,6 +45,7 @@ void NoteSetKeyboard::mouseUpOnKey(int midiNoteNumber, const juce::MouseEvent& e
 {
     if (!(settingLowestNoteMode || settingHighestNoteMode))
     {
+        syncStateWithNoteSet();
         DBG ("No setting mode currently active: ignoring click");
         return;
     }

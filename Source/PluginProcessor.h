@@ -62,26 +62,16 @@ private:
     int currentNote;
     int lastNoteValue;
     
-    // NEW
     int lastPressedKey;
     juce::Array<int> pattern;
-//    bool isWritingPatternModeOn;
-//    bool reachedPatternEnd(); // { currentNote >= pattern.size() };
-//    bool differentNewKeyIsPressed (int bufferLastPressedKey, int midiBufferSize) const;
     bool differentNewKeyIsPressed (int midiBufferSize) const;
     bool shouldOutputNotes() const;
     bool shouldSendCleanupNoteOffMessage() const;
     bool patternIsExhausted() const;
     void recordPressedKeys(juce::MidiBuffer& midiMessages);
-//    void recordPressedKeys(juce::MidiBuffer& midiMessages, int& bufferLastPressedKey);
-//    void recordPressedKeys(juce::MidiBuffer& midiMessages);
-//    bool isNewAlgorithmUsed;
-//    bool isRecordingInProgress;
+    bool noteSetIsEmpty() const;
     juce::String debugText;
-    
-    //
     int patternBaseNote;
-    //
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };
