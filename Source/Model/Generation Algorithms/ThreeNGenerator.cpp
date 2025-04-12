@@ -14,19 +14,21 @@ juce::String ThreeNGenerator::getDescription() const
 
 const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {
-    DBG ("\n############### GETTING PATTERN FOR THREE_N ###############");
-    DBG ("Starting note: " << juce::MidiMessage::getMidiNoteName (lastPressedKey, true, true, 0) << ", target notes range:");
-    DBG (targetNotes.getFirst() << " - " << targetNotes.getLast() << "length: " << targetNotes.size());
-    DBG (juce::MidiMessage::getMidiNoteName(targetNotes.getFirst(), true, true, 0) << " - " << juce::MidiMessage::getMidiNoteName(targetNotes.getLast(), true, true, 0) << "\n");
-    
     auto& settings = PatternSettings::getInstance();
     juce::Array<int> patternIndexes;
     int patternLength = settings.getLengthInNotes();
+    if (settings.doesAllowOffKeyInput())
+    {
+        for (int note : heldNotes)
+        {
+            if (!targetNotes.contains(note))
+            {
+                targetNotes.add(note);
+            }
+        }
+    }
     int targetNotesSize = targetNotes.size();
     
-//    int index = targetNotes.indexOf(lastPressedKey);
-//    if (index == -1)
-//         lastPressedKey does not belong to the noteset
     int index = findClosestValidNoteIndex (targetNotes, lastPressedKey);
     
     for (auto i = 0; i < patternLength; ++i)
@@ -118,42 +120,3 @@ int ThreeNGenerator::findMaximumElement (juce::Array<int> arr) const
     }
     return max;
 }
-
-//const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
-//{
-//    DBG ("\n############### GETTING PATTERN FOR THREE_N ###############");
-//    DBG ("Starting note: " << juce::MidiMessage::getMidiNoteName (lastPressedKey, true, true, 0) << ", target notes range:");
-//    DBG (targetNotes.getFirst() << " - " << targetNotes.getLast() << "length: " << targetNotes.size());
-//    DBG (juce::MidiMessage::getMidiNoteName(targetNotes.getFirst(), true, true, 0) << " - " << juce::MidiMessage::getMidiNoteName(targetNotes.getLast(), true, true, 0) << "\n");
-//    
-//    auto& settings = PatternSettings::getInstance();
-//    juce::Array<int> pattern;
-//    int patternLength = settings.getLengthInNotes();
-//    int targetNotesSize = targetNotes.size();
-//    
-////    int index = targetNotes.indexOf(lastPressedKey);
-////    if (index == -1)
-////         lastPressedKey does not belong to the noteset
-//    int index = findClosestValidNoteIndex (targetNotes, lastPressedKey);
-//    
-//    for (auto i = 0; i < patternLength; ++i)
-//    {
-//        if (index < 0)
-//        {
-//            DBG ("Error: index is negative: " << index);
-//            jassertfalse;
-//        }
-//        
-//        pattern.add (targetNotes[(index - 1) % targetNotesSize]);
-//        DBG ("index " << i << ": " << index << "\t(-> " << index % targetNotesSize << ") ->" << juce::MidiMessage::getMidiNoteName (index, true, true, 0));
-//        index = getNextIndex(index);
-//    }
-////    MaxIbtaine * x = maxOk
-////    X = maxOk / max obtained
-////    For each note
-////    Note *= floor(X)
-//    int max
-//    
-//    DBG ("\n############### finished pattern ###############");
-//    return pattern;
-//}

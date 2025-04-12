@@ -24,7 +24,7 @@ PatternLengthBox::PatternLengthBox (int patternRadioGroupId)
                                   false,
                                   80,
                                   20);
-    lengthSlider.setTooltip("Maximum pattern length in your chosen unit. Set the slider to the maximum value to allow for a pattern of any length.");
+    lengthSlider.setTooltip("Maximum pattern length in your chosen unit. Set the slider to the maximum value to allow for a pattern of infinite length.");
     addAndMakeVisible (notesOption);
     addAndMakeVisible (barsOption);
     addAndMakeVisible (secondsOption);
