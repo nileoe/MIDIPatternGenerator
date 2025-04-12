@@ -41,12 +41,12 @@ void NoteSetKeyboard::changeListenerCallback(juce::ChangeBroadcaster* source)
 }
 
 
-bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent& e)
+void NoteSetKeyboard::mouseUpOnKey(int midiNoteNumber, const juce::MouseEvent& e)
 {
     if (!(settingLowestNoteMode || settingHighestNoteMode))
     {
         DBG ("No setting mode currently active: ignoring click");
-        return false;
+        return;
     }
     if (settingLowestNoteMode)
     {
@@ -57,7 +57,6 @@ bool NoteSetKeyboard::mouseDownOnKey(int midiNoteNumber, const juce::MouseEvent&
         setPatternHighestNote(midiNoteNumber);
     }
     sendChangeMessage();
-    return true;
 }
 
 void NoteSetKeyboard::syncStateWithNoteSet()
@@ -67,9 +66,7 @@ void NoteSetKeyboard::syncStateWithNoteSet()
     state.allNotesOff(1);
     for (int note : noteSetNotes)
     {
-        float velocity = note % 2 == 0 ? 0.2f : 1.0f;
-//        state.noteOn(1, note, 1.0f);
-        state.noteOn(1, note, velocity);
+        state.noteOn(1, note, 1.0f);
     }
 }
 
