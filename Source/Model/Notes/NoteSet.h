@@ -22,7 +22,7 @@ class NoteSet : public juce::ChangeBroadcaster
     NoteSet(Scale scale, RootNote rootNote, int lowestNote, int highestNote);
     NoteSet(Scale scale, RootNote rootNote, juce::Range<int> range);
 
-    const juce::Array<int>  getNotesIndices()   const;
+    const juce::Array<int>  getNoteIndices()   const;
     const juce::StringArray getNoteNames()      const;
     int getNoteCount() const;
 

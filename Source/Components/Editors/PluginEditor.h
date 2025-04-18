@@ -11,6 +11,7 @@
 #include "../../Model/Data/AppData.h"
 #include "../../Model/Notes/Scale.h"
 #include "../../Model/Data/PatternSettings.h"
+#include "../../Testing/PluginUnitTestRunner.h"
 #include <JuceHeader.h>
 
 class ArpAlgoAudioProcessorEditor  : public juce::AudioProcessorEditor

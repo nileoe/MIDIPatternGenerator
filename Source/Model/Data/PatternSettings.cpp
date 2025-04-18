@@ -76,7 +76,6 @@ void PatternSettings::setLength              (int length)                { this-
 void PatternSettings::setLengthUnit          (LengthUnit unit)           { this->lengthUnit = unit; }
 void PatternSettings::setLengthUnit (juce::String unitName)
 {
-    DBG ("settting unit to " << unitName);
     LengthUnit unit;
     if (unitName == "notes")
     {

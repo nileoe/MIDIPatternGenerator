@@ -17,7 +17,6 @@
 // #include "DebugWindow.h"
 #include "../Generation Algorithms/RandomizerGenerator.h"
 #include "../Generation Algorithms/ThreeNGenerator.h"
-#include "../../Testing/Tester.h"
 #include "PatternSettings.h"
 
 

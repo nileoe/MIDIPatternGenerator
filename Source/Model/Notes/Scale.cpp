@@ -11,15 +11,15 @@
 #include "Scale.h"
 
 int Scale::nextId = 1;
-Scale::Scale() : id(nextId++), name("Unnamed"), categoryName("None")
+Scale::Scale() : id(nextId++), name("Unnamed"), category("None")
 {
 }
 
-Scale::Scale(const Scale& other) : id(other.id), name(other.name), noteIndices(other.noteIndices), notePattern(other.notePattern), categoryName(other.categoryName)
+Scale::Scale(const Scale& other) : id(other.id), name(other.name), noteIndices(other.noteIndices), notePattern(other.notePattern), category(other.category)
 {
 }
 
-Scale::Scale(juce::String name, juce::Array<bool> notePattern, juce::String categoryName) : id(nextId ++), name(name), notePattern(notePattern), categoryName(categoryName)
+Scale::Scale(juce::String name, juce::Array<bool> notePattern, juce::String categoryName) : id(nextId ++), name(name), notePattern(notePattern), category(categoryName)
 {
     // Scales must follow the 12-note western system.
     jassert (notePattern.size() == 12);
@@ -34,7 +34,7 @@ Scale::Scale(juce::String name, juce::Array<bool> notePattern, juce::String cate
     }
 }
 
-Scale::Scale(juce::String name, juce::Array<int> noteIndices, juce::String categoryName) : id(nextId ++), name(name), noteIndices(noteIndices), categoryName(categoryName)
+Scale::Scale(juce::String name, juce::Array<int> noteIndices, juce::String categoryName) : id(nextId ++), name(name), noteIndices(noteIndices), category(categoryName)
 {
     // notes indices must be sorted in (strictly) ascending order and range from 0 to 11 inclusive
     for (int i = 0; i < noteIndices.size() - 1; ++i)
@@ -54,7 +54,7 @@ Scale::Scale(juce::String name, juce::Array<int> noteIndices, juce::String categ
 int Scale::getId() const { return id; }
 
 const   juce::String&       Scale::getName()            const { return name; }
-const   juce::String&       Scale::getCategoryName()    const { return categoryName; }
+const   juce::String&       Scale::getCategory()    const { return category; }
 const   juce::Array<int>&   Scale::getNoteIndices()     const { return noteIndices; }
 const   juce::Array<bool>&  Scale::getNotePattern()     const { return notePattern; }
 int                         Scale::getNoteCount()       const { return noteIndices.size(); }
@@ -78,7 +78,7 @@ const juce::String Scale::getDebugInfo() const
     info += "############ SCALE INFO ############\n";
     info += "id: " + juce::String(id) + "\n";
     info += "name: " + name + "\n";
-    info += "category: " + categoryName + "\n";
+    info += "category: " + category + "\n";
     info += "notes (" + juce::String(getNoteCount()) + "): ";
     for (auto n : noteIndices)
     {

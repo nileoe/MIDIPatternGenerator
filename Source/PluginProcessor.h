@@ -1,6 +1,5 @@
 #pragma once
 
-#include "./Testing/Tester.h"
 #include "./Model/Data/AppData.h"
 #include "./Model/Notes/NoteSet.h"
 #include <JuceHeader.h>

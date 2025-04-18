@@ -78,7 +78,7 @@ void AppData::addGenerationAlgorithms()
 
 const juce::Array<int> AppData::getPattern(juce::SortedSet<int> heldNotes, int lastPressedKey) const
 {
-    juce::Array<int> targetNotes = PatternSettings::getInstance().getNoteSet().getNotesIndices();
+    juce::Array<int> targetNotes = PatternSettings::getInstance().getNoteSet().getNoteIndices();
     return getSelectedGenerator()->getPattern(heldNotes, targetNotes, lastPressedKey);
 //    return juce::Array<int>();
 }
@@ -151,7 +151,6 @@ int AppData::getSelectedAlgorithmId() const
 
 void AppData::setSelectedAlgorithmId(int id)
 {
-    DBG ("Appdata: setting new algo id to " << id << ", processor newAlgorithmWasChosen to .");
     selectedAlgorithmId = id;
 }
 void AppData::setNoteSpeedRatio(double ratio)

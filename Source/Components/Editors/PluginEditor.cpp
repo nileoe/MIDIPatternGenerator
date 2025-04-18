@@ -42,6 +42,4 @@ void ArpAlgoAudioProcessorEditor::resized()
     pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
     selectedRangeBox    .setBounds (mainArea.removeFromTop (125) .reduced (20, 5));
     scaleAndHarmonyBox  .setBounds (mainArea.reduced (20, 10));
-    
-    //        Tester::testNoteSetAndScale();
 }

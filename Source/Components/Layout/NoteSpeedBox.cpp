@@ -36,12 +36,8 @@ NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
 }
 void NoteSpeedBox::handleSpeedMenuChange()
 {
-    DBG ("app data note speed ratio before: " << AppData::getInstance().getNoteSpeedRatio());
     NoteValue newValue = getSelectedSpeedValue();
-    DBG ("new speed shit: " << newValue.getRatioFromBeat());
-    DBG ("new speed name: " << newValue.getName());
     AppData::getInstance().setNoteSpeedRatio(newValue.getRatioFromBeat());
-    DBG ("app data note speed ratio after: " << AppData::getInstance().getNoteSpeedRatio());
 }
 
 void NoteSpeedBox::populateSpeedMenu()

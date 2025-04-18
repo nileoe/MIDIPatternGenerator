@@ -91,7 +91,6 @@ void PatternLengthBox::setSliderUnit (juce::Range<double> unitRange, juce::Strin
 }
 bool PatternLengthBox::isMaxLengthValueSelected() const
 {
-    DBG ("IS max value selected? end value is " << lengthSlider.getRange().getEnd() << ", actual value is " << lengthSlider.getValue());
     return lengthSlider.getRange().getEnd() == lengthSlider.getValue();
 }
 

@@ -41,7 +41,6 @@ const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNote
         
         if (index == 1) break;
         patternIndexes.add (index);
-        DBG ("Index is " << index);
         index = getNextIndex(index);
     }
     
@@ -49,9 +48,6 @@ const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNote
     double maxObtainedIndex = findMaximumElement(patternIndexes);
     int maxAvailableIndex = targetNotesSize - 1;
     double modifier = (double) maxAvailableIndex / (double) maxObtainedIndex;
-    DBG ("max obtained index:\t" << maxObtainedIndex);
-    DBG ("max available index:\t" << maxAvailableIndex);
-    DBG ("modifier:\t\t*" << modifier << " (/" << (double) 1/modifier << ")");
 
     
     juce::Array<int> pattern;
@@ -59,11 +55,7 @@ const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNote
     {
         int adjustedIndex = index * modifier;
         pattern.add(targetNotes[adjustedIndex]);
-        DBG ("added new index, from " << index << " to " << adjustedIndex);
     }
-    
-
-    DBG ("\n############### finished pattern ###############");
     return pattern;
 }
 
@@ -104,8 +96,6 @@ int ThreeNGenerator::findClosestValidNoteIndex(juce::Array<int> notes, int targe
     int closestHigh = notes[low];
     
     int closest = (targetNote - closestLow <= closestHigh - targetNote) ? closestLow : closestHigh;
-    
-    DBG ("targetNote " << juce::MidiMessage::getMidiNoteName(targetNote, true, true, 0) << " not in set: returning closest match in noteset:" << juce::MidiMessage::getMidiNoteName(closest, true, true, 0));
     
     return closest;
 }

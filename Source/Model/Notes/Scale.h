@@ -21,7 +21,7 @@ class Scale
     
     int                         getId()             const;
     const juce::String&         getName()           const;
-    const juce::String&         getCategoryName()   const;
+    const juce::String&         getCategory()   const;
     const juce::Array<int>&     getNoteIndices()    const;
     const juce::Array<bool>&    getNotePattern()    const;
     int                         getNoteCount()      const;
@@ -35,5 +35,5 @@ class Scale
     juce::String name;
     juce::Array<int> noteIndices;
     juce::Array<bool> notePattern;
-    juce::String categoryName;
+    juce::String category;
 };

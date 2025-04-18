@@ -23,7 +23,6 @@ ArpAlgoAudioProcessor::~ArpAlgoAudioProcessor()
 
 void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-//    Tester t;
     pressedKeys.clear();
     currentNote = -1;
     patternNoteIndex = 0;
@@ -32,6 +31,7 @@ void ArpAlgoAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     time = 0;
     rate = static_cast<float> (sampleRate);
     debugText = "";
+    // PluginUnitTestRunner testRunner;
 }
 
 

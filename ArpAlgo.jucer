@@ -81,7 +81,20 @@
             file="Source/Model/GenerationAlgorithm.h"/>
     </GROUP>
     <GROUP id="{6B96561F-8920-CDFC-FE9D-05A621647EF2}" name="Testing">
-      <FILE id="mUKEna" name="Tester.h" compile="0" resource="0" file="Source/Testing/Tester.h"/>
+      <GROUP id="{5789E083-4CA1-BDA1-864F-311C66A815D3}" name="Tests">
+        <FILE id="PF4wRn" name="NoteSetUnitTester.h" compile="0" resource="0"
+              file="Source/Testing/Tests/NoteSetUnitTester.h"/>
+        <FILE id="So4vSF" name="NoteValueUnitTester.h" compile="0" resource="0"
+              file="Source/Testing/Tests/NoteValueUnitTester.h"/>
+        <FILE id="WljHbJ" name="PatternGenerationUnitTester.h" compile="0"
+              resource="0" file="Source/Testing/Tests/PatternGenerationUnitTester.h"/>
+        <FILE id="WiYluU" name="RootNoteUnitTester.h" compile="0" resource="0"
+              file="Source/Testing/Tests/RootNoteUnitTester.h"/>
+        <FILE id="ZrTQGn" name="ScaleUnitTester.h" compile="0" resource="0"
+              file="Source/Testing/Tests/ScaleUnitTester.h"/>
+      </GROUP>
+      <FILE id="zk83m4" name="PluginUnitTestRunner.h" compile="0" resource="0"
+            file="Source/Testing/PluginUnitTestRunner.h"/>
     </GROUP>
     <FILE id="LDXDTr" name="PluginProcessor.cpp" compile="1" resource="0"
           file="Source/PluginProcessor.cpp"/>

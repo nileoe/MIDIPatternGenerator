@@ -63,7 +63,7 @@ void NoteSetKeyboard::mouseUpOnKey(int midiNoteNumber, const juce::MouseEvent& e
 void NoteSetKeyboard::syncStateWithNoteSet()
 {
     auto& noteSet = PatternSettings::getInstance().getNoteSet();
-    const juce::Array<int>& noteSetNotes = noteSet.getNotesIndices();
+    const juce::Array<int>& noteSetNotes = noteSet.getNoteIndices();
     state.allNotesOff(1);
     for (int note : noteSetNotes)
     {

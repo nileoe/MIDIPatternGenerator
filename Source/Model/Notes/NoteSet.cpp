@@ -30,7 +30,7 @@ NoteSet::NoteSet(Scale scale,
 {
 }
 
-const juce::Array<int> NoteSet::getNotesIndices() const
+const juce::Array<int> NoteSet::getNoteIndices() const
 {
     juce::Array<int> notes;
     
@@ -57,7 +57,7 @@ const juce::Array<int> NoteSet::getNotesIndices() const
 const juce::StringArray NoteSet::getNoteNames() const
 {
     juce::StringArray noteNames;
-    const juce::Array<int> noteIndices = getNotesIndices();
+    const juce::Array<int> noteIndices = getNoteIndices();
     for (int noteIndex : noteIndices)
     {
         noteNames.add(juce::MidiMessage::getMidiNoteName(noteIndex, true, true, true));
@@ -67,7 +67,7 @@ const juce::StringArray NoteSet::getNoteNames() const
 
 int NoteSet::getNoteCount() const
 {
-    return getNotesIndices().size();
+    return getNoteIndices().size();
 }
 
 const Scale             NoteSet::getScale()         const { return scale; }
@@ -114,13 +114,13 @@ const juce::String NoteSet::getDebugInfo() const
 {
     juce::String info;
     info += "############ NOTESET INFO ############\n";
-    info += "Scale used: " + scale.getName() + " (" + scale.getCategoryName() + ")" + "\n";
+    info += "Scale used: " + scale.getName() + " (" + scale.getCategory() + ")" + "\n";
     info += "Root note: " + rootNote.getName() + " (offset = " + juce::String(rootNote.getOffsetFromC()) + ")\n";
     info += "Noteset range: " + juce::MidiMessage::getMidiNoteName(lowestNote, true, true, 0) + " - ";
     info += juce::MidiMessage::getMidiNoteName(highestNote, true, true, 0) + "\n";
     info += "Notes:\n";
     auto noteNames   = getNoteNames();
-    auto noteIndices = getNotesIndices();
+    auto noteIndices = getNoteIndices();
     if (noteIndices.size() == 0)
     {
         info += "No notes";
