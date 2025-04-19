@@ -9,10 +9,10 @@
 */
 
 #include <JuceHeader.h>
-#include "NoteSpeedBox.h"
+#include "NoteQuantizationBox.h"
 
 //==============================================================================
-NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
+NoteQuantizationBox::NoteQuantizationBox(ArpAlgoAudioProcessor& p) : processor(p)
 {
     setText ("Note Quantization");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
@@ -39,18 +39,18 @@ NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
 
     startTimer(500);
 }
-void NoteSpeedBox::handleSpeedMenuChange()
+void NoteQuantizationBox::handleSpeedMenuChange()
 {
     NoteValue newValue = getSelectedSpeedValue();
     AppData::getInstance().setNoteSpeedRatio(newValue.getRatioFromBeat());
 }
-void NoteSpeedBox::handleMergeRepeatNotesChange()
+void NoteQuantizationBox::handleMergeRepeatNotesChange()
 {
     const bool mergeRepeatedNotes = mergeRepeatedNotesCheckBox.getToggleState();
     PatternSettings::getInstance().setMergeRepeatedNotes(mergeRepeatedNotes);
 }
 
-void NoteSpeedBox::populateSpeedMenu()
+void NoteQuantizationBox::populateSpeedMenu()
 {
     const juce::Array<NoteValue> noteValues = AppData::getInstance().getNoteValues();
     
@@ -69,7 +69,7 @@ void NoteSpeedBox::populateSpeedMenu()
     }
     speedMenu.setSelectedId(4);
 }
-void NoteSpeedBox::timerCallback()
+void NoteQuantizationBox::timerCallback()
 {
     debugBox.setText(processor.getDebugText());
     const auto bpm = processor.getHostBpm();
@@ -84,7 +84,7 @@ void NoteSpeedBox::timerCallback()
     }
     bpmValueLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
 }
-NoteValue NoteSpeedBox::getSelectedSpeedValue()
+NoteValue NoteQuantizationBox::getSelectedSpeedValue()
 {
     int newSpeedValueId = speedMenu.getSelectedId();
     NoteValue newValue;
@@ -97,7 +97,7 @@ NoteValue NoteSpeedBox::getSelectedSpeedValue()
     return newValue;
 }
 
-void NoteSpeedBox::log(juce::String dbgText, bool shouldAppendNewline)
+void NoteQuantizationBox::log(juce::String dbgText, bool shouldAppendNewline)
 {
     debugBox.moveCaretToEnd();
     debugBox.insertTextAtCaret(dbgText);
@@ -106,16 +106,16 @@ void NoteSpeedBox::log(juce::String dbgText, bool shouldAppendNewline)
     debugBox.insertTextAtCaret("\n");
 }
 
-void NoteSpeedBox::changeListenerCallback(juce::ChangeBroadcaster *source)
+void NoteQuantizationBox::changeListenerCallback(juce::ChangeBroadcaster *source)
 {
     syncTextWithCurrentAlgorithm();
 }
 
-void NoteSpeedBox::syncTextWithCurrentAlgorithm()
+void NoteQuantizationBox::syncTextWithCurrentAlgorithm()
 {
 }
 
-void NoteSpeedBox::resized()
+void NoteQuantizationBox::resized()
 {
     using FI = juce::FlexItem;
 

@@ -6,7 +6,7 @@
 #include "../Layout/RhythmOverrideBox.h"
 #include "../Layout/SelectedRangeBox.h"
 #include "../Layout/ScaleAndHarmonyBox.h"
-#include "../Layout/NoteSpeedBox.h"
+#include "../Layout/NoteQuantizationBox.h"
 #include "../MIDI/NoteSetKeyboard.h"
 #include "../../Model/Data/AppData.h"
 #include "../../Model/Notes/Scale.h"
@@ -49,7 +49,7 @@ private:
     RhythmOverrideBox       rhythmOverrideBox;
     ScaleAndHarmonyBox      scaleAndHarmonyBox      { ScaleHarmonyRadioId };
     SelectedRangeBox        selectedRangeBox        { pianoKeyboard, settingLowestNoteMode, settingHighestNoteMode };
-    NoteSpeedBox            algorithmSettingsBox    { audioProcessor };
+    NoteQuantizationBox     noteQuantizationBox     { audioProcessor };
     
     juce::TooltipWindow tooltipWindow;
 

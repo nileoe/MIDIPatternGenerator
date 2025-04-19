@@ -17,10 +17,10 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-class NoteSpeedBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
+class NoteQuantizationBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
 {
 public:
-    NoteSpeedBox(ArpAlgoAudioProcessor& p);
+    NoteQuantizationBox(ArpAlgoAudioProcessor& p);
 
     void resized() override;
     
@@ -45,5 +45,5 @@ private:
     juce::ComboBox speedMenu;
     juce::ToggleButton mergeRepeatedNotesCheckBox { "Merge repeated notes" };
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoteSpeedBox)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoteQuantizationBox)
 };

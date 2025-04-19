@@ -15,9 +15,10 @@
               file="Source/Components/Layout/GenerationMethodsBox.cpp"/>
         <FILE id="vyUUNq" name="GenerationMethodsBox.h" compile="0" resource="0"
               file="Source/Components/Layout/GenerationMethodsBox.h"/>
-        <FILE id="UbN0LD" name="NoteSpeedBox.cpp" compile="1" resource="0"
-              file="Source/Components/Layout/NoteSpeedBox.cpp"/>
-        <FILE id="PiUjc3" name="NoteSpeedBox.h" compile="0" resource="0" file="Source/Components/Layout/NoteSpeedBox.h"/>
+        <FILE id="UbN0LD" name="NoteQuantizationBox.cpp" compile="1" resource="0"
+              file="Source/Components/Layout/NoteQuantizationBox.cpp"/>
+        <FILE id="PiUjc3" name="NoteQuantizationBox.h" compile="0" resource="0"
+              file="Source/Components/Layout/NoteQuantizationBox.h"/>
         <FILE id="ztEh5Z" name="PatternLengthBox.cpp" compile="1" resource="0"
               file="Source/Components/Layout/PatternLengthBox.cpp"/>
         <FILE id="L3Sa4R" name="PatternLengthBox.h" compile="0" resource="0"

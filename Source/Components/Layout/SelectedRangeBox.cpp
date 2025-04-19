@@ -22,19 +22,12 @@ SelectedRangeBox::SelectedRangeBox(NoteSetKeyboard& keyboard, bool& settingLowes
     selectedRangeLabel
         .setFont(juce::FontOptions(selectedRangeLabel.getFont().getHeight(), juce::Font::italic));
 
-    setLowestNoteButton.onClick = [this]
-    {
-        toggleButton(& setLowestNoteButton);
-    };
-    setHighestNoteButton.onClick = [this]
-    {
-        toggleButton(& setHighestNoteButton);
-    };
-    
     addAndMakeVisible(setLowestNoteButton);
     addAndMakeVisible(setHighestNoteButton);
+    
+    setLowestNoteButton. onClick = [this] { toggleButton(& setLowestNoteButton);  };
+    setHighestNoteButton.onClick = [this] { toggleButton(& setHighestNoteButton); };
 }
-
 
 void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
 {
@@ -44,12 +37,13 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
         return;
     }
     
-    
+    juce::String selectRangeButtonMessage { "Click on-screen keyboard..." };
+    juce::Colour activeColour = juce::Colours::grey;
     if (setNoteButton == &setLowestNoteButton)
     {
         settingLowestNoteMode = true;
-        setLowestNoteButton.setButtonText("Click on-screen keyboard...");
-        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
+        setLowestNoteButton.setButtonText(selectRangeButtonMessage);
+        setLowestNoteButton.setColour(juce::TextButton::buttonColourId, activeColour);
 
         settingHighestNoteMode = false;
         resetButton(&setHighestNoteButton);
@@ -57,8 +51,8 @@ void SelectedRangeBox::toggleButton(juce::TextButton* setNoteButton)
     else if (setNoteButton == &setHighestNoteButton)
     {
         settingHighestNoteMode = true;
-        setHighestNoteButton.setButtonText("Click on-screen keyboard...");
-        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
+        setHighestNoteButton.setButtonText(selectRangeButtonMessage);
+        setHighestNoteButton.setColour(juce::TextButton::buttonColourId, activeColour);
 
         settingLowestNoteMode = false;
         resetButton(&setLowestNoteButton);

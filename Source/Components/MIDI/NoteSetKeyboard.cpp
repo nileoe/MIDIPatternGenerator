@@ -60,17 +60,6 @@ void NoteSetKeyboard::mouseUpOnKey(int midiNoteNumber, const juce::MouseEvent& e
     sendChangeMessage();
 }
 
-void NoteSetKeyboard::syncStateWithNoteSet()
-{
-    auto& noteSet = PatternSettings::getInstance().getNoteSet();
-    const juce::Array<int>& noteSetNotes = noteSet.getNoteIndices();
-    state.allNotesOff(1);
-    for (int note : noteSetNotes)
-    {
-        state.noteOn(1, note, 1.0f);
-    }
-}
-
 void NoteSetKeyboard::setPatternLowestNote(int lowestNote)
 {
     auto& noteSet = PatternSettings::getInstance().getNoteSet();
@@ -97,6 +86,17 @@ void NoteSetKeyboard::setPatternHighestNote(int highestNote)
     else
     {
         return;
+    }
+}
+
+void NoteSetKeyboard::syncStateWithNoteSet()
+{
+    auto& noteSet = PatternSettings::getInstance().getNoteSet();
+    const juce::Array<int>& noteSetNotes = noteSet.getNoteIndices();
+    state.allNotesOff(1);
+    for (int note : noteSetNotes)
+    {
+        state.noteOn(1, note, 1.0f);
     }
 }
 

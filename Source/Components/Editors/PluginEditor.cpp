@@ -7,7 +7,7 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
 {
     setSize (1200, 500);
     
-    generationMethodsBox.addChangeListener(&algorithmSettingsBox);
+    generationMethodsBox.addChangeListener(&noteQuantizationBox);
     pianoKeyboard.addChangeListener(&selectedRangeBox);
 }
 
@@ -28,7 +28,7 @@ void ArpAlgoAudioProcessorEditor::resized()
     juce::Rectangle<int> leftArea = mainArea.removeFromLeft (390);
     
     addAndMakeVisible (generationMethodsBox);
-    addAndMakeVisible (algorithmSettingsBox);
+    addAndMakeVisible (noteQuantizationBox);
     addAndMakeVisible (patternLengthBox);
     
     addAndMakeVisible (pianoKeyboard);
@@ -36,7 +36,7 @@ void ArpAlgoAudioProcessorEditor::resized()
     addAndMakeVisible (scaleAndHarmonyBox);
     
     generationMethodsBox.setBounds (leftArea.removeFromTop (190).reduced (20, 10));
-    algorithmSettingsBox.setBounds (leftArea.removeFromTop (180).reduced (20, 10));
+    noteQuantizationBox .setBounds (leftArea.removeFromTop (180).reduced (20, 10));
     patternLengthBox    .setBounds (leftArea.reduced (20, 10));
     
     pianoKeyboard       .setBounds (mainArea.removeFromTop (250).reduced (20));
