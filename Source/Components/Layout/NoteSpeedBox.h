@@ -39,7 +39,7 @@ private:
     
     juce::Label bpmLabel { "bpmLabel", "Project BPM:"};
     juce::Label bpmValueLabel { "bpmValueLabel", "Not found"};
-    juce::Label speedMenuLabel { "speedMenuLabel", "Pattern note speed"};
+    juce::Label speedMenuLabel { "speedMenuLabel", "Min. note duration"};
     juce::ComboBox speedMenu;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoteSpeedBox)

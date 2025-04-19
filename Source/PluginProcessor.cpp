@@ -45,7 +45,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     const double speedRatio = dataInstance.getNoteSpeedRatio();
     const auto noteDuration = static_cast<int> (std::ceil ((rate * 60.0 / bpm) * speedRatio));
 
-    recordPressedKeys(midiMessages);
+    captureHeldKeys(midiMessages);
     midiMessages.clear();
     if (pressedKeys.isEmpty())
     {
@@ -82,32 +82,34 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
         currentNote = 0;
         patternBaseNote = lastPressedKey;
         pattern = dataInstance.getPattern(pressedKeys, patternBaseNote);
-        DBG ("CREATING NEW PATTERN: base note = " << patternBaseNote << ", lastPressedKey = " << lastPressedKey);
     }
 
     if ((time + numSamples) >= noteDuration)
     {
-        auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
-        if (lastNoteValue > 0)
+        if (noteIsRepeated())
         {
-            midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
-            lastNoteValue = -1;
+            auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
+            if (lastNoteValue > 0)
+            {
+                midiMessages.addEvent (juce::MidiMessage::noteOff (1, lastNoteValue), offset);
+                lastNoteValue = -1;
+            }
+            jassert (!pattern.isEmpty());
+            
+            lastNoteValue = pattern[currentNote];
+            if (lastNoteValue == -1)
+            {
+                DBG ("lastNoteValue == -1 nooo");
+                jassertfalse;
+            }
+            midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
         }
-        jassert (!pattern.isEmpty());
-        
-        lastNoteValue = pattern[currentNote];
-        if (lastNoteValue == -1)
-        {
-            DBG ("lastNoteValue == -1 nooo");
-            jassertfalse;
-        }
-        midiMessages.addEvent (juce::MidiMessage::noteOn (1, lastNoteValue, (juce::uint8) 127), offset);
         currentNote ++;
     }
     time = (time + numSamples) % noteDuration;
 }
 
-void ArpAlgoAudioProcessor::recordPressedKeys(juce::MidiBuffer& midiMessages)
+void ArpAlgoAudioProcessor::captureHeldKeys(juce::MidiBuffer& midiMessages)
 {
     for (const juce::MidiMessageMetadata metadata : midiMessages)
     {
@@ -168,14 +170,7 @@ bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
 
 bool ArpAlgoAudioProcessor::patternIsExhausted() const
 {
-    bool isExhausted = currentNote != -1 && currentNote >= pattern.size();
-    if (isExhausted)
-    {
-        DBG ("PATTERN IS EXHAUSTED");
-        DBG ("current note is " << currentNote);
-        DBG ("pattern size is " << pattern.size());
-    }
-    return isExhausted;
+    return currentNote != -1 && currentNote >= pattern.size();
 }
 
 bool ArpAlgoAudioProcessor::shouldSendCleanupNoteOffMessage() const
@@ -186,6 +181,11 @@ bool ArpAlgoAudioProcessor::shouldSendCleanupNoteOffMessage() const
 bool ArpAlgoAudioProcessor::noteSetIsEmpty() const
 {
     return PatternSettings::getInstance().getNoteSet().getNoteCount() == 0;
+}
+
+bool ArpAlgoAudioProcessor::noteIsRepeated() const
+{
+    return pattern[currentNote] != lastNoteValue;
 }
 
 // DEFAULT PLUGIN FUNCTIONS

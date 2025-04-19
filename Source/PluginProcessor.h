@@ -55,22 +55,22 @@ public:
 private:
     int time;
     int rate;
-    
     int patternNoteIndex;
     juce::SortedSet<int> pressedKeys;
     int currentNote;
     int lastNoteValue;
-    
+    juce::String debugText;
+    int patternBaseNote;
     int lastPressedKey;
     juce::Array<int> pattern;
+    
+    void captureHeldKeys(juce::MidiBuffer& midiMessages);
     bool differentNewKeyIsPressed (int midiBufferSize) const;
     bool shouldOutputNotes() const;
     bool shouldSendCleanupNoteOffMessage() const;
     bool patternIsExhausted() const;
-    void recordPressedKeys(juce::MidiBuffer& midiMessages);
     bool noteSetIsEmpty() const;
-    juce::String debugText;
-    int patternBaseNote;
+    bool noteIsRepeated() const;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };

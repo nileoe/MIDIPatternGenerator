@@ -14,7 +14,7 @@
 //==============================================================================
 NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
 {
-    setText ("Pattern Speed");
+    setText ("Note Quantization");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
     //
     debugBox.setMultiLine (true);
