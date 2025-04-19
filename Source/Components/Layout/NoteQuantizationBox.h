@@ -17,7 +17,7 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-class NoteQuantizationBox  : public juce::GroupComponent, public juce::ChangeListener, public juce::Timer
+class NoteQuantizationBox  : public juce::GroupComponent, public juce::Timer
 {
 public:
     NoteQuantizationBox(ArpAlgoAudioProcessor& p);
@@ -25,9 +25,6 @@ public:
     void resized() override;
     
     void timerCallback() override;
-    
-    void changeListenerCallback(juce::ChangeBroadcaster *source) override;
-    void log(juce::String dbgText, bool shouldAppendNewline = true);
 
 private:
     void handleSpeedMenuChange();
@@ -36,7 +33,6 @@ private:
     NoteValue getSelectedSpeedValue();
     
     void syncTextWithCurrentAlgorithm();
-    juce::TextEditor debugBox;
     ArpAlgoAudioProcessor& processor;
     
     juce::Label bpmLabel { "bpmLabel", "Project BPM:"};

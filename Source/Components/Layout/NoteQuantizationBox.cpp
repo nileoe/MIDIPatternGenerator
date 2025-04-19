@@ -16,9 +16,6 @@ NoteQuantizationBox::NoteQuantizationBox(ArpAlgoAudioProcessor& p) : processor(p
 {
     setText ("Note Quantization");
     setColour (juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::white);
-    //
-    debugBox.setMultiLine (true);
-//    addAndMakeVisible (debugBox);
     addAndMakeVisible (bpmLabel);
     addAndMakeVisible (bpmValueLabel);
     bpmValueLabel
@@ -69,21 +66,20 @@ void NoteQuantizationBox::populateSpeedMenu()
     }
     speedMenu.setSelectedId(4);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a61585c (implemented merging repeated notes features and UI)
 void NoteQuantizationBox::timerCallback()
 {
-    debugBox.setText(processor.getDebugText());
     const auto bpm = processor.getHostBpm();
-    juce::String bpmString;
-    if (bpm)
-    {
-        bpmString = juce::String(*bpm);
-    }
-    else
-    {
-        bpmString = "Not found";
-    }
+    juce::String bpmString { bpm ? juce::String(*bpm) : "Not found" };
     bpmValueLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a61585c (implemented merging repeated notes features and UI)
 NoteValue NoteQuantizationBox::getSelectedSpeedValue()
 {
     int newSpeedValueId = speedMenu.getSelectedId();
@@ -97,6 +93,7 @@ NoteValue NoteQuantizationBox::getSelectedSpeedValue()
     return newValue;
 }
 
+<<<<<<< HEAD
 void NoteQuantizationBox::log(juce::String dbgText, bool shouldAppendNewline)
 {
     debugBox.moveCaretToEnd();
@@ -115,6 +112,8 @@ void NoteQuantizationBox::syncTextWithCurrentAlgorithm()
 {
 }
 
+=======
+>>>>>>> a61585c (implemented merging repeated notes features and UI)
 void NoteQuantizationBox::resized()
 {
     using FI = juce::FlexItem;

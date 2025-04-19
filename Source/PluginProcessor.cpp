@@ -131,15 +131,6 @@ void ArpAlgoAudioProcessor::captureHeldKeys(juce::MidiBuffer& midiMessages)
     }
 }
 
-double ArpAlgoAudioProcessor::getHostBpmOrDefault() const
-{
-    const double DEFAULT_BPM = 120.0;
-    auto bpm = getHostBpm();
-    if (bpm)
-        return *bpm;
-    return DEFAULT_BPM;
-}
-
 const std::optional<double> ArpAlgoAudioProcessor::getHostBpm() const
 {
     const juce::AudioPlayHead* playHead = getPlayHead();
@@ -157,6 +148,16 @@ const std::optional<double> ArpAlgoAudioProcessor::getHostBpm() const
     }
     return std::nullopt;
 }
+
+double ArpAlgoAudioProcessor::getHostBpmOrDefault() const
+{
+    const double DEFAULT_BPM = 120.0;
+    auto bpm = getHostBpm();
+    if (bpm)
+        return *bpm;
+    return DEFAULT_BPM;
+}
+
 
 bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
 {
