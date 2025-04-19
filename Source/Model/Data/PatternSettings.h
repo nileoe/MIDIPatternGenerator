@@ -29,18 +29,20 @@ class PatternSettings
     static PatternSettings& getInstance();
     
     NoteSet&     getNoteSet();
-    NoteValue    getNoteValue()         const;
-    bool         doesAllowOffKeyInput() const;
-    bool         isPatternInfinite()    const;
-    int          getLengthInUnits()     const;
-    int          getLengthInNotes()     const;
-    juce::String getLengthUnitName()    const; // mention: no get length int, only name (string)
+    NoteValue    getNoteValue()           const;
+    bool         doesAllowOffKeyInput()   const;
+    bool         isPatternInfinite()      const;
+    bool         doesMergeRepeatedNotes() const;
+    int          getLengthInUnits()       const;
+    int          getLengthInNotes()       const;
+    juce::String getLengthUnitName()      const; // mention: no get length int, only name (string)
 
 
     void setGenerationAlgorithm (GenerationAlgorithm* algo);
     void setNoteValue           (NoteValue noteValue);
     void setAllowOffKeyInput    (bool allowOffKeyInput);
     void setInfinitePattern     (bool infinitePattern);
+    void setMergeRepeatedNotes  (bool mergeRepeatedNotes);
     void setLength              (int length);
     void setLengthUnit          (LengthUnit unit);
     void setLengthUnit          (juce::String unitName);
@@ -53,6 +55,7 @@ class PatternSettings
     NoteValue noteValue;
     bool allowOffKeyInput = false;
     bool patternIsInfinite = false;
+    bool mergeRepeatedNotes = true;
     LengthUnit lengthUnit;
     GenerationAlgorithm* generationAlgorithm;
 };

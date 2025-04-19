@@ -19,8 +19,8 @@ GenerationMethodsBox::GenerationMethodsBox (int radioGroupId, ArpAlgoAudioProces
     addAndMakeVisible (algorithmLabel);
     addAndMakeVisible (allowOffKeyNotesButton);
     
-    allowOffKeyNotesButton.setButtonText ("Allow off-key notes");
-    allowOffKeyNotesButton.setTooltip("When enabled, the pattern will include all input notes, even those that are outside of the selected scale and range.");
+    allowOffKeyNotesButton.setButtonText ("Allow all pressed keys");
+    allowOffKeyNotesButton.setTooltip("When enabled, the pattern may include all notes sent by the external keyboard in the allowed note pool, even those that fall outside of the selected scale and range.");
     allowOffKeyNotesButton.onClick = [this] { handleOffKeyButtonChange(); };
     
     auto& data = AppData::getInstance();

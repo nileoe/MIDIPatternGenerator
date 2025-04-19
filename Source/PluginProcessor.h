@@ -44,10 +44,7 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    // NEW
-//    void togglePatternWritingMode();
-//    bool getPatternWritingMode() const;
-//    void setIsNewAlgorithmUsed (bool newIsUsed); // no getter (no point)
+    //==============================================================================
     juce::String getDebugText() const { return debugText; }
     double getHostBpmOrDefault() const;
     const std::optional<double> getHostBpm() const;
@@ -71,6 +68,7 @@ private:
     bool patternIsExhausted() const;
     bool noteSetIsEmpty() const;
     bool noteIsRepeated() const;
-    
+    bool shouldMergeRepeatedNotes() const;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpAlgoAudioProcessor)
 };

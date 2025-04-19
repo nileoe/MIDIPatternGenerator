@@ -26,18 +26,28 @@ NoteSpeedBox::NoteSpeedBox(ArpAlgoAudioProcessor& p) : processor(p)
     bpmValueLabel
         .setFont(juce::FontOptions(bpmValueLabel.getFont().getHeight(), juce::Font::bold));
     addAndMakeVisible (speedMenuLabel);
+    
     addAndMakeVisible (speedMenu);
-    
     populateSpeedMenu();
-    
     speedMenu.onChange = [this] { handleSpeedMenuChange(); };
     
+    addAndMakeVisible (mergeRepeatedNotesCheckBox);
+    mergeRepeatedNotesCheckBox.onClick = [this] { handleMergeRepeatNotesChange(); };
+    mergeRepeatedNotesCheckBox
+        .setToggleState(true, juce::NotificationType::sendNotification);
+    mergeRepeatedNotesCheckBox.setTooltip("If selected, repeated notes will be combined into a single longer note instead of being played individually.");
+
     startTimer(500);
 }
 void NoteSpeedBox::handleSpeedMenuChange()
 {
     NoteValue newValue = getSelectedSpeedValue();
     AppData::getInstance().setNoteSpeedRatio(newValue.getRatioFromBeat());
+}
+void NoteSpeedBox::handleMergeRepeatNotesChange()
+{
+    const bool mergeRepeatedNotes = mergeRepeatedNotesCheckBox.getToggleState();
+    PatternSettings::getInstance().setMergeRepeatedNotes(mergeRepeatedNotes);
 }
 
 void NoteSpeedBox::populateSpeedMenu()
@@ -103,30 +113,28 @@ void NoteSpeedBox::changeListenerCallback(juce::ChangeBroadcaster *source)
 
 void NoteSpeedBox::syncTextWithCurrentAlgorithm()
 {
-//    juce::String newAlgorithmName = AppData::getInstance().getSelectedGeneratorName();
-//    setText (newAlgorithmName + " settings");
 }
 
 void NoteSpeedBox::resized()
 {
-//    debugBox.setBounds (getLocalBounds().reduced (15));
     using FI = juce::FlexItem;
 
     juce::Rectangle bounds = getLocalBounds().reduced(20);
-    juce::Rectangle labelArea = bounds.removeFromTop(bounds.getHeight() / 2);
-    juce::Rectangle menuArea = bounds.reduced (0, 10);
+    juce::Rectangle labelArea = bounds.removeFromTop(bounds.getHeight() / 3);
+    juce::Rectangle menuArea = bounds.removeFromTop(bounds.getHeight() / 3);
+    juce::Rectangle mergeRepeatedNotesArea = bounds.reduced (0, 10).translated(0, 4);
 
     juce::FlexBox labelAreaFb;
     labelAreaFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     labelAreaFb.items.add (FI(bpmLabel)     .withMinWidth (140.0f).withMinHeight (30.0f));
     labelAreaFb.items.add (FI(bpmValueLabel).withMinWidth (170.0f).withMinHeight (30.0f));
     labelAreaFb.performLayout(labelArea);
-//    bpmLabel.setBounds (labelArea.removeFromLeft(labelArea.getWidth() * 0.8));
-//    bpmValueLabel.setBounds (labelArea);
 
     juce::FlexBox menuAreaFb;
     menuAreaFb.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;
     menuAreaFb.items.add (FI(speedMenuLabel).withMinWidth (140.0f).withMinHeight (30.0f));
     menuAreaFb.items.add (FI(speedMenu)     .withMinWidth (170.0f).withMinHeight (30.0f));
     menuAreaFb.performLayout(menuArea);
+    
+    mergeRepeatedNotesCheckBox.setBounds (mergeRepeatedNotesArea);
 }

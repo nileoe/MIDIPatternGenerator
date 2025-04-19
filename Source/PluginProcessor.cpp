@@ -86,7 +86,7 @@ void ArpAlgoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 
     if ((time + numSamples) >= noteDuration)
     {
-        if (noteIsRepeated())
+        if (!(noteIsRepeated() && shouldMergeRepeatedNotes()))
         {
             auto offset = juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
             if (lastNoteValue > 0)
@@ -185,7 +185,12 @@ bool ArpAlgoAudioProcessor::noteSetIsEmpty() const
 
 bool ArpAlgoAudioProcessor::noteIsRepeated() const
 {
-    return pattern[currentNote] != lastNoteValue;
+    return pattern[currentNote] == lastNoteValue;
+}
+
+bool ArpAlgoAudioProcessor::shouldMergeRepeatedNotes() const
+{
+    return PatternSettings::getInstance().doesMergeRepeatedNotes();
 }
 
 // DEFAULT PLUGIN FUNCTIONS

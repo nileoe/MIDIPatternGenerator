@@ -22,7 +22,6 @@ juce::String RandomizerGenerator::getDescription() const
     return "Generates a random sequence of notes starting from your last pressed key. The pattern uses notes from the selected scale and range, favouring the keys currently being held.";
 }
 
-
 const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> heldNotes, juce::Array<int> targetNotes, int lastPressedKey) const
 {
     auto& patternSettings = PatternSettings::getInstance();
