@@ -24,6 +24,7 @@ bool         PatternSettings::doesAllowOffKeyInput()   const { return allowOffKe
 bool         PatternSettings::doesMergeRepeatedNotes() const { return mergeRepeatedNotes; }
 bool         PatternSettings::isPatternInfinite()      const { return patternIsInfinite; }
 NoteValue    PatternSettings::getNoteValue()           const { return noteValue; }
+double       PatternSettings::getNoteSpeedRatio()      const { return noteSpeedRatio; }
 int PatternSettings::getLengthInNotes() const
 {
     if (patternIsInfinite)
@@ -73,6 +74,7 @@ void PatternSettings::setAllowOffKeyInput    (bool allowOffKeyInput)     { this-
 void PatternSettings::setInfinitePattern     (bool infinitePattern)      { this->patternIsInfinite = infinitePattern; }
 void PatternSettings::setMergeRepeatedNotes  (bool mergeRepeatedNotes)   { this->mergeRepeatedNotes = mergeRepeatedNotes; }
 void PatternSettings::setNoteValue           (NoteValue noteValue)       { this->noteValue = noteValue; }
+void PatternSettings::setNoteSpeedRatio      (double ratio)              { this->noteSpeedRatio = ratio; }
 void PatternSettings::setLength              (int length)                { this->length = length; }
 void PatternSettings::setLengthUnit          (LengthUnit unit)           { this->lengthUnit = unit; }
 void PatternSettings::setLengthUnit (juce::String unitName)

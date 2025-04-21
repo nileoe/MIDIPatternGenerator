@@ -62,6 +62,7 @@ private:
     juce::Array<int> pattern;
     
     void captureHeldKeys(juce::MidiBuffer& midiMessages);
+    int  getOffsetForCurrentBlock(int noteDuration, int numSamples, int time) const;
     bool differentNewKeyIsPressed (int midiBufferSize) const;
     bool shouldOutputNotes() const;
     bool shouldSendCleanupNoteOffMessage() const;

@@ -36,15 +36,17 @@ NoteQuantizationBox::NoteQuantizationBox(ArpAlgoAudioProcessor& p) : processor(p
 
     startTimer(500);
 }
-void NoteQuantizationBox::handleSpeedMenuChange()
-{
-    NoteValue newValue = getSelectedSpeedValue();
-    AppData::getInstance().setNoteSpeedRatio(newValue.getRatioFromBeat());
-}
+
 void NoteQuantizationBox::handleMergeRepeatNotesChange()
 {
     const bool mergeRepeatedNotes = mergeRepeatedNotesCheckBox.getToggleState();
     PatternSettings::getInstance().setMergeRepeatedNotes(mergeRepeatedNotes);
+}
+
+void NoteQuantizationBox::handleSpeedMenuChange()
+{
+    NoteValue newValue = getSelectedSpeedValue();
+    PatternSettings::getInstance().setNoteSpeedRatio(newValue.getRatioFromBeat());
 }
 
 void NoteQuantizationBox::populateSpeedMenu()
@@ -66,20 +68,14 @@ void NoteQuantizationBox::populateSpeedMenu()
     }
     speedMenu.setSelectedId(4);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a61585c (implemented merging repeated notes features and UI)
 void NoteQuantizationBox::timerCallback()
 {
     const auto bpm = processor.getHostBpm();
     juce::String bpmString { bpm ? juce::String(*bpm) : "Not found" };
     bpmValueLabel.setText(bpmString, juce::NotificationType::dontSendNotification);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a61585c (implemented merging repeated notes features and UI)
 NoteValue NoteQuantizationBox::getSelectedSpeedValue()
 {
     int newSpeedValueId = speedMenu.getSelectedId();
@@ -93,27 +89,6 @@ NoteValue NoteQuantizationBox::getSelectedSpeedValue()
     return newValue;
 }
 
-<<<<<<< HEAD
-void NoteQuantizationBox::log(juce::String dbgText, bool shouldAppendNewline)
-{
-    debugBox.moveCaretToEnd();
-    debugBox.insertTextAtCaret(dbgText);
-    if (!shouldAppendNewline)
-        return;
-    debugBox.insertTextAtCaret("\n");
-}
-
-void NoteQuantizationBox::changeListenerCallback(juce::ChangeBroadcaster *source)
-{
-    syncTextWithCurrentAlgorithm();
-}
-
-void NoteQuantizationBox::syncTextWithCurrentAlgorithm()
-{
-}
-
-=======
->>>>>>> a61585c (implemented merging repeated notes features and UI)
 void NoteQuantizationBox::resized()
 {
     using FI = juce::FlexItem;

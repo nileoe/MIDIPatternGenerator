@@ -106,7 +106,6 @@ const juce::Array<GenerationAlgorithm*>& AppData::getGenerationAlgorithms() cons
 {
     return generationAlgorithms;
 }
-double AppData::getNoteSpeedRatio() const { return noteSpeedRatio; }
 
 
 void AppData::addScale(Scale scale)
@@ -152,8 +151,4 @@ int AppData::getSelectedAlgorithmId() const
 void AppData::setSelectedAlgorithmId(int id)
 {
     selectedAlgorithmId = id;
-}
-void AppData::setNoteSpeedRatio(double ratio)
-{
-    noteSpeedRatio = ratio;
 }

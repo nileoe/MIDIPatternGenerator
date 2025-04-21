@@ -6,12 +6,6 @@ ArpAlgoAudioProcessorEditor::ArpAlgoAudioProcessorEditor (ArpAlgoAudioProcessor&
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     setSize (1200, 500);
-    
-<<<<<<< HEAD
-    generationMethodsBox.addChangeListener(&noteQuantizationBox);
-=======
-//    generationMethodsBox.addChangeListener(&noteQuantizationBox);
->>>>>>> a61585c (implemented merging repeated notes features and UI)
     pianoKeyboard.addChangeListener(&selectedRangeBox);
 }
 

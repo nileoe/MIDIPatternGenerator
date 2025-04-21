@@ -30,16 +30,18 @@ class PatternSettings
     
     NoteSet&     getNoteSet();
     NoteValue    getNoteValue()           const;
+    double       getNoteSpeedRatio()      const;
     bool         doesAllowOffKeyInput()   const;
     bool         isPatternInfinite()      const;
     bool         doesMergeRepeatedNotes() const;
     int          getLengthInUnits()       const;
     int          getLengthInNotes()       const;
-    juce::String getLengthUnitName()      const; // mention: no get length int, only name (string)
+    juce::String getLengthUnitName()      const;
 
 
     void setGenerationAlgorithm (GenerationAlgorithm* algo);
     void setNoteValue           (NoteValue noteValue);
+    void setNoteSpeedRatio      (double ratio);
     void setAllowOffKeyInput    (bool allowOffKeyInput);
     void setInfinitePattern     (bool infinitePattern);
     void setMergeRepeatedNotes  (bool mergeRepeatedNotes);
@@ -53,6 +55,7 @@ class PatternSettings
     NoteSet noteSet;
     int length = 10;
     NoteValue noteValue;
+    double noteSpeedRatio = 2; // defaulting to eight notes
     bool allowOffKeyInput = false;
     bool patternIsInfinite = false;
     bool mergeRepeatedNotes = true;
