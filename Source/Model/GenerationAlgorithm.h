@@ -10,7 +10,6 @@
 
 #pragma once
 
-//#include "./Data/PatternSettings.h"
 #include <JuceHeader.h>
 
 class GenerationAlgorithm
@@ -30,6 +29,12 @@ class GenerationAlgorithm
     int getId() const
     {
         return id;
+    }
+    
+    protected:
+    bool isValidMidiNote(int note) const
+    {
+        return note >= 0 && note <= 127;
     }
     
     private:

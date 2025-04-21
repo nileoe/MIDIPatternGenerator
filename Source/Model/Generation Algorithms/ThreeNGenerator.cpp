@@ -33,12 +33,7 @@ const juce::Array<int> ThreeNGenerator::getPattern(juce::SortedSet<int> heldNote
     
     for (auto i = 0; i < patternLength; ++i)
     {
-        if (index < 0)
-        {
-            DBG ("Error: index is negative: " << index);
-            jassertfalse;
-        }
-        
+        jassert (index >= 0);
         if (index == 1) break;
         patternIndexes.add (index);
         index = getNextIndex(index);

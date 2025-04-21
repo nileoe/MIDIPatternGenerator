@@ -112,7 +112,6 @@ void ArpAlgoAudioProcessor::captureHeldKeys(juce::MidiBuffer& midiMessages)
             {
                 pressedKeys.add (noteNumber);
                 lastPressedKey = noteNumber; // recording last pressed key to use for starting point in most algorithms
-                DBG ("UPDATING lastPressedKey to: " << lastPressedKey);
             }
             else if (message.isNoteOff())
             {
@@ -120,11 +119,6 @@ void ArpAlgoAudioProcessor::captureHeldKeys(juce::MidiBuffer& midiMessages)
             }
         }
     }
-}
-
-int ArpAlgoAudioProcessor::getOffsetForCurrentBlock(int noteDuration, int numSamples, int time) const
-{
-    return juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
 }
 
 const std::optional<double> ArpAlgoAudioProcessor::getHostBpm() const
@@ -154,15 +148,14 @@ double ArpAlgoAudioProcessor::getHostBpmOrDefault() const
     return DEFAULT_BPM;
 }
 
+int ArpAlgoAudioProcessor::getOffsetForCurrentBlock(int noteDuration, int numSamples, int time) const
+{
+    return juce::jmax (0, juce::jmin ((int) (noteDuration - time), numSamples - 1));
+}
 
 bool ArpAlgoAudioProcessor::differentNewKeyIsPressed(int midiBufferSize) const
 {
-        if (lastPressedKey != patternBaseNote)
-    {
-        DBG ("NEW DIFFERRENT KEY FOUND: lastPressedKey is " << lastPressedKey << ", patternBaseNote is " << patternBaseNote);
-        return true;
-    }
-    return false;
+    return lastPressedKey != patternBaseNote;
 }
 
 bool ArpAlgoAudioProcessor::patternIsExhausted() const

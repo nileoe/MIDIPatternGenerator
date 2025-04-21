@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "../Data/PatternSettings.h"
 #include "../GenerationAlgorithm.h"
+#include "../Data/PatternSettings.h"
 #include <JuceHeader.h>
 
 class RandomizerGenerator : public GenerationAlgorithm

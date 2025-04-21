@@ -27,31 +27,30 @@ const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> held
     auto& patternSettings = PatternSettings::getInstance();
     int length = patternSettings.getLengthInNotes();
     bool allowOffkeyInputNotes = patternSettings.doesAllowOffKeyInput();
+
     juce::Array<int> pattern;
     
     juce::Array<int> availableNotes;
     availableNotes.addArray(targetNotes);
     
     juce::Array<int> weightedPool = availableNotes;
-    juce::Array<int> usableHeldNotes;
+    
+    const int HELD_NOTES_ADDITIONAL_WEIGHT = 5;
     
     for (auto heldNote : heldNotes)
     {
         // Only add held notes that are either in targetNotes or allowed as off-key input
         if (targetNotes.contains(heldNote) || allowOffkeyInputNotes)
         {
-            usableHeldNotes.add(heldNote);
-            
             // Increase the number of held notes in the weighed pool to increase their likelyhood
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < HELD_NOTES_ADDITIONAL_WEIGHT; ++i)
             {
                 weightedPool.add(heldNote);
             }
         }
     }
     
-    // Use lastPressedKey as the starting note if it's a valid note
-    if (lastPressedKey >= 0 && lastPressedKey <= 127)
+    if (isValidMidiNote(lastPressedKey))
     {
         if (targetNotes.contains(lastPressedKey) ||
             (allowOffkeyInputNotes && heldNotes.contains(lastPressedKey)))
@@ -60,21 +59,19 @@ const juce::Array<int> RandomizerGenerator::getPattern(juce::SortedSet<int> held
         }
         else
         {
-            // If lastPressedKey is not valid, pick a random note
             if (!availableNotes.isEmpty())
             {
+                // lastPressedKey is not valid: picking a random note
                 pattern.add(availableNotes[juce::Random::getSystemRandom().nextInt(availableNotes.size())]);
             }
         }
     }
     
-    // Fill the rest of the pattern
     for (auto i = pattern.size(); i < length; ++i)
     {
         if (weightedPool.isEmpty())
             break;
         
-        // Get a random note from the weighted pool
         int randomIndex = juce::Random::getSystemRandom().nextInt(weightedPool.size());
         int selectedNote = weightedPool[randomIndex];
         
