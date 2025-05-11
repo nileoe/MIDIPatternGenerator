@@ -52,7 +52,8 @@ void AppData::addScaleData()
     scales.add (Scale{ "Major",              juce::Array<int>{0, 2, 4, 5, 7, 9, 11},                 "7 notes Major and Minor" });
     scales.add (Scale{ "Melodic Minor",      juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor" });
     scales.add (Scale{ "Natural Minor",      juce::Array<int>{0, 2, 3, 5, 7, 8, 10},                 "7 notes Major and Minor" });
-    scales.add (Scale{ "Harmonic Minor",     juce::Array<int>{0, 2, 3, 5, 7, 9, 11},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Harmonic Minor",     juce::Array<int>{0, 2, 3, 5, 7, 8, 11},                 "7 notes Major and Minor" });
+    scales.add (Scale{ "Harmonic Minor #4",  juce::Array<int>{0, 2, 3, 6, 7, 8, 11},                 "7 notes Major and Minor" });
     scales.add (Scale{ "Pentatonic Major",   juce::Array<int>{0, 2, 4, 7, 9},                        "5 notes standard" });
     scales.add (Scale{ "Chromatic",          juce::Array<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, "Miscellaneous" });
 }
